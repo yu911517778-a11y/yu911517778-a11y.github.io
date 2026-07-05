@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <meta name="x-launch-build" content="v031-202607051500" />
+    <meta name="x-launch-build" content="v031-202607051545" />
     <title>AI短剧生产主控 智能启动</title>
     <style>
       :root {
@@ -97,7 +97,7 @@
         <div class="actions">
           <a class="primary" id="openBest" href="https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe" target="_blank" rel="noreferrer">立即打开客户体验入口</a>
           <button type="button" id="copyPack">复制入口包</button>
-          <a href="https://yu911517778-a11y.github.io/client-access-v031.html" target="_blank" rel="noreferrer">访问保障</a>
+          <a id="accessButton" href="https://yu911517778-a11y.github.io/client-access-v031.html" target="_blank" rel="noreferrer">访问保障</a>
         </div>
       </section>
       <section class="status" aria-live="polite">
@@ -190,11 +190,21 @@
     </main>
     <script>
       const routes = [{"id":"edgeone","label":"客户体验入口","url":"https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe","probe":"https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe","mode":"fetch","note":"优先线路，适合直接发客户。"},{"id":"github","label":"极速预览","url":"https://yu911517778-a11y.github.io/client-lite-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"静态资源线路，适合完整轻量体验。"},{"id":"worker","label":"备用镜像 C","url":"https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html","probe":"https://short-video-agent-demo.spot-makemake.workers.dev/assets/app-icon-192.png","mode":"image","note":"海外 CDN 备用线路。"},{"id":"access","label":"访问保障页","url":"https://yu911517778-a11y.github.io/client-access-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"手动切换所有入口。"},{"id":"open","label":"极简打开页","url":"https://yu911517778-a11y.github.io/client-open-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"文字链接兜底。"},{"id":"status","label":"网络自检页","url":"https://yu911517778-a11y.github.io/client-status-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"客户自己检查当前网络。"},{"id":"refresh","label":"刷新缓存页","url":"https://yu911517778-a11y.github.io/client-refresh-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"清理旧页面和旧缓存。"},{"id":"workerAccess","label":"访问保障备用","url":"https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html","probe":"https://short-video-agent-demo.spot-makemake.workers.dev/assets/app-icon-192.png","mode":"image","note":"海外 CDN 保障页。"}];
+      const launchUrl = "https://yu911517778-a11y.github.io/go.html";
+      const workerLaunchUrl = "https://short-video-agent-demo.spot-makemake.workers.dev/go.html";
+      const accessUrl = "https://yu911517778-a11y.github.io/client-access-v031.html";
+      const workerAccessUrl = "https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html";
       const bar = document.querySelector("#bar");
       const statusTitle = document.querySelector("#statusTitle");
       const statusText = document.querySelector("#statusText");
       const openBest = document.querySelector("#openBest");
+      const accessButton = document.querySelector("#accessButton");
       const manual = document.querySelector("#manual");
+      const currentLaunchUrl = location.href.split("#")[0].split("?")[0];
+      const runningOnWorker = location.hostname.includes("workers.dev");
+      const preferredAccessUrl = runningOnWorker ? workerAccessUrl : accessUrl;
+      accessButton.href = preferredAccessUrl;
+      accessButton.textContent = runningOnWorker ? "访问保障备用" : "访问保障";
 
       function imageProbe(url, timeout = 1600) {
         return new Promise((resolve) => {
@@ -255,9 +265,16 @@
         return [
           "AI短剧生产主控客户体验入口包：",
           "",
+          "当前智能启动页：",
+          currentLaunchUrl,
+          "主智能启动页：",
+          launchUrl,
+          "智能启动备用：",
+          workerLaunchUrl,
+          "",
           ...routes.map((route) => route.label + "：" + "\n" + route.url),
           "",
-          "建议：先发客户体验入口；打不开再发智能启动页或访问保障页。"
+          "建议：优先发当前智能启动页；打不开再发智能启动备用或访问保障页。微信内打不开就复制到手机 Chrome / Safari。"
         ].join("\n");
       }
 
