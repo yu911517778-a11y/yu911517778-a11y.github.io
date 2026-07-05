@@ -1,5 +1,5 @@
 ﻿const state = {
-  mode: "agent",
+  mode: "image",
   points: 12800,
   refs: [],
   lastResult: "",
@@ -13,7 +13,7 @@
   selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.daffodil-structure.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.meteor-lan.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v031.html`;
@@ -25,19 +25,20 @@ const refreshPagesEntry = `${rootPagesEntry}client-refresh-v031.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430";
 const edgeOneEntry = "https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N";
-const primaryCustomerEntry = primaryWorkerEntry;
+const currentOriginEntry = typeof window !== "undefined" ? `${window.location.origin}/` : primaryWorkerEntry;
+const primaryCustomerEntry = typeof window !== "undefined" && window.location.hostname.endsWith("workers.dev") ? currentOriginEntry : primaryWorkerEntry;
 const githubProxyEntry = primaryCustomerEntry;
 const emergencyMirrorEntry = primaryCustomerEntry;
 const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
-const settingsKey = "shortDramaAgentSettings:v1";
+const settingsKey = "shortDramaAgentSettings:v2";
 const expectedCacheName = "short-drama-studio-v32";
 const liveApiEnabled = true;
 const customerEntries = [
-  ["客户体验入口", primaryCustomerEntry],
+  ["商用体验入口", primaryCustomerEntry],
   ["智能启动页", launchPagesEntry],
-  ["极速预览", githubPagesEntry],
+  ["备用预览", githubPagesEntry],
   ["访问保障页", accessPagesEntry],
   ["极简打开页", openPagesEntry],
   ["网络自检页", statusPagesEntry],
@@ -53,9 +54,11 @@ const customerEntries = [
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
+const modeSelect = document.querySelector("#modeSelect");
 const ratioSelect = document.querySelector("#ratioSelect");
 const resolutionSelect = document.querySelector("#resolutionSelect");
 const durationSelect = document.querySelector("#durationSelect");
+const modelSelect = document.querySelector("#modelSelect");
 const modelField = document.querySelector("#modelField");
 const durationField = document.querySelector("#durationField");
 const fileInput = document.querySelector("#fileInput");
@@ -292,7 +295,7 @@ const previewResult = [
   "角色变脸回 N02；场景跳变回 N03；动作失败拆成更短镜头；出现字幕、水印或多余文字则重跑负面限制。",
   "",
   "【本轮交付结果】",
-  "这是打开页面后的样例输出。点击 Generate 后会替换为当前输入的真实主控结果。"
+  "这是打开页面后的样例方案。点击生成后，会替换为当前输入的真实创作结果。"
 ].join("\n");
 
 const busySteps = [
@@ -316,10 +319,18 @@ const cases = [
 ];
 
 function updateMode(mode, shouldSave = true) {
-  state.mode = mode;
-  modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === mode));
-  modelField.style.display = mode === "agent" ? "none" : "grid";
-  durationField.style.display = mode === "video" || mode === "agent" ? "grid" : "none";
+  const normalizedMode = ["agent", "image", "video"].includes(mode) ? mode : "image";
+  const modelByMode = {
+    agent: "agent-supervisor",
+    image: "image-5-lite",
+    video: "video-5-lite"
+  };
+  state.mode = normalizedMode;
+  modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === normalizedMode));
+  if (modeSelect) modeSelect.value = normalizedMode;
+  if (modelSelect && modelByMode[normalizedMode]) modelSelect.value = modelByMode[normalizedMode];
+  if (modelField) modelField.hidden = normalizedMode === "agent";
+  if (durationField) durationField.hidden = !(normalizedMode === "video" || normalizedMode === "agent");
   if (shouldSave) saveSettings();
 }
 
@@ -495,15 +506,18 @@ function renderPreviewResult() {
 }
 
 function loadSettings() {
+  let savedMode = "image";
   try {
     const saved = JSON.parse(localStorage.getItem(settingsKey) || "{}");
     if (saved.ratio) ratioSelect.value = saved.ratio;
     if (saved.resolution) resolutionSelect.value = saved.resolution;
     if (saved.duration) durationSelect.value = saved.duration;
     if (saved.prompt) promptInput.value = saved.prompt;
-    if (saved.mode) updateMode(saved.mode, false);
+    if (saved.mode) savedMode = saved.mode;
+    updateMode(savedMode, false);
+    if (saved.model && modelSelect) modelSelect.value = saved.model;
   } catch {
-    updateMode("agent", false);
+    updateMode("image", false);
   }
 }
 
@@ -514,6 +528,7 @@ function saveSettings() {
       ratio: ratioSelect.value,
       resolution: resolutionSelect.value,
       duration: durationSelect.value,
+      model: modelSelect ? modelSelect.value : "",
       prompt: promptInput.value
     }));
   } catch {
@@ -702,9 +717,9 @@ function buildResultSummary() {
     .slice(0, 6)
     .join("\n");
   return [
-    "AI短剧生产主控体验摘要",
-    `客户入口：${primaryCustomerEntry}`,
-    `极速预览：${githubPagesEntry}`,
+    "AI短剧创作平台体验摘要",
+    `体验入口：${primaryCustomerEntry}`,
+    `备用预览：${githubPagesEntry}`,
     `任务：${prompt}`,
     `状态：${runMeta.textContent || "等待生成"}`,
     "",
@@ -714,34 +729,34 @@ function buildResultSummary() {
     "适合给客户看的价值点：",
     "1. 自动判断输入类型并选择生产模式。",
     "2. 把剧本、角色、场景、视频提示词和返工诊断拆成独立节点。",
-    "3. API 不可达时仍能返回可演示方案，不让页面空白。"
+    "3. 云端繁忙时仍能返回可演示方案，不让页面空白。"
   ].join("\n");
 }
 
 function buildCustomerEntryText() {
   return [
-    "AI短剧生产主控客户体验入口包",
+    "AI短剧创作平台商用体验入口包",
     "",
-    `客户体验入口：${primaryCustomerEntry}`,
+    `商用体验入口：${primaryCustomerEntry}`,
     `智能启动页：${launchPagesEntry}`,
-    `极速预览：${githubPagesEntry}`,
+    `备用预览：${githubPagesEntry}`,
     `访问保障页：${accessPagesEntry}`,
     "",
     "访问保障：",
     ...customerEntries.slice(3).map(([label, url]) => `${label}：${url}`),
     "",
-    "建议：先发客户体验入口；客户说打不开时，发智能启动页或访问保障页，按顺序切换。"
+    "建议：优先发送商用体验入口；客户说打不开时，发智能启动页或访问保障页。"
   ].join("\n");
 }
 
 function buildCustomerPitchText() {
   return [
-    "给你一个 AI短剧生产主控客户体验入口：",
+    "给你一个 AI短剧创作平台商用体验入口：",
     primaryCustomerEntry,
     "",
-    "打开后先看主控如何把剧本、角色、场景、视频提示词和返工诊断拆成独立智能体节点；想看可点击生成、素材包、试点评估和完整界面，再打开极速预览。",
+    "打开后可以直接上传参考图、选择生成参数、输入剧情或角色设定，看系统如何把剧本、角色、场景、视频提示词和返工诊断拆成独立智能体节点。",
     "",
-    `极速预览：${githubPagesEntry}`,
+    `备用预览：${githubPagesEntry}`,
     `智能启动页：${launchPagesEntry}`,
     `访问保障页：${accessPagesEntry}`
   ].join("\n");
@@ -894,7 +909,7 @@ function calculateEstimate() {
   if (input.maturityKey === "idea") risks.push("题材还停留在想法层，先补一句话钩子、角色关系和冲突点。");
   if (input.materialKey === "missing") risks.push("素材不足会导致角色和场景不稳定，试点前至少补主角图、场景参考和对标视频。");
   if (input.materialKey === "partial") risks.push("已有素材还不完整，第一轮应限制在 1 个主角和 1 个场景内。");
-  if (input.volumeKey === "large") risks.push("日产 20 条以上需要批量队列、资产命名、失败重试和扣费日志，不能只靠单页 Demo。");
+  if (input.volumeKey === "large") risks.push("日产 20 条以上需要批量队列、资产命名、失败重试和扣费日志，不能只靠单页体验版。");
   if (needCount >= 4) risks.push("正式能力需求较多，建议先锁试点验收标准，再拆系统报价和排期。");
   if (!needAssetsCheckbox.checked) risks.push("不做资产库会影响角色复用，后续批量生产容易重复返工。");
   if (risks.length === 0) risks.push("当前条件适合做标准试点，重点看角色是否稳定、场景是否可复用。");
@@ -935,9 +950,9 @@ function buildEstimateReportText() {
     "风险提醒：",
     ...estimate.risks.map((item, index) => `${index + 1}. ${item}`),
     "",
-    `客户体验入口：${primaryCustomerEntry}`,
-      `极速预览：${githubPagesEntry}`,
-      `完整 Demo：${projectPagesEntry}`
+    `商用体验入口：${primaryCustomerEntry}`,
+      `备用预览：${githubPagesEntry}`,
+      `完整体验版：${projectPagesEntry}`
   ].join("\n");
 }
 
@@ -957,7 +972,7 @@ function buildEstimateProposalText() {
     "",
     `当前目标：${input.goal.label}；目标日产量：${input.volume.label}。`,
     `体验入口：${primaryCustomerEntry}`,
-    `极速预览：${githubPagesEntry}`
+    `备用预览：${githubPagesEntry}`
   ].join("\n");
 }
 
@@ -998,7 +1013,7 @@ function calculateDeployPlan() {
 
   let readiness = "临时测试";
   let title = "先用免费入口验证兴趣";
-  let summary = "当前适合继续用极速入口和完整 Demo 让客户体验，先不要买服务器，等真实题材试点有反馈后再升级。";
+  let summary = "当前适合继续用商用体验入口让客户体验，先不要买服务器，等真实题材试点有反馈后再升级。";
   let actions = [
     "发极速入口给客户，确认是否能打开和理解产品。",
     "收 1 个真实题材、1 个主角、1 个场景和 3 条对标视频。",
@@ -1008,7 +1023,7 @@ function calculateDeployPlan() {
   if (score >= 48) {
     readiness = "试点准备";
     title = "进入真实题材试点";
-    summary = "客户已经不只是看 Demo，建议用真实素材跑小样，同时整理资产命名、返工记录和第一批验收标准。";
+    summary = "客户已经进入真实试点意向，建议用真实素材跑小样，同时整理资产命名、返工记录和第一批验收标准。";
     actions = [
       "锁定试点范围：1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
       "建立角色资产卡、场景母图、提示词模板和返工记录。",
@@ -1100,9 +1115,9 @@ function buildInfraChecklistText() {
     "4. 积分扣费有流水，失败任务有补偿规则。",
     "5. 资产库能按角色、场景、道具、模板和返工记录检索。",
     "",
-    `客户体验入口：${primaryCustomerEntry}`,
-    `极速预览：${githubPagesEntry}`,
-    `完整 Demo：${rootPagesEntry}`
+    `商用体验入口：${primaryCustomerEntry}`,
+    `备用预览：${githubPagesEntry}`,
+    `完整体验版：${rootPagesEntry}`
   ].join("\n");
 }
 
@@ -1110,8 +1125,8 @@ function buildExperienceGuideText() {
   return [
     "AI短剧生产主控客户体验步骤",
     "",
-      `1. 打开入口：优先打开 ${primaryCustomerEntry}；想看可点击生成和完整界面，再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开智能启动页 ${launchPagesEntry} 或访问保障页 ${accessPagesEntry}。`,
-    "2. 看稳定演示：在完整界面点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
+      `1. 打开入口：优先打开 ${primaryCustomerEntry}；需要备用访问时再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开智能启动页 ${launchPagesEntry} 或访问保障页 ${accessPagesEntry}。`,
+    "2. 看创作流程：在首页输入题材并点击生成，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
     "3. 换真实题材：点击页面作品案例，或直接改输入框里的题材，看同一套主控流程如何复用。",
     "4. 看输出结构：确认结果里是否包含输入类型判断、处理范围、调用节点、资产需求、生成方案和返工方向。",
     "5. 进入试点：把素材提交包发给我们，先做 1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
@@ -1143,8 +1158,8 @@ function buildClientChecklistText() {
   return [
     "AI短剧生产主控客户验收清单",
     "",
-    "打开体验：手机能打开客户体验入口；微信打不开时能复制到 Chrome / Safari，仍不行可用访问保障页。",
-    "演示结果：点击“一键演示”后 1 秒左右出现主控结果，不出现空白页。",
+    "打开体验：手机能打开商用体验入口；微信打不开时能复制到 Chrome / Safari，仍不行可用访问保障页。",
+    "创作结果：点击生成后出现主控结果，不出现空白页。",
     "流程理解：能看懂主控把任务拆成剧本、角色、场景、视频提示词和返工诊断。",
     "素材复用：能看懂角色图、场景图、镜头参考图分别负责什么。",
     "返工闭环：能看懂失败时回到哪个节点改，而不是盲目重跑。",
@@ -1181,7 +1196,7 @@ function setServiceStatus(status, message) {
 }
 
 function getHealthUrl() {
-  return window.location.hostname.endsWith("workers.dev")
+  return window.location.hostname.endsWith("workers.dev") || window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
     ? new URL("api/health", window.location.href).toString()
     : `${remoteApiBase}/api/health`;
 }
@@ -1458,7 +1473,11 @@ modeButtons.forEach((button) => {
   button.addEventListener("click", () => updateMode(button.dataset.mode));
 });
 
-[ratioSelect, resolutionSelect, durationSelect, promptInput].forEach((input) => {
+if (modeSelect) {
+  modeSelect.addEventListener("change", () => updateMode(modeSelect.value));
+}
+
+[ratioSelect, resolutionSelect, durationSelect, modelSelect, promptInput].filter(Boolean).forEach((input) => {
   input.addEventListener("input", saveSettings);
   input.addEventListener("change", saveSettings);
 });
@@ -1640,7 +1659,7 @@ copyInfraChecklistButton.addEventListener("click", async () => {
 });
 
 copyMobileEntryButton.addEventListener("click", async () => {
-  copyText(primaryCustomerEntry, "客户体验入口已复制");
+  copyText(primaryCustomerEntry, "商用体验入口已复制");
 });
 
 openRootEntryButton.addEventListener("click", () => {
@@ -1689,7 +1708,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-updateMode("agent", false);
+updateMode("image", false);
 loadSettings();
 renderPoints();
 renderCases();

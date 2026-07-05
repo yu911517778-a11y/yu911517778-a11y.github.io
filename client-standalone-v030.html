@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI短剧生产主控 Studio</title>
-    <meta name="description" content="AI短剧生产主控 Studio：从参考图、角色资产、场景母图到短剧分镜和视频提示词的一站式体验 Demo。" />
+    <title>AI短剧创作平台 | 商用体验版</title>
+    <meta name="description" content="AI短剧创作平台商用体验版：上传参考图、输入剧情或角色设定，一站式生成角色资产、场景母图、短剧分镜和视频提示词。" />
     <meta name="theme-color" content="#f5f7fa" />
     <link rel="canonical" href="https://yu911517778-a11y.github.io/" />
-    <meta property="og:title" content="AI短剧生产主控 Studio" />
-    <meta property="og:description" content="客户先看极速入口：主控自动调度剧本、角色、场景、视频提示词和返工诊断节点，适合手机直接体验。" />
+    <meta property="og:title" content="AI短剧创作平台商用体验版" />
+    <meta property="og:description" content="客户可直接体验：上传参考图、选择生成参数、查看主控如何调度角色、场景、分镜、视频提示词和返工诊断节点。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yu911517778-a11y.github.io/client-lite-v031.html" />
     <meta property="og:image" content="https://yu911517778-a11y.github.io/assets/social-preview-1200x630.jpg" />
@@ -16,8 +16,8 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="AI短剧生产主控客户入口预览" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AI短剧生产主控 Studio" />
-    <meta name="twitter:description" content="客户先看体验入口：手机打开、查看独立智能体节点、跑一键演示，再进入正式试点沟通。" />
+    <meta name="twitter:title" content="AI短剧创作平台商用体验版" />
+    <meta name="twitter:description" content="手机打开即可体验 AI 短剧创作、独立智能体节点和正式试点流程。" />
     <meta name="twitter:image" content="https://yu911517778-a11y.github.io/assets/social-preview-1200x630.jpg" />
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiNmNGVmZTQiLz4KICA8cGF0aCBkPSJNMjIgMThoMjJsLTQgMjhIMThsNC0yOFoiIGZpbGw9IiMxNzE3MTMiLz4KICA8cGF0aCBkPSJNMjkgMjRoOGwtMiAxNmgtOGwyLTE2WiIgZmlsbD0iI2Q5Yjg2YyIvPgo8L3N2Zz4K" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAEAUlEQVR4nO3dPY4cRRiA4VnkA6ydOrMITMIVECkhObeYcCWENKFvQU5IirgCCQ4sZ059BaMNjIbV2qw1/VO17/NEtmTJHXzvVNV0t+bq+un1hwNEfbX3BcCeBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApD05DO7V+5d7XwIXOj57fRjV1WjvAxj4x+84UBDDBGDwe44DhLBrAA8Z+pvnbze5FtZzevdi2Bh2C+BTw2/gu0Ecd4hg8wAMPiOFsGkA9w2/T3xO94SwVQSbBXB3+A0+/xfCFhFsciPM8PMQdz8Ut/hmcPUADD8jR7DqFuj84m15uGRLtNZ2aLUVwPBzqfMPzbVWglUCcFeXWeZq8QDs+ZnpTLDqIdi+n9HnaNEA7PuZ7TywWAD2/WxpqXlbZQtk68Msc+WVSNIWCcDen1nPAlYA0i4OwKc/M68CVgDSBECaAEi7KAD7f2Y/B1gBSBMAaQIgTQCkCYA0AZAmANIEQJoASBMAaQIgTQCkDf8rkZf87A7buZn0p6ysAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBt2hdiZn0Bg7FYAUgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIG3aZ4He/P3X3pfAma+/+fYwIysAaQIgTQCkCYA0AZAmANIEQJoASBMAaQIgTQCkCYA0AZAmANIEQNq07wPM+vw5Y7ECkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIm/ZhuD9/+n7vSxjCd7/+8aB/9+Mvv696Hb/9/MNhRlYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgLQnj/05eOZ+Xn9tVgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSLgrg+Oz1v38+vXuxxPXAg5zP2/kcfikrAGkCIE0ApF0cgHMAs+7/b1kBSFskAKsAM37637ICkLZKAO4JMMtcLRbAEssRbD1vi64AzgLMsvff5AxgK8Toc7R4AHfrFAGXuDs/S2+1V1kBnAeYZa5W2wI5DzDqvv/c1fXT6w+HFb16//I/f795/nbN/45H4LTytmfTG2HOBIw6/JvdCRYBIw7/Jlugz22HbtkScbrna86tvkjZNIBPRXBLCD2nT3y/v+W3iJsH8JEQuk4DDP7uAXwugnNWhvmdHnAnd697R7sG8KUx8LgcB3iAcpgAPhLC43ccYPCHDeAuQczvONDATxcArMkrkaQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gTAoewfUtfz5YESRkkAAAAASUVORK5CYII=" />
@@ -2450,20 +2450,238 @@ textarea::placeholder {
 .prompt-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+  min-height: 58px;
+  max-width: 100%;
 }
 
+.param-select-pill,
+.param-icon-button,
 .prompt-actions .ghost-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
   min-height: 48px;
-  padding: 0 18px;
+  border: 0;
   border-radius: 14px;
+  font-size: 15px;
+  font-weight: 760;
   color: #222a36;
   background: #fff;
   box-shadow: inset 0 0 0 1px rgba(20, 28, 38, .07);
 }
 
-.prompt-actions .generate-button {
+.param-select-pill {
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.param-select-pill[hidden] {
+  display: none;
+}
+
+.param-select-pill select {
+  appearance: auto;
+  min-width: 0;
+  height: 46px;
+  border: 0;
+  border-radius: 0;
+  padding: 0 4px;
+  color: inherit;
+  background: transparent;
+  box-shadow: none;
+  font: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.mode-field {
+  color: #08a8c6;
+  background: #f1fbfd;
+  box-shadow:
+    inset 0 0 0 1px rgba(18, 174, 202, .16),
+    0 8px 18px rgba(18, 174, 202, .08);
+}
+
+.mode-field select {
+  color: #08a8c6;
+}
+
+.model-field select {
+  width: 118px;
+}
+
+.ratio-field {
+  gap: 8px;
+}
+
+.ratio-field select:first-of-type {
+  width: 92px;
+}
+
+.ratio-field select:last-of-type {
+  width: 56px;
+}
+
+.duration-field select {
+  width: 58px;
+}
+
+.param-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(20, 28, 38, .1);
+}
+
+.pill-icon {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+}
+
+.image-icon {
+  border: 2px solid currentColor;
+  border-radius: 5px;
+}
+
+.image-icon::before,
+.image-icon::after {
+  content: "";
+  position: absolute;
+}
+
+.image-icon::before {
+  right: 2px;
+  top: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.image-icon::after {
+  left: 3px;
+  bottom: 3px;
+  width: 9px;
+  height: 7px;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: skewX(-18deg);
+}
+
+.cube-icon {
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  transform: rotate(45deg) scale(.86);
+}
+
+.ratio-icon {
+  border: 2px solid currentColor;
+  border-radius: 4px;
+}
+
+.ratio-icon::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 50%;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+.clock-icon {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.clock-icon::before,
+.clock-icon::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 2px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  transform-origin: bottom center;
+}
+
+.clock-icon::after {
+  height: 5px;
+  transform: rotate(90deg);
+}
+
+.param-icon-button {
+  width: 48px;
+  min-width: 48px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.text-style-button span {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
+.reference-button {
+  position: relative;
+  font-size: 20px;
+}
+
+.reference-button::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #12aece;
+}
+
+.prompt-actions .ghost-button {
+  padding: 0 16px;
+}
+
+.prompt-actions .secondary-action {
+  display: none;
+  color: #637082;
+  background: #fbfcfd;
+}
+
+.credit-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
   margin-left: auto;
+  color: #526071;
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.credit-count::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  background: #536174;
+  clip-path: polygon(50% 0, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0 50%, 37% 37%);
+}
+
+.prompt-actions .generate-button {
+  margin-left: 0;
   width: 58px;
   min-width: 58px;
   height: 58px;
@@ -2719,18 +2937,76 @@ textarea::placeholder {
   }
 
   .prompt-actions {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) 58px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
+  .param-select-pill,
+  .param-icon-button,
   .prompt-actions .ghost-button {
+    min-height: 46px;
     min-width: 0;
-    padding: 0 8px;
     font-size: 13px;
+  }
+
+  .param-select-pill {
+    padding: 0 10px;
+  }
+
+  .mode-field {
+    flex: 1 1 130px;
+  }
+
+  .model-field {
+    flex: 1 1 160px;
+  }
+
+  .model-field select {
+    width: 104px;
+  }
+
+  .ratio-field {
+    flex: 1 1 186px;
+  }
+
+  .ratio-field select:first-of-type {
+    width: 78px;
+  }
+
+  .ratio-field select:last-of-type {
+    width: 50px;
+  }
+
+  .duration-field {
+    flex: 0 0 auto;
+  }
+
+  .prompt-actions .param-icon-button {
+    width: 46px;
+    min-width: 46px;
+    flex: 0 0 46px;
+    padding: 0;
+  }
+
+  .secondary-action {
+    display: none;
+  }
+
+  .credit-count {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    margin-left: 0;
+    min-height: 46px;
+    font-size: 14px;
   }
 
   .prompt-actions .generate-button {
     margin-left: 0;
+    width: 54px;
+    min-width: 54px;
+    height: 54px;
+    min-height: 54px;
   }
 
   .stage-grid {
@@ -2750,6 +3026,621 @@ textarea::placeholder {
   }
 }
 
+/* Commercial polish */
+:root {
+  --commercial-accent: #12aeca;
+  --commercial-ink: #141925;
+  --commercial-muted: #667180;
+  --commercial-soft: #f7fafc;
+  --commercial-line: rgba(18, 27, 38, .08);
+  --commercial-shadow: 0 18px 54px rgba(31, 45, 64, .08);
+}
+
+body {
+  background:
+    linear-gradient(180deg, #f7f9fc 0%, #eef3f7 48%, #f8fafc 100%);
+}
+
+.studio-shell {
+  width: min(100% - 40px, 1440px);
+}
+
+.studio-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  min-height: 72px;
+  padding: 10px 0;
+  background: rgba(247, 249, 252, .9);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(18, 27, 38, .05);
+}
+
+.brand strong {
+  color: var(--commercial-ink);
+  font-size: 16px;
+}
+
+.brand small {
+  color: var(--commercial-muted);
+}
+
+.studio-tabs {
+  padding: 6px;
+}
+
+.studio-tabs button,
+.studio-tabs a {
+  min-height: 38px;
+  font-weight: 800;
+}
+
+.share-button {
+  min-height: 42px;
+  color: #fff;
+  border: 0;
+  background: #111827;
+  box-shadow: 0 12px 28px rgba(17, 24, 39, .12);
+}
+
+.studio-layout {
+  padding-top: 38px;
+  padding-bottom: 34px;
+}
+
+.workspace-title p {
+  color: #667180;
+  font-size: 14px;
+}
+
+.workspace-title h1 {
+  max-width: none;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.workspace-title h1 span {
+  color: #0ea9c4;
+}
+
+.composer {
+  border-color: rgba(18, 27, 38, .06);
+  box-shadow: 0 30px 90px rgba(29, 42, 59, .1);
+}
+
+.prompt-actions .generate-button {
+  background: #dce2e8;
+}
+
+.prompt-actions .generate-button:hover {
+  background: #10a8c3;
+}
+
+.stage {
+  margin-top: 10px;
+}
+
+.stage-grid {
+  gap: 12px;
+}
+
+.shot-card,
+.hero-shot {
+  border-radius: 22px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.shot-card:hover,
+.hero-shot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 60px rgba(20, 35, 56, .1);
+}
+
+.control-pane {
+  margin-top: 0;
+}
+
+.panel {
+  border: 1px solid var(--commercial-line);
+  border-radius: 22px;
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--commercial-shadow);
+}
+
+.panel-heading p,
+.dock p,
+.agent-matrix-heading p,
+.sales-kit-heading p,
+.pilot-qr p,
+.estimate-heading p,
+.estimate-output span,
+.deploy-heading p,
+.deploy-output span,
+.system-strip span {
+  color: #0a9fb9;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.panel-heading strong,
+.dock h2,
+.agent-matrix-heading h2,
+.sales-kit-heading h2,
+.pilot-qr h2,
+.estimate-heading h2,
+.deploy-heading h2 {
+  color: var(--commercial-ink);
+  font-weight: 900;
+}
+
+.result-body {
+  min-height: 260px;
+  color: #1f2937;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(247,250,252,.92));
+}
+
+.history-item,
+.history-empty {
+  color: #273244;
+  border-color: var(--commercial-line);
+  background: #fff;
+}
+
+.dock,
+.agent-matrix,
+.sales-kit,
+.pilot-kit,
+.estimate-kit,
+.deploy-kit,
+.system-strip {
+  width: min(100%, 1360px);
+  margin: 28px auto 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.access-strip {
+  display: none;
+}
+
+.dock {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.dock > div:first-child {
+  display: grid;
+  align-content: center;
+  min-height: 170px;
+  padding: 22px;
+  border: 1px solid var(--commercial-line);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(18,174,202,.08), transparent 56%),
+    #fff;
+  box-shadow: var(--commercial-shadow);
+}
+
+.dock h2 {
+  margin: 6px 0 0;
+  font-size: 28px;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.case-card {
+  min-height: 188px;
+  border: 1px solid var(--commercial-line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--commercial-shadow);
+}
+
+.case-card img {
+  height: 132px;
+  border-radius: 18px 18px 10px 10px;
+}
+
+.case-card span {
+  color: #fff;
+  background: linear-gradient(180deg, transparent, rgba(14, 19, 28, .84));
+}
+
+.agent-matrix {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 320px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.agent-matrix-heading,
+.agent-detail,
+.supervisor-card,
+.agent-node-card,
+.sales-kit-grid article,
+.pilot-qr,
+.pilot-copy article,
+.estimate-output,
+.deploy-output,
+.deploy-stage-card,
+.estimate-score,
+.system-strip article {
+  border: 1px solid var(--commercial-line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--commercial-shadow);
+}
+
+.agent-matrix-heading,
+.agent-detail {
+  padding: 22px;
+}
+
+.agent-matrix-heading span,
+.sales-kit-heading span,
+.pilot-qr span,
+.estimate-heading > span,
+.deploy-heading > span,
+.agent-detail p,
+.agent-node-card span,
+.supervisor-card p,
+.sales-kit-grid p,
+.pilot-copy p,
+.estimate-output p,
+.deploy-output p,
+.system-strip p {
+  color: var(--commercial-muted);
+}
+
+.agent-principles span {
+  background: #fff;
+}
+
+.agent-board {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.supervisor-card {
+  min-height: 100%;
+  padding: 18px;
+  background:
+    linear-gradient(145deg, rgba(18,174,202,.1), transparent 62%),
+    #fff;
+}
+
+.agent-node-grid {
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+}
+
+.agent-node-card {
+  min-height: 136px;
+  padding: 16px;
+  color: var(--commercial-ink);
+}
+
+.agent-node-card.active {
+  border-color: rgba(18,174,202,.32);
+  background:
+    linear-gradient(145deg, rgba(18,174,202,.09), transparent 62%),
+    #fff;
+}
+
+.agent-detail {
+  background:
+    linear-gradient(145deg, rgba(255,139,69,.08), transparent 58%),
+    #fff;
+}
+
+.agent-detail > span {
+  color: #fff;
+  background: #ff8b45;
+}
+
+.agent-detail strong {
+  color: var(--commercial-ink);
+}
+
+.agent-detail dd {
+  color: #273244;
+}
+
+.sales-kit,
+.pilot-kit,
+.estimate-kit,
+.deploy-kit {
+  padding: 0;
+}
+
+.sales-kit {
+  grid-template-columns: 260px minmax(0, 1fr);
+}
+
+.sales-kit-heading,
+.estimate-heading,
+.deploy-heading {
+  padding: 22px 0;
+}
+
+.sales-kit-grid {
+  gap: 14px;
+}
+
+.sales-kit-grid article,
+.pilot-copy article {
+  min-height: 190px;
+  padding: 18px;
+}
+
+.sales-kit-grid span,
+.pilot-copy span {
+  color: #0a9fb9;
+  text-transform: none;
+}
+
+.pilot-kit {
+  grid-template-columns: 380px minmax(0, 1fr);
+}
+
+.pilot-qr,
+.pilot-copy article {
+  padding: 20px;
+}
+
+.estimate-kit,
+.deploy-kit {
+  grid-template-columns: 290px minmax(0, 1.1fr) minmax(280px, .9fr);
+}
+
+.estimate-form,
+.deploy-form {
+  padding: 18px;
+  border: 1px solid var(--commercial-line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--commercial-shadow);
+}
+
+.estimate-form label,
+.deploy-form label {
+  color: var(--commercial-muted);
+  background: transparent;
+  border-color: transparent;
+}
+
+.estimate-form label span,
+.deploy-form label span {
+  color: #344054;
+}
+
+.estimate-form select,
+.deploy-form select,
+.estimate-form input,
+.deploy-form input {
+  color: #1f2937;
+}
+
+.estimate-form select,
+.deploy-form select {
+  min-height: 44px;
+  border: 1px solid rgba(18, 27, 38, .1);
+  border-radius: 14px;
+  background: #f8fafc;
+  box-shadow: none;
+}
+
+.estimate-toggles label,
+.deploy-toggles label {
+  border-color: rgba(18, 27, 38, .08);
+  background: #f8fafc;
+}
+
+.estimate-actions,
+.deploy-actions {
+  align-items: center;
+}
+
+.estimate-output,
+.deploy-output {
+  padding: 22px;
+  background:
+    linear-gradient(145deg, rgba(18,174,202,.07), transparent 58%),
+    #fff;
+}
+
+.estimate-output strong,
+.deploy-output strong {
+  color: var(--commercial-ink);
+}
+
+.estimate-output li,
+.deploy-output li {
+  color: var(--commercial-muted);
+}
+
+.system-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding-bottom: 42px;
+}
+
+.system-strip article {
+  min-height: 160px;
+  padding: 20px;
+  border-right: 1px solid var(--commercial-line);
+}
+
+.system-strip article:last-child {
+  border-right: 1px solid var(--commercial-line);
+}
+
+.system-strip strong {
+  color: var(--commercial-ink);
+}
+
+.notice-popover,
+.toast {
+  border-color: var(--commercial-line);
+  background: #fff;
+  color: var(--commercial-ink);
+  box-shadow: var(--commercial-shadow);
+}
+
+.ghost-button {
+  color: #18202b;
+  background: #fff;
+}
+
+.ghost-button:hover {
+  border-color: rgba(18,174,202,.22);
+  background: #f5fbfd;
+}
+
+.generate-button {
+  color: #fff;
+  background: #12aeca;
+}
+
+.generate-button:hover {
+  background: #0f9bb4;
+}
+
+@media (max-width: 1180px) {
+  .studio-shell {
+    width: min(100% - 28px, 1440px);
+  }
+
+  .studio-topbar {
+    position: static;
+  }
+
+  .dock,
+  .agent-matrix,
+  .sales-kit,
+  .pilot-kit,
+  .estimate-kit,
+  .deploy-kit,
+  .system-strip {
+    width: 100%;
+  }
+
+  .dock,
+  .agent-matrix,
+  .sales-kit,
+  .pilot-kit,
+  .estimate-kit,
+  .deploy-kit {
+    grid-template-columns: 1fr;
+  }
+
+  .case-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .system-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .studio-shell {
+    width: min(100% - 20px, 1440px);
+  }
+
+  .studio-layout {
+    padding-top: 28px;
+  }
+
+  .workspace-title h1 {
+    font-size: 32px;
+    white-space: normal;
+  }
+
+  .composer {
+    padding: 16px;
+  }
+
+  .stage-grid {
+    gap: 10px;
+  }
+
+  .dock > div:first-child,
+  .agent-matrix-heading,
+  .agent-detail,
+  .sales-kit-heading,
+  .estimate-heading,
+  .deploy-heading,
+  .estimate-form,
+  .deploy-form,
+  .estimate-output,
+  .deploy-output,
+  .pilot-qr,
+  .pilot-copy article,
+  .sales-kit-grid article,
+  .system-strip article {
+    border-radius: 18px;
+  }
+
+  .dock {
+    gap: 12px;
+  }
+
+  .dock > div:first-child {
+    min-height: 110px;
+  }
+
+  .case-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x proximity;
+  }
+
+  .case-card {
+    flex: 0 0 230px;
+    scroll-snap-align: start;
+  }
+
+  .agent-board,
+  .pilot-copy,
+  .sales-kit-grid,
+  .estimate-form,
+  .deploy-form,
+  .system-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-node-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pilot-qr {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+
+  .pilot-qr img {
+    width: 82px;
+    height: 82px;
+  }
+
+  .estimate-toggles,
+  .deploy-toggles {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 </style>
   <meta name="x-standalone-build" content="v031-202607051430-dynamic" />
   </head>
@@ -2759,14 +3650,14 @@ textarea::placeholder {
         <a class="brand" href="#create" aria-label="AI短剧生产主控 Studio">
           <span class="brand-mark"></span>
           <span>
-            <strong>AI短剧生产主控</strong>
-            <small>Creative Studio</small>
+            <strong>AI短剧创作平台</strong>
+            <small>商用体验版</small>
           </span>
         </a>
 
         <nav class="studio-tabs" aria-label="创作模式">
-          <button class="active" type="button" data-mode="agent">短剧生成</button>
-          <button type="button" data-mode="image">图片生成</button>
+          <button type="button" data-mode="agent">短剧生成</button>
+          <button class="active" type="button" data-mode="image">图片生成</button>
           <button type="button" data-mode="video">视频生成</button>
           <a href="#agents">Agent 模式</a>
           <a href="#salesKit">交付方案</a>
@@ -2774,7 +3665,7 @@ textarea::placeholder {
 
         <div class="top-actions">
           <button class="notice-button" id="noticeButton" type="button" aria-label="通知"><span></span></button>
-          <button class="share-button" id="shareButton" type="button">复制客户入口</button>
+          <button class="share-button" id="shareButton" type="button">复制体验链接</button>
           <div class="points"><span>积分</span><strong id="pointsValue">12,800</strong></div>
           <button class="avatar" type="button">Demo</button>
         </div>
@@ -2855,8 +3746,8 @@ textarea::placeholder {
         <section class="canvas-pane">
           <div class="canvas-toolbar">
             <div class="workspace-title">
-              <p>AI Short Drama Creator</p>
-              <h1>开启你的 <span>短剧生成</span> 即刻成片！</h1>
+              <p>AI 商业短剧创作台</p>
+              <h1>开启你的 <span>图片生成</span> 即刻造梦！</h1>
               <div class="service-line">
                 <span class="service-dot checking" id="serviceDot"></span>
                 <span id="serviceText">正在检测生成服务</span>
@@ -2919,59 +3810,72 @@ textarea::placeholder {
 
             <div class="prompt-box">
               <textarea id="promptInput" rows="3" placeholder="上传参考图，输入故事、角色或场景；也可以用 @ 引用主体。">古风复仇女主在冷宫发现身份玉佩，镜头从玉佩特写推到她压住情绪的脸，结尾给一个反击悬念。</textarea>
-              <div class="prompt-actions">
-                <button class="ghost-button" type="button" id="referenceButton">@ 引用</button>
-                <button class="ghost-button" type="button" id="regenerateButton">换一版</button>
-                <button class="ghost-button" type="button" id="demoRunButton">一键演示</button>
+              <div class="prompt-actions creation-toolbar" aria-label="生成参数">
+                <label class="param-select-pill mode-field" aria-label="创作类型">
+                  <span class="pill-icon image-icon" aria-hidden="true"></span>
+                  <select id="modeSelect">
+                    <option value="agent">Agent 模式</option>
+                    <option value="image" selected>图片生成</option>
+                    <option value="video">视频生成</option>
+                  </select>
+                </label>
+                <label class="param-select-pill model-field" id="modelField" aria-label="生成模型">
+                  <span class="pill-icon cube-icon" aria-hidden="true"></span>
+                  <select id="modelSelect">
+                    <option value="image-5-lite" selected>图片 5.0 Lite</option>
+                    <option value="video-5-lite">视频 5.0 Lite</option>
+                    <option value="agent-supervisor">主控 Agent</option>
+                  </select>
+                </label>
+                <label class="param-select-pill ratio-field" aria-label="画幅和清晰度">
+                  <span class="pill-icon ratio-icon" aria-hidden="true"></span>
+                  <select id="ratioSelect">
+                    <option>智能比例</option>
+                    <option>21:9</option>
+                    <option>16:9</option>
+                    <option>3:2</option>
+                    <option>4:3</option>
+                    <option>1:1</option>
+                    <option>3:4</option>
+                    <option>2:3</option>
+                    <option>9:16</option>
+                  </select>
+                  <span class="param-divider" aria-hidden="true"></span>
+                  <select id="resolutionSelect">
+                    <option>720P</option>
+                    <option>480P</option>
+                    <option>1080P</option>
+                    <option>2K</option>
+                    <option>4K</option>
+                  </select>
+                </label>
+                <label class="param-select-pill duration-field" id="durationField" aria-label="时长" hidden>
+                  <span class="pill-icon clock-icon" aria-hidden="true"></span>
+                  <select id="durationSelect">
+                    <option>5秒</option>
+                    <option selected>10秒</option>
+                    <option>15秒</option>
+                  </select>
+                </label>
+                <button class="param-icon-button text-style-button" type="button" aria-label="文字设置"><span>T</span></button>
+                <button class="param-icon-button reference-button" type="button" id="referenceButton" aria-label="引用主体">@</button>
+                <button class="ghost-button secondary-action" type="button" id="regenerateButton">换一版</button>
+                <button class="ghost-button secondary-action" type="button" id="demoRunButton">演示</button>
+                <span class="credit-count" aria-label="生成数量">3/张</span>
                 <button class="generate-button" type="button" id="createButton">生成</button>
               </div>
               <div class="reference-menu" id="referenceMenu"></div>
             </div>
-          <div class="run-meta" id="runMeta">Demo V0.30 · 等待生成</div>
+          <div class="run-meta" id="runMeta">服务已就绪 · 选择参数后生成</div>
           </div>
         </section>
 
         <aside class="control-pane">
-          <div class="runtime-config" hidden aria-hidden="true">
-            <select id="ratioSelect">
-              <option>智能适应</option>
-              <option>21:9</option>
-              <option>16:9</option>
-              <option>3:2</option>
-              <option>4:3</option>
-              <option>1:1</option>
-              <option>3:4</option>
-              <option>2:3</option>
-              <option>9:16</option>
-            </select>
-            <select id="resolutionSelect">
-              <option>720P</option>
-              <option>480P</option>
-              <option>1080P</option>
-              <option>2K</option>
-              <option>4K</option>
-            </select>
-            <label class="model-field" id="modelField">
-              <select id="modelSelect">
-                <option>系统自动配置</option>
-                <option>图片模型</option>
-                <option>视频模型</option>
-              </select>
-            </label>
-            <label class="duration-field" id="durationField">
-              <select id="durationSelect">
-                <option>5秒</option>
-                <option selected>10秒</option>
-                <option>15秒</option>
-              </select>
-            </label>
-          </div>
-
           <section class="panel output-panel">
             <div class="panel-heading output-heading">
               <div>
-                <p>Supervisor Output</p>
-                <strong>主控结果</strong>
+                <p>生成结果</p>
+                <strong>创作方案</strong>
               </div>
               <div class="output-actions">
                 <button class="ghost-button small" type="button" id="summaryButton">摘要</button>
@@ -2990,8 +3894,8 @@ textarea::placeholder {
           <section class="panel history-panel">
             <div class="panel-heading output-heading">
               <div>
-                <p>Recent Runs</p>
-                <strong>最近生成</strong>
+                <p>历史记录</p>
+                <strong>最近创作</strong>
               </div>
               <button class="ghost-button small" type="button" id="clearHistoryButton">清空</button>
             </div>
@@ -3004,15 +3908,15 @@ textarea::placeholder {
 
       <section class="dock">
         <div>
-          <p>Trending References</p>
-          <h2>作品案例</h2>
+          <p>案例模板</p>
+          <h2>热门短剧模板</h2>
         </div>
         <div class="case-grid" id="caseGrid"></div>
       </section>
 
       <section class="agent-matrix" id="agents">
         <div class="agent-matrix-heading">
-          <p>Agent Topology</p>
+          <p>智能体工作流</p>
           <h2>主控主管 + 独立智能体节点</h2>
           <span>正式系统里，主控只负责任务拆解、上下文路由、结果合并和返工判断。每个生产节点都是可单独升级、单独替换、单独验收的智能体。</span>
           <div class="agent-principles">
@@ -3058,7 +3962,7 @@ textarea::placeholder {
 
       <section class="sales-kit" id="salesKit">
         <div class="sales-kit-heading">
-          <p>Delivery Kit</p>
+          <p>交付工具</p>
           <h2>成交演示包</h2>
           <span>给客户讲解、采集需求、推进正式部署时直接复制。</span>
         </div>
@@ -3094,26 +3998,26 @@ textarea::placeholder {
         <div class="pilot-qr">
           <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InFyLXRpdGxlIHFyLWRlc2MiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyIgd2lkdGg9IjQxbW0iIGhlaWdodD0iNDFtbSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNDEgNDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlIGlkPSJxci10aXRsZSI+QUkgc2hvcnQgZHJhbWEgY3VzdG9tZXIgZW50cnkgUVI8L3RpdGxlPjxkZXNjIGlkPSJxci1kZXNjIj5odHRwczovL21jcC5lZGdlb25lLnNpdGUvc2hhcmUvWUhBUF9RRndjdFdIajl3ak5vejNOPC9kZXNjPjxwYXRoIGQ9Ik00LDRINVY1SDR6TTUsNEg2VjVINXpNNiw0SDdWNUg2ek03LDRIOFY1SDd6TTgsNEg5VjVIOHpNOSw0SDEwVjVIOXpNMTAsNEgxMVY1SDEwek0xMiw0SDEzVjVIMTJ6TTEzLDRIMTRWNUgxM3pNMTQsNEgxNVY1SDE0ek0xNiw0SDE3VjVIMTZ6TTE4LDRIMTlWNUgxOHpNMTksNEgyMFY1SDE5ek0yMCw0SDIxVjVIMjB6TTIxLDRIMjJWNUgyMXpNMjIsNEgyM1Y1SDIyek0yNSw0SDI2VjVIMjV6TTI3LDRIMjhWNUgyN3pNMzAsNEgzMVY1SDMwek0zMSw0SDMyVjVIMzF6TTMyLDRIMzNWNUgzMnpNMzMsNEgzNFY1SDMzek0zNCw0SDM1VjVIMzR6TTM1LDRIMzZWNUgzNXpNMzYsNEgzN1Y1SDM2ek00LDVINVY2SDR6TTEwLDVIMTFWNkgxMHpNMTMsNUgxNFY2SDEzek0xNiw1SDE3VjZIMTZ6TTIxLDVIMjJWNkgyMXpNMjMsNUgyNFY2SDIzek0zMCw1SDMxVjZIMzB6TTM2LDVIMzdWNkgzNnpNNCw2SDVWN0g0ek02LDZIN1Y3SDZ6TTcsNkg4VjdIN3pNOCw2SDlWN0g4ek0xMCw2SDExVjdIMTB6TTEzLDZIMTRWN0gxM3pNMTYsNkgxN1Y3SDE2ek0xNyw2SDE4VjdIMTd6TTIwLDZIMjFWN0gyMHpNMjMsNkgyNFY3SDIzek0yNSw2SDI2VjdIMjV6TTI3LDZIMjhWN0gyN3pNMjgsNkgyOVY3SDI4ek0zMCw2SDMxVjdIMzB6TTMyLDZIMzNWN0gzMnpNMzMsNkgzNFY3SDMzek0zNCw2SDM1VjdIMzR6TTM2LDZIMzdWN0gzNnpNNCw3SDVWOEg0ek02LDdIN1Y4SDZ6TTcsN0g4VjhIN3pNOCw3SDlWOEg4ek0xMCw3SDExVjhIMTB6TTEyLDdIMTNWOEgxMnpNMTMsN0gxNFY4SDEzek0xNiw3SDE3VjhIMTZ6TTE4LDdIMTlWOEgxOHpNMTksN0gyMFY4SDE5ek0yMSw3SDIyVjhIMjF6TTIyLDdIMjNWOEgyMnpNMjcsN0gyOFY4SDI3ek0yOCw3SDI5VjhIMjh6TTMwLDdIMzFWOEgzMHpNMzIsN0gzM1Y4SDMyek0zMyw3SDM0VjhIMzN6TTM0LDdIMzVWOEgzNHpNMzYsN0gzN1Y4SDM2ek00LDhINVY5SDR6TTYsOEg3VjlINnpNNyw4SDhWOUg3ek04LDhIOVY5SDh6TTEwLDhIMTFWOUgxMHpNMTIsOEgxM1Y5SDEyek0xNCw4SDE1VjlIMTR6TTE1LDhIMTZWOUgxNXpNMTcsOEgxOFY5SDE3ek0xOCw4SDE5VjlIMTh6TTIxLDhIMjJWOUgyMXpNMjIsOEgyM1Y5SDIyek0yMyw4SDI0VjlIMjN6TTI0LDhIMjVWOUgyNHpNMjYsOEgyN1Y5SDI2ek0yNyw4SDI4VjlIMjd6TTI4LDhIMjlWOUgyOHpNMzAsOEgzMVY5SDMwek0zMiw4SDMzVjlIMzJ6TTMzLDhIMzRWOUgzM3pNMzQsOEgzNVY5SDM0ek0zNiw4SDM3VjlIMzZ6TTQsOUg1VjEwSDR6TTEwLDlIMTFWMTBIMTB6TTEyLDlIMTNWMTBIMTJ6TTE0LDlIMTVWMTBIMTR6TTE1LDlIMTZWMTBIMTV6TTE3LDlIMThWMTBIMTd6TTIwLDlIMjFWMTBIMjB6TTIyLDlIMjNWMTBIMjJ6TTIzLDlIMjRWMTBIMjN6TTI0LDlIMjVWMTBIMjR6TTI2LDlIMjdWMTBIMjZ6TTI4LDlIMjlWMTBIMjh6TTMwLDlIMzFWMTBIMzB6TTM2LDlIMzdWMTBIMzZ6TTQsMTBINVYxMUg0ek01LDEwSDZWMTFINXpNNiwxMEg3VjExSDZ6TTcsMTBIOFYxMUg3ek04LDEwSDlWMTFIOHpNOSwxMEgxMFYxMUg5ek0xMCwxMEgxMVYxMUgxMHpNMTIsMTBIMTNWMTFIMTJ6TTE0LDEwSDE1VjExSDE0ek0xNiwxMEgxN1YxMUgxNnpNMTgsMTBIMTlWMTFIMTh6TTIwLDEwSDIxVjExSDIwek0yMiwxMEgyM1YxMUgyMnpNMjQsMTBIMjVWMTFIMjR6TTI2LDEwSDI3VjExSDI2ek0yOCwxMEgyOVYxMUgyOHpNMzAsMTBIMzFWMTFIMzB6TTMxLDEwSDMyVjExSDMxek0zMiwxMEgzM1YxMUgzMnpNMzMsMTBIMzRWMTFIMzN6TTM0LDEwSDM1VjExSDM0ek0zNSwxMEgzNlYxMUgzNXpNMzYsMTBIMzdWMTFIMzZ6TTEyLDExSDEzVjEySDEyek0xMywxMUgxNFYxMkgxM3pNMTQsMTFIMTVWMTJIMTR6TTE4LDExSDE5VjEySDE4ek0xOSwxMUgyMFYxMkgxOXpNMjAsMTFIMjFWMTJIMjB6TTIxLDExSDIyVjEySDIxek0yMiwxMUgyM1YxMkgyMnpNMjMsMTFIMjRWMTJIMjN6TTI0LDExSDI1VjEySDI0ek0yNSwxMUgyNlYxMkgyNXpNMjYsMTFIMjdWMTJIMjZ6TTQsMTJINVYxM0g0ek04LDEySDlWMTNIOHpNMTAsMTJIMTFWMTNIMTB6TTExLDEySDEyVjEzSDExek0xMiwxMkgxM1YxM0gxMnpNMTYsMTJIMTdWMTNIMTZ6TTE4LDEySDE5VjEzSDE4ek0yMCwxMkgyMVYxM0gyMHpNMjEsMTJIMjJWMTNIMjF6TTI1LDEySDI2VjEzSDI1ek0yNiwxMkgyN1YxM0gyNnpNMjcsMTJIMjhWMTNIMjd6TTI4LDEySDI5VjEzSDI4ek0yOSwxMkgzMFYxM0gyOXpNMzAsMTJIMzFWMTNIMzB6TTMxLDEySDMyVjEzSDMxek0zMiwxMkgzM1YxM0gzMnpNMzMsMTJIMzRWMTNIMzN6TTM2LDEySDM3VjEzSDM2ek00LDEzSDVWMTRINHpNNiwxM0g3VjE0SDZ6TTcsMTNIOFYxNEg3ek0xNCwxM0gxNVYxNEgxNHpNMTUsMTNIMTZWMTRIMTV6TTE3LDEzSDE4VjE0SDE3ek0xOCwxM0gxOVYxNEgxOHpNMTksMTNIMjBWMTRIMTl6TTIwLDEzSDIxVjE0SDIwek0yNywxM0gyOFYxNEgyN3pNMjksMTNIMzBWMTRIMjl6TTMzLDEzSDM0VjE0SDMzek0zNCwxM0gzNVYxNEgzNHpNMzUsMTNIMzZWMTRIMzV6TTM2LDEzSDM3VjE0SDM2ek03LDE0SDhWMTVIN3pNOCwxNEg5VjE1SDh6TTEwLDE0SDExVjE1SDEwek0xMSwxNEgxMlYxNUgxMXpNMTIsMTRIMTNWMTVIMTJ6TTE1LDE0SDE2VjE1SDE1ek0xNiwxNEgxN1YxNUgxNnpNMTksMTRIMjBWMTVIMTl6TTIxLDE0SDIyVjE1SDIxek0yNywxNEgyOFYxNUgyN3pNMjksMTRIMzBWMTVIMjl6TTMzLDE0SDM0VjE1SDMzek0zNSwxNEgzNlYxNUgzNXpNNiwxNUg3VjE2SDZ6TTgsMTVIOVYxNkg4ek05LDE1SDEwVjE2SDl6TTExLDE1SDEyVjE2SDExek0xMiwxNUgxM1YxNkgxMnpNMTUsMTVIMTZWMTZIMTV6TTE2LDE1SDE3VjE2SDE2ek0xOCwxNUgxOVYxNkgxOHpNMTksMTVIMjBWMTZIMTl6TTIwLDE1SDIxVjE2SDIwek0yMSwxNUgyMlYxNkgyMXpNMjIsMTVIMjNWMTZIMjJ6TTIzLDE1SDI0VjE2SDIzek0yNCwxNUgyNVYxNkgyNHpNMjUsMTVIMjZWMTZIMjV6TTI4LDE1SDI5VjE2SDI4ek0yOSwxNUgzMFYxNkgyOXpNMzAsMTVIMzFWMTZIMzB6TTUsMTZINlYxN0g1ek03LDE2SDhWMTdIN3pNMTAsMTZIMTFWMTdIMTB6TTEzLDE2SDE0VjE3SDEzek0xNSwxNkgxNlYxN0gxNXpNMTcsMTZIMThWMTdIMTd6TTE4LDE2SDE5VjE3SDE4ek0yMiwxNkgyM1YxN0gyMnpNMjQsMTZIMjVWMTdIMjR6TTI1LDE2SDI2VjE3SDI1ek0yNiwxNkgyN1YxN0gyNnpNMjcsMTZIMjhWMTdIMjd6TTI4LDE2SDI5VjE3SDI4ek0zMCwxNkgzMVYxN0gzMHpNMzEsMTZIMzJWMTdIMzF6TTMyLDE2SDMzVjE3SDMyek0zMywxNkgzNFYxN0gzM3pNMzUsMTZIMzZWMTdIMzV6TTQsMTdINVYxOEg0ek01LDE3SDZWMThINXpNOSwxN0gxMFYxOEg5ek0xMSwxN0gxMlYxOEgxMXpNMTIsMTdIMTNWMThIMTJ6TTE0LDE3SDE1VjE4SDE0ek0xNSwxN0gxNlYxOEgxNXpNMTcsMTdIMThWMThIMTd6TTIwLDE3SDIxVjE4SDIwek0yMywxN0gyNFYxOEgyM3pNMjcsMTdIMjhWMThIMjd6TTI5LDE3SDMwVjE4SDI5ek0zMSwxN0gzMlYxOEgzMXpNMzQsMTdIMzVWMThIMzR6TTUsMThINlYxOUg1ek05LDE4SDEwVjE5SDl6TTEwLDE4SDExVjE5SDEwek0xMiwxOEgxM1YxOUgxMnpNMTMsMThIMTRWMTlIMTN6TTE0LDE4SDE1VjE5SDE0ek0xOCwxOEgxOVYxOUgxOHpNMjAsMThIMjFWMTlIMjB6TTIxLDE4SDIyVjE5SDIxek0yMiwxOEgyM1YxOUgyMnpNMjQsMThIMjVWMTlIMjR6TTI3LDE4SDI4VjE5SDI3ek0yOSwxOEgzMFYxOUgyOXpNMzAsMThIMzFWMTlIMzB6TTMxLDE4SDMyVjE5SDMxek0zNSwxOEgzNlYxOUgzNXpNNCwxOUg1VjIwSDR6TTYsMTlIN1YyMEg2ek03LDE5SDhWMjBIN3pNOCwxOUg5VjIwSDh6TTksMTlIMTBWMjBIOXpNMTEsMTlIMTJWMjBIMTF6TTIxLDE5SDIyVjIwSDIxek0yMywxOUgyNFYyMEgyM3pNMjUsMTlIMjZWMjBIMjV6TTI3LDE5SDI4VjIwSDI3ek0yOSwxOUgzMFYyMEgyOXpNMzAsMTlIMzFWMjBIMzB6TTMyLDE5SDMzVjIwSDMyek01LDIwSDZWMjFINXpNNywyMEg4VjIxSDd6TTgsMjBIOVYyMUg4ek05LDIwSDEwVjIxSDl6TTEwLDIwSDExVjIxSDEwek0xMSwyMEgxMlYyMUgxMXpNMTIsMjBIMTNWMjFIMTJ6TTE0LDIwSDE1VjIxSDE0ek0xNSwyMEgxNlYyMUgxNXpNMTgsMjBIMTlWMjFIMTh6TTE5LDIwSDIwVjIxSDE5ek0yMSwyMEgyMlYyMUgyMXpNMjMsMjBIMjRWMjFIMjN6TTI0LDIwSDI1VjIxSDI0ek0yNSwyMEgyNlYyMUgyNXpNMjYsMjBIMjdWMjFIMjZ6TTI3LDIwSDI4VjIxSDI3ek0yOCwyMEgyOVYyMUgyOHpNMzAsMjBIMzFWMjFIMzB6TTMyLDIwSDMzVjIxSDMyek0zMywyMEgzNFYyMUgzM3pNMzQsMjBIMzVWMjFIMzR6TTM1LDIwSDM2VjIxSDM1ek01LDIxSDZWMjJINXpNNiwyMUg3VjIySDZ6TTksMjFIMTBWMjJIOXpNMTEsMjFIMTJWMjJIMTF6TTEyLDIxSDEzVjIySDEyek0xNCwyMUgxNVYyMkgxNHpNMTYsMjFIMTdWMjJIMTZ6TTE5LDIxSDIwVjIySDE5ek0yMCwyMUgyMVYyMkgyMHpNMjEsMjFIMjJWMjJIMjF6TTIyLDIxSDIzVjIySDIyek0yNCwyMUgyNVYyMkgyNHpNMjUsMjFIMjZWMjJIMjV6TTI3LDIxSDI4VjIySDI3ek0yOCwyMUgyOVYyMkgyOHpNMjksMjFIMzBWMjJIMjl6TTMzLDIxSDM0VjIySDMzek0zNCwyMUgzNVYyMkgzNHpNMzUsMjFIMzZWMjJIMzV6TTM2LDIxSDM3VjIySDM2ek00LDIySDVWMjNINHpNNSwyMkg2VjIzSDV6TTksMjJIMTBWMjNIOXpNMTAsMjJIMTFWMjNIMTB6TTExLDIySDEyVjIzSDExek0xNCwyMkgxNVYyM0gxNHpNMTgsMjJIMTlWMjNIMTh6TTE5LDIySDIwVjIzSDE5ek0yMCwyMkgyMVYyM0gyMHpNMjIsMjJIMjNWMjNIMjJ6TTI0LDIySDI1VjIzSDI0ek0yNiwyMkgyN1YyM0gyNnpNMjcsMjJIMjhWMjNIMjd6TTMxLDIySDMyVjIzSDMxek0zMywyMkgzNFYyM0gzM3pNMzUsMjJIMzZWMjNIMzV6TTgsMjNIOVYyNEg4ek0xMiwyM0gxM1YyNEgxMnpNMTMsMjNIMTRWMjRIMTN6TTE0LDIzSDE1VjI0SDE0ek0xNiwyM0gxN1YyNEgxNnpNMTksMjNIMjBWMjRIMTl6TTIwLDIzSDIxVjI0SDIwek0yNCwyM0gyNVYyNEgyNHpNMjUsMjNIMjZWMjRIMjV6TTI2LDIzSDI3VjI0SDI2ek0yNywyM0gyOFYyNEgyN3pNMjksMjNIMzBWMjRIMjl6TTMwLDIzSDMxVjI0SDMwek0zMSwyM0gzMlYyNEgzMXpNMzUsMjNIMzZWMjRIMzV6TTUsMjRINlYyNUg1ek03LDI0SDhWMjVIN3pNOSwyNEgxMFYyNUg5ek0xMCwyNEgxMVYyNUgxMHpNMTEsMjRIMTJWMjVIMTF6TTE0LDI0SDE1VjI1SDE0ek0xNSwyNEgxNlYyNUgxNXpNMTgsMjRIMTlWMjVIMTh6TTE5LDI0SDIwVjI1SDE5ek0yMCwyNEgyMVYyNUgyMHpNMjMsMjRIMjRWMjVIMjN6TTI2LDI0SDI3VjI1SDI2ek0yOCwyNEgyOVYyNUgyOHpNMzAsMjRIMzFWMjVIMzB6TTMzLDI0SDM0VjI1SDMzek0zNSwyNEgzNlYyNUgzNXpNNCwyNUg1VjI2SDR6TTUsMjVINlYyNkg1ek04LDI1SDlWMjZIOHpNMTIsMjVIMTNWMjZIMTJ6TTE0LDI1SDE1VjI2SDE0ek0xNSwyNUgxNlYyNkgxNXpNMTgsMjVIMTlWMjZIMTh6TTIyLDI1SDIzVjI2SDIyek0yNCwyNUgyNVYyNkgyNHpNMzEsMjVIMzJWMjZIMzF6TTM0LDI1SDM1VjI2SDM0ek0zNSwyNUgzNlYyNkgzNXpNNywyNkg4VjI3SDd6TTksMjZIMTBWMjdIOXpNMTAsMjZIMTFWMjdIMTB6TTExLDI2SDEyVjI3SDExek0xMiwyNkgxM1YyN0gxMnpNMTMsMjZIMTRWMjdIMTN6TTE0LDI2SDE1VjI3SDE0ek0xNSwyNkgxNlYyN0gxNXpNMTksMjZIMjBWMjdIMTl6TTIxLDI2SDIyVjI3SDIxek0yMiwyNkgyM1YyN0gyMnpNMjUsMjZIMjZWMjdIMjV6TTI3LDI2SDI4VjI3SDI3ek0yOCwyNkgyOVYyN0gyOHpNMjksMjZIMzBWMjdIMjl6TTMwLDI2SDMxVjI3SDMwek0zMiwyNkgzM1YyN0gzMnpNMzMsMjZIMzRWMjdIMzN6TTM1LDI2SDM2VjI3SDM1ek02LDI3SDdWMjhINnpNMTQsMjdIMTVWMjhIMTR6TTE2LDI3SDE3VjI4SDE2ek0xOSwyN0gyMFYyOEgxOXpNMjAsMjdIMjFWMjhIMjB6TTIxLDI3SDIyVjI4SDIxek0yMiwyN0gyM1YyOEgyMnpNMjMsMjdIMjRWMjhIMjN6TTI1LDI3SDI2VjI4SDI1ek0yOCwyN0gyOVYyOEgyOHpNMjksMjdIMzBWMjhIMjl6TTMxLDI3SDMyVjI4SDMxek0zMiwyN0gzM1YyOEgzMnpNNCwyOEg1VjI5SDR6TTUsMjhINlYyOUg1ek02LDI4SDdWMjlINnpNOCwyOEg5VjI5SDh6TTksMjhIMTBWMjlIOXpNMTAsMjhIMTFWMjlIMTB6TTExLDI4SDEyVjI5SDExek0xMiwyOEgxM1YyOUgxMnpNMTYsMjhIMTdWMjlIMTZ6TTE4LDI4SDE5VjI5SDE4ek0yMSwyOEgyMlYyOUgyMXpNMjIsMjhIMjNWMjlIMjJ6TTI0LDI4SDI1VjI5SDI0ek0yNSwyOEgyNlYyOUgyNXpNMjYsMjhIMjdWMjlIMjZ6TTI4LDI4SDI5VjI5SDI4ek0yOSwyOEgzMFYyOUgyOXpNMzAsMjhIMzFWMjlIMzB6TTMxLDI4SDMyVjI5SDMxek0zMiwyOEgzM1YyOUgzMnpNMzMsMjhIMzRWMjlIMzN6TTM0LDI4SDM1VjI5SDM0ek0zNiwyOEgzN1YyOUgzNnpNMTIsMjlIMTNWMzBIMTJ6TTE1LDI5SDE2VjMwSDE1ek0xNiwyOUgxN1YzMEgxNnpNMTksMjlIMjBWMzBIMTl6TTIwLDI5SDIxVjMwSDIwek0yMiwyOUgyM1YzMEgyMnpNMjUsMjlIMjZWMzBIMjV6TTI3LDI5SDI4VjMwSDI3ek0yOCwyOUgyOVYzMEgyOHpNMzIsMjlIMzNWMzBIMzJ6TTM0LDI5SDM1VjMwSDM0ek0zNiwyOUgzN1YzMEgzNnpNNCwzMEg1VjMxSDR6TTUsMzBINlYzMUg1ek02LDMwSDdWMzFINnpNNywzMEg4VjMxSDd6TTgsMzBIOVYzMUg4ek05LDMwSDEwVjMxSDl6TTEwLDMwSDExVjMxSDEwek0xMiwzMEgxM1YzMUgxMnpNMTQsMzBIMTVWMzFIMTR6TTE1LDMwSDE2VjMxSDE1ek0xOCwzMEgxOVYzMUgxOHpNMTksMzBIMjBWMzFIMTl6TTIxLDMwSDIyVjMxSDIxek0yOCwzMEgyOVYzMUgyOHpNMzAsMzBIMzFWMzFIMzB6TTMyLDMwSDMzVjMxSDMyek0zMywzMEgzNFYzMUgzM3pNMzUsMzBIMzZWMzFIMzV6TTQsMzFINVYzMkg0ek0xMCwzMUgxMVYzMkgxMHpNMTcsMzFIMThWMzJIMTd6TTIwLDMxSDIxVjMySDIwek0yMSwzMUgyMlYzMkgyMXpNMjIsMzFIMjNWMzJIMjJ6TTIzLDMxSDI0VjMySDIzek0yNCwzMUgyNVYzMkgyNHpNMjUsMzFIMjZWMzJIMjV6TTI2LDMxSDI3VjMySDI2ek0yOCwzMUgyOVYzMkgyOHpNMzIsMzFIMzNWMzJIMzJ6TTM1LDMxSDM2VjMySDM1ek0zNiwzMUgzN1YzMkgzNnpNNCwzMkg1VjMzSDR6TTYsMzJIN1YzM0g2ek03LDMySDhWMzNIN3pNOCwzMkg5VjMzSDh6TTEwLDMySDExVjMzSDEwek0xMiwzMkgxM1YzM0gxMnpNMTUsMzJIMTZWMzNIMTV6TTE3LDMySDE4VjMzSDE3ek0yMiwzMkgyM1YzM0gyMnpNMjUsMzJIMjZWMzNIMjV6TTI2LDMySDI3VjMzSDI2ek0yOCwzMkgyOVYzM0gyOHpNMjksMzJIMzBWMzNIMjl6TTMwLDMySDMxVjMzSDMwek0zMSwzMkgzMlYzM0gzMXpNMzIsMzJIMzNWMzNIMzJ6TTMzLDMySDM0VjMzSDMzek00LDMzSDVWMzRINHpNNiwzM0g3VjM0SDZ6TTcsMzNIOFYzNEg3ek04LDMzSDlWMzRIOHpNMTAsMzNIMTFWMzRIMTB6TTEzLDMzSDE0VjM0SDEzek0xNywzM0gxOFYzNEgxN3pNMTgsMzNIMTlWMzRIMTh6TTIwLDMzSDIxVjM0SDIwek0yMSwzM0gyMlYzNEgyMXpNMjUsMzNIMjZWMzRIMjV6TTI3LDMzSDI4VjM0SDI3ek0zMCwzM0gzMVYzNEgzMHpNMzEsMzNIMzJWMzRIMzF6TTMyLDMzSDMzVjM0SDMyek0zMywzM0gzNFYzNEgzM3pNNCwzNEg1VjM1SDR6TTYsMzRIN1YzNUg2ek03LDM0SDhWMzVIN3pNOCwzNEg5VjM1SDh6TTEwLDM0SDExVjM1SDEwek0xMywzNEgxNFYzNUgxM3pNMTYsMzRIMTdWMzVIMTZ6TTE3LDM0SDE4VjM1SDE3ek0xOCwzNEgxOVYzNUgxOHpNMjAsMzRIMjFWMzVIMjB6TTIyLDM0SDIzVjM1SDIyek0yNCwzNEgyNVYzNUgyNHpNMjcsMzRIMjhWMzVIMjd6TTMwLDM0SDMxVjM1SDMwek0zMSwzNEgzMlYzNUgzMXpNMzIsMzRIMzNWMzVIMzJ6TTM0LDM0SDM1VjM1SDM0ek00LDM1SDVWMzZINHpNMTAsMzVIMTFWMzZIMTB6TTEzLDM1SDE0VjM2SDEzek0xNywzNUgxOFYzNkgxN3pNMTgsMzVIMTlWMzZIMTh6TTIxLDM1SDIyVjM2SDIxek0yMiwzNUgyM1YzNkgyMnpNMjMsMzVIMjRWMzZIMjN6TTI0LDM1SDI1VjM2SDI0ek0yNSwzNUgyNlYzNkgyNXpNMjksMzVIMzBWMzZIMjl6TTQsMzZINVYzN0g0ek01LDM2SDZWMzdINXpNNiwzNkg3VjM3SDZ6TTcsMzZIOFYzN0g3ek04LDM2SDlWMzdIOHpNOSwzNkgxMFYzN0g5ek0xMCwzNkgxMVYzN0gxMHpNMTIsMzZIMTNWMzdIMTJ6TTEzLDM2SDE0VjM3SDEzek0xNSwzNkgxNlYzN0gxNXpNMTYsMzZIMTdWMzdIMTZ6TTE4LDM2SDE5VjM3SDE4ek0xOSwzNkgyMFYzN0gxOXpNMjAsMzZIMjFWMzdIMjB6TTIxLDM2SDIyVjM3SDIxek0yNCwzNkgyNVYzN0gyNHpNMjUsMzZIMjZWMzdIMjV6TTI2LDM2SDI3VjM3SDI2ek0yNywzNkgyOFYzN0gyN3pNMjgsMzZIMjlWMzdIMjh6TTI5LDM2SDMwVjM3SDI5ek0zMCwzNkgzMVYzN0gzMHpNMzMsMzZIMzRWMzdIMzN6TTM0LDM2SDM1VjM3SDM0ek0zNiwzNkgzN1YzN0gzNnoiIGlkPSJxci1wYXRoIiBmaWxsPSIjMDAwMDAwIiBmaWxsLW9wYWNpdHk9IjEiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiAvPjwvc3ZnPg==" alt="客户主入口二维码" width="132" height="132" />
           <div>
-            <p>Mobile Entry</p>
+          <p>移动体验</p>
             <h2>手机扫码体验</h2>
             <span>适合现场演示、微信群转发和客户快速试用。当前优先复制客户体验入口；想看完整交互再打开极速预览。打不开时复制到 Chrome / Safari，再打开访问保障页、极简打开页、网络自检或刷新缓存页。</span>
           </div>
         </div>
         <div class="pilot-copy">
           <article>
-            <span>Pilot Scope</span>
+          <span>试点范围</span>
             <strong>真实题材试点</strong>
             <p>先拿 1 个主角、1 个场景、3 条 10 秒竖屏钩子验证角色稳定、场景复用和返工效率。</p>
             <button class="ghost-button" type="button" id="copyPilotButton">复制试点方案</button>
           </article>
           <article>
-            <span>Open</span>
+            <span>体验入口</span>
             <strong>客户体验入口</strong>
             <p>优先发客户体验入口，极速预览和访问保障页作为交互备用。</p>
             <button class="ghost-button" type="button" id="copyMobileEntryButton">复制扫码链接</button>
           </article>
           <article>
-            <span>Next</span>
+            <span>下一步</span>
             <strong>正式部署</strong>
             <p>试点跑通后再接正式域名、服务器、账号体系、积分、资产库、API 日志和安全策略。</p>
             <button class="generate-button" type="button" id="openRootEntryButton">打开客户入口</button>
@@ -3123,7 +4027,7 @@ textarea::placeholder {
 
       <section class="estimate-kit" id="estimate">
         <div class="estimate-heading">
-          <p>Pilot Fit</p>
+          <p>试点评估</p>
           <h2>试点评估器</h2>
           <span>客户不用注册，也不用接 API。按当前素材和上线目标点几项，马上生成试点建议、风险提醒和跟进报告。</span>
           <div class="estimate-score">
@@ -3194,7 +4098,7 @@ textarea::placeholder {
 
       <section class="deploy-kit" id="deploy">
         <div class="deploy-heading">
-          <p>Deployment</p>
+          <p>正式部署</p>
           <h2>正式部署路线图</h2>
           <span>按客户目标选择域名、服务器、账号积分、资产库和运维要求，直接生成上线方案和基础设施清单。</span>
           <div class="deploy-stage-card">
@@ -3257,7 +4161,7 @@ textarea::placeholder {
         </div>
 
         <div class="deploy-output" aria-live="polite">
-          <span>Launch Plan</span>
+          <span>上线方案</span>
           <strong id="deployTitleText">先跑临时体验</strong>
           <p id="deploySummaryText">当前适合先用免费入口验证客户兴趣，再决定是否购买域名和云服务器。</p>
           <ul id="deployActionList"></ul>
@@ -3266,24 +4170,24 @@ textarea::placeholder {
 
       <section class="system-strip" id="api">
         <article>
-          <span>Points</span>
+          <span>额度体系</span>
           <strong>1 元 = 500 积分</strong>
-          <p>测试版先走演示积分，正式版接充值流水、签到和邀请奖励。</p>
+          <p>商用版支持充值流水、签到奖励、邀请奖励和后台手动赠送。</p>
         </article>
         <article>
-          <span>API</span>
-          <strong>Server-side key</strong>
-            <p>模型密钥只在 Worker Secret 内使用，浏览器不会看到。</p>
+          <span>安全接入</span>
+          <strong>服务端密钥</strong>
+            <p>模型密钥只在服务端 Secret 内使用，客户浏览器不会暴露密钥。</p>
         </article>
         <article>
-          <span>Profile</span>
-          <strong>7 天临时保存</strong>
-          <p>历史任务、下载、积分记录和存储空间都进入个人中心。</p>
+          <span>资产沉淀</span>
+          <strong>角色 / 场景 / 作品库</strong>
+          <p>正式版沉淀角色卡、场景母图、历史任务、下载记录和团队空间。</p>
         </article>
         <article>
-          <span>Status</span>
+          <span>服务状态</span>
           <strong id="footerStatus">检测中</strong>
-            <p>Demo V0.31：客户体验入口、极速预览、访问保障页、极简打开页、网络自检页、刷新缓存页、二维码校验、社交分享预览、PWA 图标、正式部署路线图、备用镜像、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、云端演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
+            <p>体验入口支持 HTTPS、手机访问、云端生成、离线缓存和备用访问方案。</p>
         </article>
       </section>
 
@@ -3326,7 +4230,7 @@ textarea::placeholder {
 
     <script type="module">
 ﻿const state = {
-  mode: "agent",
+  mode: "image",
   points: 12800,
   refs: [],
   lastResult: "",
@@ -3340,7 +4244,7 @@ textarea::placeholder {
   selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.daffodil-structure.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.meteor-lan.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v031.html`;
@@ -3352,19 +4256,20 @@ const refreshPagesEntry = `${rootPagesEntry}client-refresh-v031.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430";
 const edgeOneEntry = "https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N";
-const primaryCustomerEntry = primaryWorkerEntry;
+const currentOriginEntry = typeof window !== "undefined" ? `${window.location.origin}/` : primaryWorkerEntry;
+const primaryCustomerEntry = typeof window !== "undefined" && window.location.hostname.endsWith("workers.dev") ? currentOriginEntry : primaryWorkerEntry;
 const githubProxyEntry = window.location.href.split('#')[0];
 const emergencyMirrorEntry = primaryCustomerEntry;
 const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
-const settingsKey = "shortDramaAgentSettings:v1";
+const settingsKey = "shortDramaAgentSettings:v2";
 const expectedCacheName = "short-drama-studio-v32";
 const liveApiEnabled = true;
 const customerEntries = [
-  ["客户体验入口", primaryCustomerEntry],
+  ["商用体验入口", primaryCustomerEntry],
   ["智能启动页", launchPagesEntry],
-  ["极速预览", githubPagesEntry],
+  ["备用预览", githubPagesEntry],
   ["访问保障页", accessPagesEntry],
   ["极简打开页", openPagesEntry],
   ["网络自检页", statusPagesEntry],
@@ -3380,9 +4285,11 @@ const customerEntries = [
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
+const modeSelect = document.querySelector("#modeSelect");
 const ratioSelect = document.querySelector("#ratioSelect");
 const resolutionSelect = document.querySelector("#resolutionSelect");
 const durationSelect = document.querySelector("#durationSelect");
+const modelSelect = document.querySelector("#modelSelect");
 const modelField = document.querySelector("#modelField");
 const durationField = document.querySelector("#durationField");
 const fileInput = document.querySelector("#fileInput");
@@ -3619,7 +4526,7 @@ const previewResult = [
   "角色变脸回 N02；场景跳变回 N03；动作失败拆成更短镜头；出现字幕、水印或多余文字则重跑负面限制。",
   "",
   "【本轮交付结果】",
-  "这是打开页面后的样例输出。点击 Generate 后会替换为当前输入的真实主控结果。"
+  "这是打开页面后的样例方案。点击生成后，会替换为当前输入的真实创作结果。"
 ].join("\n");
 
 const busySteps = [
@@ -3643,10 +4550,18 @@ const cases = [
 ];
 
 function updateMode(mode, shouldSave = true) {
-  state.mode = mode;
-  modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === mode));
-  modelField.style.display = mode === "agent" ? "none" : "grid";
-  durationField.style.display = mode === "video" || mode === "agent" ? "grid" : "none";
+  const normalizedMode = ["agent", "image", "video"].includes(mode) ? mode : "image";
+  const modelByMode = {
+    agent: "agent-supervisor",
+    image: "image-5-lite",
+    video: "video-5-lite"
+  };
+  state.mode = normalizedMode;
+  modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === normalizedMode));
+  if (modeSelect) modeSelect.value = normalizedMode;
+  if (modelSelect && modelByMode[normalizedMode]) modelSelect.value = modelByMode[normalizedMode];
+  if (modelField) modelField.hidden = normalizedMode === "agent";
+  if (durationField) durationField.hidden = !(normalizedMode === "video" || normalizedMode === "agent");
   if (shouldSave) saveSettings();
 }
 
@@ -3822,15 +4737,18 @@ function renderPreviewResult() {
 }
 
 function loadSettings() {
+  let savedMode = "image";
   try {
     const saved = JSON.parse(localStorage.getItem(settingsKey) || "{}");
     if (saved.ratio) ratioSelect.value = saved.ratio;
     if (saved.resolution) resolutionSelect.value = saved.resolution;
     if (saved.duration) durationSelect.value = saved.duration;
     if (saved.prompt) promptInput.value = saved.prompt;
-    if (saved.mode) updateMode(saved.mode, false);
+    if (saved.mode) savedMode = saved.mode;
+    updateMode(savedMode, false);
+    if (saved.model && modelSelect) modelSelect.value = saved.model;
   } catch {
-    updateMode("agent", false);
+    updateMode("image", false);
   }
 }
 
@@ -3841,6 +4759,7 @@ function saveSettings() {
       ratio: ratioSelect.value,
       resolution: resolutionSelect.value,
       duration: durationSelect.value,
+      model: modelSelect ? modelSelect.value : "",
       prompt: promptInput.value
     }));
   } catch {
@@ -4029,9 +4948,9 @@ function buildResultSummary() {
     .slice(0, 6)
     .join("\n");
   return [
-    "AI短剧生产主控体验摘要",
-    `客户入口：${primaryCustomerEntry}`,
-    `极速预览：${githubPagesEntry}`,
+    "AI短剧创作平台体验摘要",
+    `体验入口：${primaryCustomerEntry}`,
+    `备用预览：${githubPagesEntry}`,
     `任务：${prompt}`,
     `状态：${runMeta.textContent || "等待生成"}`,
     "",
@@ -4041,34 +4960,34 @@ function buildResultSummary() {
     "适合给客户看的价值点：",
     "1. 自动判断输入类型并选择生产模式。",
     "2. 把剧本、角色、场景、视频提示词和返工诊断拆成独立节点。",
-    "3. API 不可达时仍能返回可演示方案，不让页面空白。"
+    "3. 云端繁忙时仍能返回可演示方案，不让页面空白。"
   ].join("\n");
 }
 
 function buildCustomerEntryText() {
   return [
-    "AI短剧生产主控客户体验入口包",
+    "AI短剧创作平台商用体验入口包",
     "",
-    `客户体验入口：${primaryCustomerEntry}`,
+    `商用体验入口：${primaryCustomerEntry}`,
     `智能启动页：${launchPagesEntry}`,
-    `极速预览：${githubPagesEntry}`,
+    `备用预览：${githubPagesEntry}`,
     `访问保障页：${accessPagesEntry}`,
     "",
     "访问保障：",
     ...customerEntries.slice(3).map(([label, url]) => `${label}：${url}`),
     "",
-    "建议：先发客户体验入口；客户说打不开时，发智能启动页或访问保障页，按顺序切换。"
+    "建议：优先发送商用体验入口；客户说打不开时，发智能启动页或访问保障页。"
   ].join("\n");
 }
 
 function buildCustomerPitchText() {
   return [
-    "给你一个 AI短剧生产主控客户体验入口：",
+    "给你一个 AI短剧创作平台商用体验入口：",
     primaryCustomerEntry,
     "",
-    "打开后先看主控如何把剧本、角色、场景、视频提示词和返工诊断拆成独立智能体节点；想看可点击生成、素材包、试点评估和完整界面，再打开极速预览。",
+    "打开后可以直接上传参考图、选择生成参数、输入剧情或角色设定，看系统如何把剧本、角色、场景、视频提示词和返工诊断拆成独立智能体节点。",
     "",
-    `极速预览：${githubPagesEntry}`,
+    `备用预览：${githubPagesEntry}`,
     `智能启动页：${launchPagesEntry}`,
     `访问保障页：${accessPagesEntry}`
   ].join("\n");
@@ -4221,7 +5140,7 @@ function calculateEstimate() {
   if (input.maturityKey === "idea") risks.push("题材还停留在想法层，先补一句话钩子、角色关系和冲突点。");
   if (input.materialKey === "missing") risks.push("素材不足会导致角色和场景不稳定，试点前至少补主角图、场景参考和对标视频。");
   if (input.materialKey === "partial") risks.push("已有素材还不完整，第一轮应限制在 1 个主角和 1 个场景内。");
-  if (input.volumeKey === "large") risks.push("日产 20 条以上需要批量队列、资产命名、失败重试和扣费日志，不能只靠单页 Demo。");
+  if (input.volumeKey === "large") risks.push("日产 20 条以上需要批量队列、资产命名、失败重试和扣费日志，不能只靠单页体验版。");
   if (needCount >= 4) risks.push("正式能力需求较多，建议先锁试点验收标准，再拆系统报价和排期。");
   if (!needAssetsCheckbox.checked) risks.push("不做资产库会影响角色复用，后续批量生产容易重复返工。");
   if (risks.length === 0) risks.push("当前条件适合做标准试点，重点看角色是否稳定、场景是否可复用。");
@@ -4262,9 +5181,9 @@ function buildEstimateReportText() {
     "风险提醒：",
     ...estimate.risks.map((item, index) => `${index + 1}. ${item}`),
     "",
-    `客户体验入口：${primaryCustomerEntry}`,
-      `极速预览：${githubPagesEntry}`,
-      `完整 Demo：${projectPagesEntry}`
+    `商用体验入口：${primaryCustomerEntry}`,
+      `备用预览：${githubPagesEntry}`,
+      `完整体验版：${projectPagesEntry}`
   ].join("\n");
 }
 
@@ -4284,7 +5203,7 @@ function buildEstimateProposalText() {
     "",
     `当前目标：${input.goal.label}；目标日产量：${input.volume.label}。`,
     `体验入口：${primaryCustomerEntry}`,
-    `极速预览：${githubPagesEntry}`
+    `备用预览：${githubPagesEntry}`
   ].join("\n");
 }
 
@@ -4325,7 +5244,7 @@ function calculateDeployPlan() {
 
   let readiness = "临时测试";
   let title = "先用免费入口验证兴趣";
-  let summary = "当前适合继续用极速入口和完整 Demo 让客户体验，先不要买服务器，等真实题材试点有反馈后再升级。";
+  let summary = "当前适合继续用商用体验入口让客户体验，先不要买服务器，等真实题材试点有反馈后再升级。";
   let actions = [
     "发极速入口给客户，确认是否能打开和理解产品。",
     "收 1 个真实题材、1 个主角、1 个场景和 3 条对标视频。",
@@ -4335,7 +5254,7 @@ function calculateDeployPlan() {
   if (score >= 48) {
     readiness = "试点准备";
     title = "进入真实题材试点";
-    summary = "客户已经不只是看 Demo，建议用真实素材跑小样，同时整理资产命名、返工记录和第一批验收标准。";
+    summary = "客户已经进入真实试点意向，建议用真实素材跑小样，同时整理资产命名、返工记录和第一批验收标准。";
     actions = [
       "锁定试点范围：1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
       "建立角色资产卡、场景母图、提示词模板和返工记录。",
@@ -4427,9 +5346,9 @@ function buildInfraChecklistText() {
     "4. 积分扣费有流水，失败任务有补偿规则。",
     "5. 资产库能按角色、场景、道具、模板和返工记录检索。",
     "",
-    `客户体验入口：${primaryCustomerEntry}`,
-    `极速预览：${githubPagesEntry}`,
-    `完整 Demo：${rootPagesEntry}`
+    `商用体验入口：${primaryCustomerEntry}`,
+    `备用预览：${githubPagesEntry}`,
+    `完整体验版：${rootPagesEntry}`
   ].join("\n");
 }
 
@@ -4437,8 +5356,8 @@ function buildExperienceGuideText() {
   return [
     "AI短剧生产主控客户体验步骤",
     "",
-      `1. 打开入口：优先打开 ${primaryCustomerEntry}；想看可点击生成和完整界面，再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开智能启动页 ${launchPagesEntry} 或访问保障页 ${accessPagesEntry}。`,
-    "2. 看稳定演示：在完整界面点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
+      `1. 打开入口：优先打开 ${primaryCustomerEntry}；需要备用访问时再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开智能启动页 ${launchPagesEntry} 或访问保障页 ${accessPagesEntry}。`,
+    "2. 看创作流程：在首页输入题材并点击生成，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
     "3. 换真实题材：点击页面作品案例，或直接改输入框里的题材，看同一套主控流程如何复用。",
     "4. 看输出结构：确认结果里是否包含输入类型判断、处理范围、调用节点、资产需求、生成方案和返工方向。",
     "5. 进入试点：把素材提交包发给我们，先做 1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
@@ -4470,8 +5389,8 @@ function buildClientChecklistText() {
   return [
     "AI短剧生产主控客户验收清单",
     "",
-    "打开体验：手机能打开客户体验入口；微信打不开时能复制到 Chrome / Safari，仍不行可用访问保障页。",
-    "演示结果：点击“一键演示”后 1 秒左右出现主控结果，不出现空白页。",
+    "打开体验：手机能打开商用体验入口；微信打不开时能复制到 Chrome / Safari，仍不行可用访问保障页。",
+    "创作结果：点击生成后出现主控结果，不出现空白页。",
     "流程理解：能看懂主控把任务拆成剧本、角色、场景、视频提示词和返工诊断。",
     "素材复用：能看懂角色图、场景图、镜头参考图分别负责什么。",
     "返工闭环：能看懂失败时回到哪个节点改，而不是盲目重跑。",
@@ -4508,7 +5427,7 @@ function setServiceStatus(status, message) {
 }
 
 function getHealthUrl() {
-  return window.location.hostname.endsWith("workers.dev")
+  return window.location.hostname.endsWith("workers.dev") || window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
     ? new URL("api/health", window.location.href).toString()
     : `${remoteApiBase}/api/health`;
 }
@@ -4785,7 +5704,11 @@ modeButtons.forEach((button) => {
   button.addEventListener("click", () => updateMode(button.dataset.mode));
 });
 
-[ratioSelect, resolutionSelect, durationSelect, promptInput].forEach((input) => {
+if (modeSelect) {
+  modeSelect.addEventListener("change", () => updateMode(modeSelect.value));
+}
+
+[ratioSelect, resolutionSelect, durationSelect, modelSelect, promptInput].filter(Boolean).forEach((input) => {
   input.addEventListener("input", saveSettings);
   input.addEventListener("change", saveSettings);
 });
@@ -4967,7 +5890,7 @@ copyInfraChecklistButton.addEventListener("click", async () => {
 });
 
 copyMobileEntryButton.addEventListener("click", async () => {
-  copyText(primaryCustomerEntry, "客户体验入口已复制");
+  copyText(primaryCustomerEntry, "商用体验入口已复制");
 });
 
 openRootEntryButton.addEventListener("click", () => {
@@ -5016,7 +5939,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-updateMode("agent", false);
+updateMode("image", false);
 loadSettings();
 renderPoints();
 renderCases();
