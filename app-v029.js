@@ -18,6 +18,7 @@ const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
 const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
 const openPagesEntry = `${rootPagesEntry}client-open-v029.html`;
 const statusPagesEntry = `${rootPagesEntry}client-status-v029.html`;
+const refreshPagesEntry = `${rootPagesEntry}client-refresh-v029.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130";
 const githubProxyEntry = litePagesEntry;
@@ -26,13 +27,14 @@ const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
-const expectedCacheName = "short-drama-studio-v29";
+const expectedCacheName = "short-drama-studio-v30";
 const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
   ["入口分流页（打不开时先发这个）", accessPagesEntry],
   ["极简入口页（无图片无脚本兜底）", openPagesEntry],
   ["客户自检页（检测当前网络）", statusPagesEntry],
+  ["刷新缓存页（清理旧入口缓存）", refreshPagesEntry],
   ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v029.html`],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
   ["备用入口 2（GitHub 文件预览）", previewLiteEntry],

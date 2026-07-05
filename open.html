@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="x-open-build" content="v029-202607051230" />
     <title>AI短剧生产主控 极简入口</title>
     <style>
@@ -118,13 +121,21 @@
         <article>
           <b>04</b>
           <div>
+            <strong>刷新缓存</strong>
+            <p>清理旧缓存和旧 Service Worker 后重新打开最新入口。</p>
+            <a href="https://yu911517778-a11y.github.io/client-refresh-v029.html" target="_blank" rel="noreferrer">https://yu911517778-a11y.github.io/client-refresh-v029.html</a>
+          </div>
+        </article>
+        <article>
+          <b>05</b>
+          <div>
             <strong>Cloudflare 分流</strong>
             <p>另一条海外 CDN 线路。</p>
             <a href="https://short-video-agent-demo.classy-parcel.workers.dev/client-access-v029.html" target="_blank" rel="noreferrer">https://short-video-agent-demo.classy-parcel.workers.dev/client-access-v029.html</a>
           </div>
         </article>
         <article>
-          <b>05</b>
+          <b>06</b>
           <div>
             <strong>Cloudflare 备用</strong>
             <p>另一条 CDN/域名线路，适合主入口打不开时立刻切换。</p>
@@ -132,7 +143,7 @@
           </div>
         </article>
         <article>
-          <b>06</b>
+          <b>07</b>
           <div>
             <strong>预览备用</strong>
             <p>GitHub 文件渲染页，不依赖 Pages 构建结果。</p>
@@ -140,7 +151,7 @@
           </div>
         </article>
         <article>
-          <b>07</b>
+          <b>08</b>
           <div>
             <strong>72h 极速备用</strong>
             <p>短期临时单文件镜像，适合微信或地区网络异常时使用。</p>
@@ -148,7 +159,7 @@
           </div>
         </article>
         <article>
-          <b>08</b>
+          <b>09</b>
           <div>
             <strong>完整 Demo</strong>
             <p>功能最完整，包含资产库、试点方案、部署路线和节点说明。</p>
@@ -156,7 +167,7 @@
           </div>
         </article>
         <article>
-          <b>09</b>
+          <b>10</b>
           <div>
             <strong>项目页完整入口</strong>
             <p>第二个 GitHub Pages 仓库，作为完整 Demo 备用。</p>
@@ -175,12 +186,16 @@ https://yu911517778-a11y.github.io/client-access-v029.html
 https://yu911517778-a11y.github.io/client-open-v029.html
 客户自检页：
 https://yu911517778-a11y.github.io/client-status-v029.html
+刷新缓存页：
+https://yu911517778-a11y.github.io/client-refresh-v029.html
 入口分流备用：
 https://short-video-agent-demo.classy-parcel.workers.dev/client-access-v029.html
 极简入口备用：
 https://short-video-agent-demo.classy-parcel.workers.dev/client-open-v029.html
 客户自检备用：
 https://short-video-agent-demo.classy-parcel.workers.dev/client-status-v029.html
+刷新缓存备用：
+https://short-video-agent-demo.classy-parcel.workers.dev/client-refresh-v029.html
 
 主入口：
 https://yu911517778-a11y.github.io/client-lite-v029.html

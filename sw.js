@@ -1,4 +1,4 @@
-const CACHE_NAME = "short-drama-studio-v29";
+const CACHE_NAME = "short-drama-studio-v30";
 const STATIC_ASSETS = [
   "./",
   "index.html",
@@ -10,6 +10,8 @@ const STATIC_ASSETS = [
   "open.html",
   "client-status-v029.html",
   "status.html",
+  "client-refresh-v029.html",
+  "refresh.html",
   "customer-entry-pack-v029.txt",
   "client-lite-v026.html",
   "client-lite-v027.html",
