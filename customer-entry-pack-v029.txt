@@ -11,8 +11,6 @@ Cloudflare 备用：
 https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-lite-v029.html
 预览备用：
 https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130
-单文件永久备用：
-https://files.catbox.moe/eg376m.html
 72h 极速备用：
 https://litter.catbox.moe/g8qssw.html
 完整 Demo：
