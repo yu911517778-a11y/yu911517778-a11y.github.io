@@ -1,9 +1,10 @@
-const CACHE_NAME = "short-drama-studio-v25";
+const CACHE_NAME = "short-drama-studio-v26";
 const STATIC_ASSETS = [
   "./",
   "index.html",
-  "styles-v025-202607050850.css",
-  "app-v025-202607050850.js",
+  "styles-v026-202607050930.css",
+  "app-v026-202607050930.js",
+  "client-lite-v026.html",
   "favicon.svg",
   "manifest.webmanifest",
   "assets/palace-night.webp",
