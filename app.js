@@ -16,11 +16,12 @@ const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
 const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
-const liteTempEntry = "https://litter.catbox.moe/ap80do.html";
+const liteTempEntry = "https://litter.catbox.moe/auxmx8.html";
+const stableSingleFileEntry = "https://files.catbox.moe/hbh2v7.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130";
-const fullTempEntry = "https://litter.catbox.moe/05o7n4.html";
+const fullTempEntry = "https://litter.catbox.moe/n69z2a.html";
 const githubProxyEntry = litePagesEntry;
-const emergencyMirrorEntry = liteTempEntry;
+const emergencyMirrorEntry = stableSingleFileEntry;
 const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
@@ -32,12 +33,13 @@ const customerEntries = [
   ["入口分流页（打不开时先发这个）", accessPagesEntry],
   ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v029.html`],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
-  ["备用入口 2（GitHub 文件预览）", previewLiteEntry],
-  ["备用入口 3（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v029.html`],
-  ["备用入口 4（项目页完整入口）", projectPagesEntry],
-  ["备用入口 5（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
-  ["备用入口 6（72 小时完整 Demo）", fullTempEntry],
-  ["备用入口 7（Cloudflare 临时完整入口）", `${primaryWorkerEntry}client-entry-v027.html`]
+  ["备用入口 2（Catbox 永久单文件）", stableSingleFileEntry],
+  ["备用入口 3（GitHub 文件预览）", previewLiteEntry],
+  ["备用入口 4（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v029.html`],
+  ["备用入口 5（项目页完整入口）", projectPagesEntry],
+  ["备用入口 6（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
+  ["备用入口 7（72 小时完整 Demo）", fullTempEntry],
+  ["备用入口 8（Cloudflare 临时完整入口）", `${primaryWorkerEntry}client-entry-v027.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
