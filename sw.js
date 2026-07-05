@@ -1,9 +1,9 @@
-const CACHE_NAME = "short-drama-studio-v27";
+const CACHE_NAME = "short-drama-studio-v28";
 const STATIC_ASSETS = [
   "./",
   "index.html",
-  "styles-v027-202607050945.css",
-  "app-v027-202607050945.js",
+  "styles-v028-202607051020.css",
+  "app-v028-202607051020.js",
   "client-entry-v027.html",
   "client-lite-v026.html",
   "client-lite-v027.html",
