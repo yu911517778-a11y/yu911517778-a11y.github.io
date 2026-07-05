@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="x-open-build" content="v029-202607051230" />
+    <title>AI短剧生产主控 极简入口</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #101111;
+        color: #f4f1e8;
+        font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+        letter-spacing: 0;
+      }
+      main {
+        width: min(100% - 24px, 820px);
+        margin: 0 auto;
+        padding: 22px 0 34px;
+      }
+      header {
+        padding: 16px;
+        border: 1px solid rgba(244, 241, 232, .16);
+        border-radius: 8px;
+        background: #181917;
+      }
+      h1 {
+        margin: 8px 0 10px;
+        font-size: clamp(30px, 9vw, 54px);
+        line-height: 1.04;
+      }
+      p {
+        margin: 0;
+        color: #b9b5aa;
+        line-height: 1.75;
+      }
+      .links {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      article {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 10px;
+        padding: 13px;
+        border: 1px solid rgba(244, 241, 232, .14);
+        border-radius: 8px;
+        background: #181917;
+      }
+      b { color: #d97757; }
+      strong { display: block; margin-bottom: 5px; }
+      a {
+        display: block;
+        margin-top: 8px;
+        color: #f4f1e8;
+        overflow-wrap: anywhere;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+      pre {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        margin: 14px 0 0;
+        padding: 12px;
+        border: 1px solid rgba(244, 241, 232, .14);
+        border-radius: 8px;
+        background: #111210;
+        color: #d9d5c8;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+      .hint {
+        margin-top: 14px;
+        padding: 12px;
+        border-left: 3px solid #7fa7c7;
+        background: rgba(127, 167, 199, .08);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p>Zero Asset Entry · 无图片 · 无 JS · 无外部资源</p>
+        <h1>AI短剧生产主控极简入口</h1>
+        <p>如果常规页面、二维码或微信内置浏览器打不开，把这个页面发给客户。它只保留文字链接，最大限度降低加载失败概率。</p>
+      </header>
+      <section class="links" aria-label="极简入口列表">
+
+        <article>
+          <b>01</b>
+          <div>
+            <strong>主入口</strong>
+            <p>优先发客户，页面最轻。</p>
+            <a href="https://yu911517778-a11y.github.io/client-lite-v029.html" target="_blank" rel="noreferrer">https://yu911517778-a11y.github.io/client-lite-v029.html</a>
+          </div>
+        </article>
+        <article>
+          <b>02</b>
+          <div>
+            <strong>入口分流</strong>
+            <p>常规分流页，带二维码和复制按钮。</p>
+            <a href="https://yu911517778-a11y.github.io/client-access-v029.html" target="_blank" rel="noreferrer">https://yu911517778-a11y.github.io/client-access-v029.html</a>
+          </div>
+        </article>
+        <article>
+          <b>03</b>
+          <div>
+            <strong>Cloudflare 分流</strong>
+            <p>另一条海外 CDN 线路。</p>
+            <a href="https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-access-v029.html" target="_blank" rel="noreferrer">https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-access-v029.html</a>
+          </div>
+        </article>
+        <article>
+          <b>04</b>
+          <div>
+            <strong>Cloudflare 备用</strong>
+            <p>另一条 CDN/域名线路，适合主入口打不开时立刻切换。</p>
+            <a href="https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-lite-v029.html" target="_blank" rel="noreferrer">https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-lite-v029.html</a>
+          </div>
+        </article>
+        <article>
+          <b>05</b>
+          <div>
+            <strong>预览备用</strong>
+            <p>GitHub 文件渲染页，不依赖 Pages 构建结果。</p>
+            <a href="https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130" target="_blank" rel="noreferrer">https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130</a>
+          </div>
+        </article>
+        <article>
+          <b>06</b>
+          <div>
+            <strong>72h 极速备用</strong>
+            <p>短期临时单文件镜像，适合微信或地区网络异常时使用。</p>
+            <a href="https://litter.catbox.moe/vxxjas.html" target="_blank" rel="noreferrer">https://litter.catbox.moe/vxxjas.html</a>
+          </div>
+        </article>
+        <article>
+          <b>07</b>
+          <div>
+            <strong>完整 Demo</strong>
+            <p>功能最完整，包含资产库、试点方案、部署路线和节点说明。</p>
+            <a href="https://yu911517778-a11y.github.io/" target="_blank" rel="noreferrer">https://yu911517778-a11y.github.io/</a>
+          </div>
+        </article>
+        <article>
+          <b>08</b>
+          <div>
+            <strong>项目页完整入口</strong>
+            <p>第二个 GitHub Pages 仓库，作为完整 Demo 备用。</p>
+            <a href="https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/" target="_blank" rel="noreferrer">https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/</a>
+          </div>
+        </article>
+      </section>
+      <section class="hint">
+        <p>建议：先点 01；打不开再点 03 或 06。微信内打不开时，长按链接复制到手机 Chrome / Safari。</p>
+      </section>
+      <pre>AI短剧生产主控客户体验入口包：
+
+入口分流页：
+https://yu911517778-a11y.github.io/client-access-v029.html
+极简入口页：
+https://yu911517778-a11y.github.io/client-open-v029.html
+入口分流备用：
+https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-access-v029.html
+极简入口备用：
+https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-open-v029.html
+
+主入口：
+https://yu911517778-a11y.github.io/client-lite-v029.html
+Cloudflare 备用：
+https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-lite-v029.html
+预览备用：
+https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130
+72h 极速备用：
+https://litter.catbox.moe/vxxjas.html
+完整 Demo：
+https://yu911517778-a11y.github.io/
+项目页完整入口：
+https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/
+
+建议：先发主入口；打不开时发入口分流页。微信内打不开就复制到手机 Chrome / Safari。</pre>
+    </main>
+  </body>
+</html>

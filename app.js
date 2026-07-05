@@ -16,6 +16,7 @@ const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
 const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
+const openPagesEntry = `${rootPagesEntry}client-open-v029.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130";
 const githubProxyEntry = litePagesEntry;
@@ -29,6 +30,7 @@ const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
   ["入口分流页（打不开时先发这个）", accessPagesEntry],
+  ["极简入口页（无图片无脚本兜底）", openPagesEntry],
   ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v029.html`],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
   ["备用入口 2（GitHub 文件预览）", previewLiteEntry],

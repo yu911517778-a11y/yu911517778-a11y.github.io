@@ -2194,10 +2194,10 @@ select {
         <div class="handoff-copy">
           <span>Client Entry</span>
           <strong>客户主入口已切到极速入口</strong>
-          <p>当前优先发小体积极速页，入口分流页、72 小时临时页和完整 Demo 作为备用。</p>
+          <p>当前优先发小体积极速页，入口分流页、极简入口、72 小时临时页和完整 Demo 作为备用。</p>
         </div>
         <div class="handoff-metrics" aria-label="访问状态">
-          <span><b>8</b> 入口线路</span>
+          <span><b>10</b> 入口线路</span>
           <span><b>16</b> 本地资产</span>
           <span><b>1s</b> 稳定演示</span>
         </div>
@@ -2212,6 +2212,7 @@ select {
           <button class="generate-button" type="button" id="copyHandoffButton">复制客户入口</button>
           <button class="ghost-button" type="button" id="copyPitchButton">复制转发文案</button>
           <a class="ghost-button" href="client-access-v029.html" target="_blank" rel="noreferrer">入口分流</a>
+          <a class="ghost-button" href="client-open-v029.html" target="_blank" rel="noreferrer">极简入口</a>
           <a class="ghost-button" href="customer-entry-pack-v029.txt" target="_blank" rel="noreferrer">转发文本</a>
           <button class="ghost-button" type="button" id="openMirrorButton">打开主入口</button>
           <button class="ghost-button" type="button" id="handoffDemoButton">一键演示</button>
@@ -2228,7 +2229,7 @@ select {
           <article>
             <span>01</span>
             <strong>先打开</strong>
-            <p>扫二维码或点主入口，微信打不开就复制到 Chrome / Safari；还不行打开入口分流页。</p>
+            <p>扫二维码或点主入口，微信打不开就复制到 Chrome / Safari；还不行打开入口分流页或极简入口。</p>
           </article>
           <article>
             <span>02</span>
@@ -2523,7 +2524,7 @@ select {
           <div>
             <p>Mobile Entry</p>
             <h2>手机扫码体验</h2>
-            <span>适合现场演示、微信群转发和客户快速试用。打不开时优先复制主入口到 Chrome / Safari，再打开入口分流页。</span>
+            <span>适合现场演示、微信群转发和客户快速试用。打不开时优先复制主入口到 Chrome / Safari，再打开入口分流页或极简入口。</span>
           </div>
         </div>
         <div class="pilot-copy">
@@ -2710,7 +2711,7 @@ select {
         <article>
           <span>Status</span>
           <strong id="footerStatus">检测中</strong>
-            <p>Demo V0.29：极速客户入口、入口分流页、二维码校验、社交分享预览、PWA 图标、正式部署路线图、72 小时临时页、GitHub Pages 备用、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
+            <p>Demo V0.29：极速客户入口、入口分流页、极简入口、二维码校验、社交分享预览、PWA 图标、正式部署路线图、72 小时临时页、GitHub Pages 备用、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
         </article>
       </section>
 
@@ -2767,6 +2768,7 @@ const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
 const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
+const openPagesEntry = `${rootPagesEntry}client-open-v029.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130";
 const githubProxyEntry = window.location.href.split('#')[0];
@@ -2780,6 +2782,7 @@ const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
   ["入口分流页（打不开时先发这个）", accessPagesEntry],
+  ["极简入口页（无图片无脚本兜底）", openPagesEntry],
   ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v029.html`],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
   ["备用入口 2（GitHub 文件预览）", previewLiteEntry],
