@@ -16,7 +16,7 @@ const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
 const liteTempEntry = "https://litter.catbox.moe/ap80do.html";
-const cdnLiteEntry = "https://cdn.jsdelivr.net/gh/yu911517778-a11y/yu911517778-a11y.github.io@master/client-lite-v029.html";
+const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html";
 const fullTempEntry = "https://litter.catbox.moe/05o7n4.html";
 const githubProxyEntry = litePagesEntry;
 const emergencyMirrorEntry = liteTempEntry;
@@ -29,7 +29,7 @@ const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
-  ["备用入口 2（GitHub 文件 CDN）", cdnLiteEntry],
+  ["备用入口 2（GitHub 文件预览）", previewLiteEntry],
   ["备用入口 3（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v029.html`],
   ["备用入口 4（项目页极速入口）", `${projectPagesEntry}client-lite-v029.html`],
   ["备用入口 5（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
@@ -721,7 +721,7 @@ function buildCustomerPitchText() {
     "",
     "先打开极速页，看它怎么把剧本、角色、场景、视频和返工拆成独立智能体节点；想看素材包、试点评估和完整界面，再点页面里的完整 Demo。",
     "",
-    `如果微信里打不开，复制到手机 Chrome / Safari；还不行按顺序试 72 小时极速备用：${liteTempEntry} 或 CDN 备用：${cdnLiteEntry}`
+    `如果微信里打不开，复制到手机 Chrome / Safari；还不行按顺序试 Cloudflare 备用：${primaryWorkerEntry}client-lite-v029.html 或预览备用：${previewLiteEntry}`
   ].join("\n");
 }
 
