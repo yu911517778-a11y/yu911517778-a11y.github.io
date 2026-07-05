@@ -15,6 +15,7 @@ const primaryWorkerEntry = "https://short-video-agent-demo.tartan-printer.worker
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
+const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
 const liteTempEntry = "https://litter.catbox.moe/ap80do.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=8685f6d";
 const fullTempEntry = "https://litter.catbox.moe/05o7n4.html";
@@ -28,6 +29,8 @@ const expectedCacheName = "short-drama-studio-v29";
 const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
+  ["入口分流页（打不开时先发这个）", accessPagesEntry],
+  ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v029.html`],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
   ["备用入口 2（GitHub 文件预览）", previewLiteEntry],
   ["备用入口 3（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v029.html`],
@@ -710,7 +713,7 @@ function buildCustomerEntryText() {
     "打不开时备用入口：",
     ...customerEntries.slice(1).map(([label, url]) => `${label}：${url}`),
     "",
-    "建议：如果微信内打不开，请先复制到手机 Chrome / Safari 打开；还不行就按顺序试备用入口。"
+    "建议：如果微信内打不开，请先复制到手机 Chrome / Safari 打开；还不行就打开入口分流页，按顺序试备用入口。"
   ].join("\n");
 }
 
@@ -721,7 +724,7 @@ function buildCustomerPitchText() {
     "",
     "先打开极速页，看它怎么把剧本、角色、场景、视频和返工拆成独立智能体节点；想看素材包、试点评估和完整界面，再点页面里的完整 Demo。",
     "",
-    `如果微信里打不开，复制到手机 Chrome / Safari；还不行按顺序试 Cloudflare 备用：${primaryWorkerEntry}client-lite-v029.html 或预览备用：${previewLiteEntry}`
+    `如果微信里打不开，复制到手机 Chrome / Safari；还不行打开入口分流页：${accessPagesEntry}`
   ].join("\n");
 }
 
@@ -1085,7 +1088,7 @@ function buildExperienceGuideText() {
   return [
     "AI短剧生产主控客户体验步骤",
     "",
-    `1. 打开入口：优先打开 ${githubPagesEntry}，微信里打不开就复制到手机 Chrome / Safari。`,
+    `1. 打开入口：优先打开 ${githubPagesEntry}，微信里打不开就复制到手机 Chrome / Safari；还不行就打开入口分流页 ${accessPagesEntry}。`,
     "2. 看稳定演示：点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
     "3. 换真实题材：点击页面作品案例，或直接改输入框里的题材，看同一套主控流程如何复用。",
     "4. 看输出结构：确认结果里是否包含输入类型判断、处理范围、调用节点、资产需求、生成方案和返工方向。",

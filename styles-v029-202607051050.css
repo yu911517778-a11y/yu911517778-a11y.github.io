@@ -232,7 +232,8 @@ button { cursor: pointer; }
   gap: 8px;
 }
 
-.handoff-actions button {
+.handoff-actions button,
+.handoff-actions a {
   min-width: 112px;
   white-space: nowrap;
 }
@@ -662,9 +663,14 @@ textarea {
 
 .ghost-button, .generate-button {
   min-height: 38px;
+  display: inline-grid;
+  place-items: center;
   border-radius: var(--radius);
   padding: 0 14px;
   font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .ghost-button {
@@ -2003,7 +2009,7 @@ select {
   .handoff-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .handoff-qr { grid-template-columns: 74px 1fr; width: 100%; }
   .handoff-actions { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .handoff-actions button { width: 100%; min-width: 0; }
+  .handoff-actions button, .handoff-actions a { width: 100%; min-width: 0; }
   .studio-layout { grid-template-columns: 1fr; }
   .control-pane { grid-template-rows: auto auto auto; }
   .stage-grid { min-height: 340px; }
@@ -2070,7 +2076,7 @@ select {
   .handoff-metrics b { font-size: 17px; }
   .handoff-actions { grid-template-columns: 1fr 1fr; }
   .handoff-actions .generate-button { grid-column: auto; }
-  .handoff-actions button { min-height: 40px; }
+  .handoff-actions button, .handoff-actions a { min-height: 40px; }
   .workspace-title h1 { font-size: 32px; }
   .mode-rail { display: none; }
   .canvas-toolbar { flex-direction: column; }

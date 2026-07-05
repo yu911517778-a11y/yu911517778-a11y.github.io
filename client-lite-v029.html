@@ -260,6 +260,7 @@
           <p class="lead">这是给客户先看的轻量入口：打开快、能复制入口、能看清主控和独立智能体节点怎么工作。完整体验仍保留在深度 Demo 里。</p>
           <div class="actions">
             <button class="btn primary" id="copySelf">复制这个极速入口</button>
+            <a class="btn" href="https://yu911517778-a11y.github.io/client-access-v029.html" target="_blank" rel="noreferrer">入口分流</a>
             <a class="btn" href="https://litter.catbox.moe/ap80do.html" target="_blank" rel="noreferrer">72h 极速备用</a>
             <a class="btn" href="https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=8685f6d" target="_blank" rel="noreferrer">预览备用</a>
             <a class="btn" href="https://yu911517778-a11y.github.io/" target="_blank" rel="noreferrer">打开完整 Demo</a>
@@ -328,6 +329,7 @@
 
     <script>
       const liteMainUrl = "https://yu911517778-a11y.github.io/client-lite-v029.html";
+      const accessUrl = "https://yu911517778-a11y.github.io/client-access-v029.html";
       const liteBackupUrl = "https://litter.catbox.moe/ap80do.html";
       const previewLiteUrl = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=8685f6d";
       const fullDemoUrl = "https://yu911517778-a11y.github.io/";
@@ -374,6 +376,8 @@
           "",
           "主入口（GitHub Pages）：",
           liteMainUrl,
+          "入口分流页：",
+          accessUrl,
           "极速备用（72h 镜像）：",
           liteBackupUrl,
           "预览备用（GitHub 文件渲染）：",
@@ -388,7 +392,7 @@
           githubDemoUrl,
           workerDemoUrl,
           "",
-          "建议：微信内打不开时，先复制到手机 Chrome / Safari；还不行就按 Cloudflare 备用、预览备用、72h 极速备用的顺序试。"
+          "建议：微信内打不开时，先复制到手机 Chrome / Safari；还不行就打开入口分流页，按 Cloudflare 备用、预览备用、72h 极速备用的顺序试。"
         ].join("\n");
       }
 
@@ -399,6 +403,8 @@
           currentUrl(),
           "",
           "打不开时用备用：",
+          accessUrl,
+          "或：",
           liteBackupUrl,
           "预览备用：",
           previewLiteUrl,
