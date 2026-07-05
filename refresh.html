@@ -87,12 +87,12 @@
       <section>
         <p>Cache Repair · V0.30</p>
         <h1>刷新客户入口缓存</h1>
-        <p>如果客户手机一直打开旧链接、旧 Cloudflare 域名、空图或旧页面，先打开这里清掉浏览器缓存，再进入最新入口。</p>
+        <p>如果客户手机一直打开旧链接、旧备用域名、空图或旧页面，先打开这里清掉浏览器缓存，再进入最新入口。</p>
         <div class="actions">
           <button type="button" id="repair">清理缓存并打开最新入口</button>
-          <a href="https://yu911517778-a11y.github.io/client-open-v030.html" target="_blank" rel="noreferrer">极简入口</a>
-          <a href="https://yu911517778-a11y.github.io/client-status-v030.html" target="_blank" rel="noreferrer">客户自检</a>
-          <a href="https://yu911517778-a11y.github.io/client-access-v030.html" target="_blank" rel="noreferrer">入口分流</a>
+          <a href="https://yu911517778-a11y.github.io/client-open-v030.html" target="_blank" rel="noreferrer">极简打开</a>
+          <a href="https://yu911517778-a11y.github.io/client-status-v030.html" target="_blank" rel="noreferrer">网络自检</a>
+          <a href="https://yu911517778-a11y.github.io/client-access-v030.html" target="_blank" rel="noreferrer">访问保障</a>
         </div>
         <ul>
           <li>会注销当前站点的 Service Worker。</li>
@@ -131,7 +131,7 @@
           setTimeout(() => { window.location.href = latestUrl + "?fresh=" + Date.now(); }, 3000);
         } catch (error) {
           write("清理失败：" + (error && error.message ? error.message : String(error)));
-          write("请手动打开极简入口：" + "https://yu911517778-a11y.github.io/client-open-v030.html");
+          write("请手动打开极简打开页：" + "https://yu911517778-a11y.github.io/client-open-v030.html");
         }
       }
       document.querySelector("#repair").addEventListener("click", repair);

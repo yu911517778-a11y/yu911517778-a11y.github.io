@@ -23,7 +23,7 @@ const statusPagesEntry = `${rootPagesEntry}client-status-v030.html`;
 const refreshPagesEntry = `${rootPagesEntry}client-refresh-v030.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245";
-const edgeOneEntry = "https://mcp.edgeone.site/share/gcwKrD3X_9J2U_uR664d8";
+const edgeOneEntry = "https://mcp.edgeone.site/share/V3Q7sL9xUczABuSaPgoOv";
 const primaryCustomerEntry = edgeOneEntry;
 const githubProxyEntry = primaryCustomerEntry;
 const emergencyMirrorEntry = primaryCustomerEntry;
@@ -34,19 +34,19 @@ const settingsKey = "shortDramaAgentSettings:v1";
 const expectedCacheName = "short-drama-studio-v31";
 const liveApiEnabled = true;
 const customerEntries = [
-  ["客户主入口（EdgeOne 临时公网镜像）", primaryCustomerEntry],
-  ["完整极速入口（GitHub Pages）", githubPagesEntry],
-  ["入口分流页（打不开时先发这个）", accessPagesEntry],
-  ["极简入口页（无图片无脚本兜底）", openPagesEntry],
-  ["客户自检页（检测当前网络）", statusPagesEntry],
-  ["刷新缓存页（清理旧入口缓存）", refreshPagesEntry],
-  ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v030.html`],
-  ["备用入口 1（72 小时极速临时页）", liteTempEntry],
-  ["备用入口 2（GitHub 文件预览）", previewLiteEntry],
-  ["备用入口 3（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v030.html`],
-  ["备用入口 4（项目页完整入口）", projectPagesEntry],
-  ["备用入口 5（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
-  ["备用入口 6（Cloudflare 临时完整入口）", `${primaryWorkerEntry}client-entry-v027.html`]
+  ["客户体验入口", primaryCustomerEntry],
+  ["极速预览", githubPagesEntry],
+  ["访问保障页", accessPagesEntry],
+  ["极简打开页", openPagesEntry],
+  ["网络自检页", statusPagesEntry],
+  ["刷新缓存页", refreshPagesEntry],
+  ["访问保障备用", `${primaryWorkerEntry}client-access-v030.html`],
+  ["备用镜像 A", liteTempEntry],
+  ["备用镜像 B", previewLiteEntry],
+  ["备用镜像 C", `${primaryWorkerEntry}client-lite-v030.html`],
+  ["完整 Studio 备用", projectPagesEntry],
+  ["短根域名入口", `${rootPagesEntry}client-entry-v027.html`],
+  ["完整 Studio 镜像", `${primaryWorkerEntry}client-entry-v027.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
@@ -701,7 +701,7 @@ function buildResultSummary() {
   return [
     "AI短剧生产主控体验摘要",
     `客户入口：${primaryCustomerEntry}`,
-    `完整极速入口：${githubPagesEntry}`,
+    `极速预览：${githubPagesEntry}`,
     `任务：${prompt}`,
     `状态：${runMeta.textContent || "等待生成"}`,
     "",
@@ -717,25 +717,28 @@ function buildResultSummary() {
 
 function buildCustomerEntryText() {
   return [
-    "AI短剧生产主控客户体验入口：",
-    primaryCustomerEntry,
+    "AI短剧生产主控客户体验入口包",
     "",
-    "打不开时备用入口：",
-    ...customerEntries.slice(1).map(([label, url]) => `${label}：${url}`),
+    `客户体验入口：${primaryCustomerEntry}`,
+    `极速预览：${githubPagesEntry}`,
+    `访问保障页：${accessPagesEntry}`,
     "",
-    "建议：如果微信内打不开，请先复制到手机 Chrome / Safari 打开；还不行就打开入口分流页，按顺序试备用入口。"
+    "访问保障：",
+    ...customerEntries.slice(3).map(([label, url]) => `${label}：${url}`),
+    "",
+    "建议：先发客户体验入口；想看完整交互再发极速预览。微信内打不开时，复制到手机 Chrome / Safari；还不行打开访问保障页，按顺序切换。"
   ].join("\n");
 }
 
 function buildCustomerPitchText() {
   return [
-    "给你一个 AI短剧生产主控临时体验入口：",
+    "给你一个 AI短剧生产主控客户体验入口：",
     primaryCustomerEntry,
     "",
-    "先打开临时公网镜像，看它怎么把剧本、角色、场景、视频和返工拆成独立智能体节点；想看可点击生成、素材包、试点评估和完整界面，再打开完整极速入口。",
+    "打开后先看主控如何把剧本、角色、场景、视频提示词和返工诊断拆成独立智能体节点；想看可点击生成、素材包、试点评估和完整界面，再打开极速预览。",
     "",
-    `完整极速入口：${githubPagesEntry}`,
-    `如果微信里打不开，复制到手机 Chrome / Safari；还不行打开入口分流页：${accessPagesEntry}`
+    `极速预览：${githubPagesEntry}`,
+    `访问保障页：${accessPagesEntry}`
   ].join("\n");
 }
 
@@ -928,7 +931,7 @@ function buildEstimateReportText() {
     ...estimate.risks.map((item, index) => `${index + 1}. ${item}`),
     "",
     `客户体验入口：${primaryCustomerEntry}`,
-      `完整极速入口：${githubPagesEntry}`,
+      `极速预览：${githubPagesEntry}`,
       `完整 Demo：${projectPagesEntry}`
   ].join("\n");
 }
@@ -949,7 +952,7 @@ function buildEstimateProposalText() {
     "",
     `当前目标：${input.goal.label}；目标日产量：${input.volume.label}。`,
     `体验入口：${primaryCustomerEntry}`,
-    `完整极速入口：${githubPagesEntry}`
+    `极速预览：${githubPagesEntry}`
   ].join("\n");
 }
 
@@ -1092,8 +1095,8 @@ function buildInfraChecklistText() {
     "4. 积分扣费有流水，失败任务有补偿规则。",
     "5. 资产库能按角色、场景、道具、模板和返工记录检索。",
     "",
-    `客户主入口：${primaryCustomerEntry}`,
-    `完整极速入口：${githubPagesEntry}`,
+    `客户体验入口：${primaryCustomerEntry}`,
+    `极速预览：${githubPagesEntry}`,
     `完整 Demo：${rootPagesEntry}`
   ].join("\n");
 }
@@ -1102,7 +1105,7 @@ function buildExperienceGuideText() {
   return [
     "AI短剧生产主控客户体验步骤",
     "",
-    `1. 打开入口：优先打开 ${primaryCustomerEntry}；想看可点击生成和完整界面，再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开入口分流页 ${accessPagesEntry}。`,
+    `1. 打开入口：优先打开 ${primaryCustomerEntry}；想看可点击生成和完整界面，再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开访问保障页 ${accessPagesEntry}。`,
     "2. 看稳定演示：在完整界面点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
     "3. 换真实题材：点击页面作品案例，或直接改输入框里的题材，看同一套主控流程如何复用。",
     "4. 看输出结构：确认结果里是否包含输入类型判断、处理范围、调用节点、资产需求、生成方案和返工方向。",
@@ -1135,7 +1138,7 @@ function buildClientChecklistText() {
   return [
     "AI短剧生产主控客户验收清单",
     "",
-    "打开体验：手机能打开主入口；微信打不开时能复制到 Chrome / Safari，仍不行可用临时单页镜像。",
+    "打开体验：手机能打开客户体验入口；微信打不开时能复制到 Chrome / Safari，仍不行可用访问保障页。",
     "演示结果：点击“一键演示”后 1 秒左右出现主控结果，不出现空白页。",
     "流程理解：能看懂主控把任务拆成剧本、角色、场景、视频提示词和返工诊断。",
     "素材复用：能看懂角色图、场景图、镜头参考图分别负责什么。",
@@ -1160,7 +1163,7 @@ function buildDiagnosticReport() {
     `最近请求：${state.lastRun?.requestId || "无"}`,
     `浏览器：${navigator.userAgent}`,
     "",
-    "建议：如果微信内打不开，请复制当前入口到手机 Chrome / Safari 打开；仍不行先发临时单页镜像。如果 API 显示备用演示，把这段诊断报告发给技术排查。"
+    "建议：如果微信内打不开，请复制当前入口到手机 Chrome / Safari 打开；仍不行先发访问保障页。如果 API 显示备用演示，把这段诊断报告发给技术排查。"
   ].join("\n");
 }
 
@@ -1632,7 +1635,7 @@ copyInfraChecklistButton.addEventListener("click", async () => {
 });
 
 copyMobileEntryButton.addEventListener("click", async () => {
-  copyText(primaryCustomerEntry, "客户主入口已复制");
+  copyText(primaryCustomerEntry, "客户体验入口已复制");
 });
 
 openRootEntryButton.addEventListener("click", () => {

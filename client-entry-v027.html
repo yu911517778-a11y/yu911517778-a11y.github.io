@@ -17,7 +17,7 @@
     <meta property="og:image:alt" content="AI短剧生产主控客户入口预览" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="AI短剧生产主控 Studio" />
-    <meta name="twitter:description" content="客户先看极速入口：手机打开、复制入口、查看独立智能体节点和正式部署路线。" />
+    <meta name="twitter:description" content="客户先看体验入口：手机打开、查看独立智能体节点、跑一键演示，再进入正式试点沟通。" />
     <meta name="twitter:image" content="https://yu911517778-a11y.github.io/assets/social-preview-1200x630.jpg" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -61,31 +61,35 @@
       <section class="client-handoff" aria-label="客户访问交付">
         <div class="handoff-copy">
           <span>Client Entry</span>
-          <strong>客户主入口已切到 EdgeOne 临时公网镜像</strong>
-          <p>当前优先发 EdgeOne 单文件入口；完整极速入口、入口分流页、极简入口、客户自检页、刷新缓存页、72 小时临时页和完整 Demo 作为备用。</p>
+          <strong>客户体验入口已就绪</strong>
+          <p>优先发客户体验入口；完整 Studio、访问保障页、极简打开页、网络自检和缓存刷新都已准备好，客户打不开时可以按顺序切换。</p>
         </div>
         <div class="handoff-metrics" aria-label="访问状态">
-          <span><b>12</b> 入口线路</span>
-          <span><b>16</b> 本地资产</span>
-          <span><b>1s</b> 稳定演示</span>
+          <span><b>3</b> 主线路</span>
+          <span><b>10</b> Agent 节点</span>
+          <span><b>1s</b> 演示响应</span>
         </div>
         <div class="handoff-qr" aria-label="手机扫码体验">
           <img src="assets/customer-entry-qr.svg" alt="客户主入口二维码" width="74" height="74" />
           <span>
             <b>手机扫码</b>
-            <small>按钮打开 EdgeOne 主入口</small>
+            <small>进入客户体验入口</small>
           </span>
         </div>
         <div class="handoff-actions">
-          <button class="generate-button" type="button" id="copyHandoffButton">复制客户入口</button>
+          <button class="generate-button" type="button" id="copyHandoffButton">复制入口包</button>
+          <button class="ghost-button" type="button" id="openMirrorButton">打开客户入口</button>
           <button class="ghost-button" type="button" id="copyPitchButton">复制转发文案</button>
-          <a class="ghost-button" href="client-access-v030.html" target="_blank" rel="noreferrer">入口分流</a>
-          <a class="ghost-button" href="client-open-v030.html" target="_blank" rel="noreferrer">极简入口</a>
-          <a class="ghost-button" href="client-status-v030.html" target="_blank" rel="noreferrer">客户自检</a>
-          <a class="ghost-button" href="client-refresh-v030.html" target="_blank" rel="noreferrer">刷新缓存</a>
-          <a class="ghost-button" href="customer-entry-pack-v030.txt" target="_blank" rel="noreferrer">转发文本</a>
-          <button class="ghost-button" type="button" id="openMirrorButton">打开主入口</button>
+          <a class="ghost-button" href="client-lite-v030.html" target="_blank" rel="noreferrer">极速预览</a>
+          <a class="ghost-button" href="client-access-v030.html" target="_blank" rel="noreferrer">访问保障</a>
           <button class="ghost-button" type="button" id="handoffDemoButton">一键演示</button>
+          <details class="handoff-more">
+            <summary>更多保障</summary>
+            <a href="client-open-v030.html" target="_blank" rel="noreferrer">极简打开页</a>
+            <a href="client-status-v030.html" target="_blank" rel="noreferrer">网络自检</a>
+            <a href="client-refresh-v030.html" target="_blank" rel="noreferrer">刷新缓存</a>
+            <a href="customer-entry-pack-v030.txt" target="_blank" rel="noreferrer">转发文本</a>
+          </details>
         </div>
       </section>
 
@@ -99,7 +103,7 @@
           <article>
             <span>01</span>
             <strong>先打开</strong>
-            <p>扫二维码或点主入口，微信打不开就复制到 Chrome / Safari；还不行打开入口分流页、极简入口、客户自检页或刷新缓存页。</p>
+            <p>扫二维码或点客户体验入口，微信打不开就复制到 Chrome / Safari；还不行打开访问保障页、极简打开页、网络自检或刷新缓存页。</p>
           </article>
           <article>
             <span>02</span>
@@ -394,7 +398,7 @@
           <div>
             <p>Mobile Entry</p>
             <h2>手机扫码体验</h2>
-            <span>适合现场演示、微信群转发和客户快速试用。当前优先复制 EdgeOne 主入口；想看完整交互再打开完整极速入口。打不开时复制到 Chrome / Safari，再打开入口分流页、极简入口、客户自检页或刷新缓存页。</span>
+            <span>适合现场演示、微信群转发和客户快速试用。当前优先复制客户体验入口；想看完整交互再打开极速预览。打不开时复制到 Chrome / Safari，再打开访问保障页、极简打开页、网络自检或刷新缓存页。</span>
           </div>
         </div>
         <div class="pilot-copy">
@@ -406,15 +410,15 @@
           </article>
           <article>
             <span>Open</span>
-            <strong>客户主入口</strong>
-            <p>EdgeOne 临时公网镜像优先发客户，完整极速入口作为交互备用。</p>
+            <strong>客户体验入口</strong>
+            <p>优先发客户体验入口，极速预览和访问保障页作为交互备用。</p>
             <button class="ghost-button" type="button" id="copyMobileEntryButton">复制扫码链接</button>
           </article>
           <article>
             <span>Next</span>
             <strong>正式部署</strong>
             <p>试点跑通后再接正式域名、服务器、账号体系、积分、资产库、API 日志和安全策略。</p>
-            <button class="generate-button" type="button" id="openRootEntryButton">打开主入口</button>
+            <button class="generate-button" type="button" id="openRootEntryButton">打开客户入口</button>
           </article>
         </div>
       </section>
@@ -581,7 +585,7 @@
         <article>
           <span>Status</span>
           <strong id="footerStatus">检测中</strong>
-            <p>Demo V0.30：EdgeOne 临时公网主入口、全新文件名极速客户入口、入口分流页、极简入口、客户自检页、刷新缓存页、二维码校验、社交分享预览、PWA 图标、正式部署路线图、72 小时临时页、GitHub Pages 备用、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、云端演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
+            <p>Demo V0.31：客户体验入口、极速预览、访问保障页、极简打开页、网络自检页、刷新缓存页、二维码校验、社交分享预览、PWA 图标、正式部署路线图、备用镜像、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、云端演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
         </article>
       </section>
 

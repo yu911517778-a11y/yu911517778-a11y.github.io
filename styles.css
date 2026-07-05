@@ -228,14 +228,52 @@ button { cursor: pointer; }
 
 .handoff-actions {
   display: grid;
-  grid-template-columns: repeat(4, max-content);
+  grid-template-columns: repeat(3, max-content);
   gap: 8px;
 }
 
 .handoff-actions button,
-.handoff-actions a {
+.handoff-actions a,
+.handoff-more summary {
   min-width: 112px;
   white-space: nowrap;
+}
+
+.handoff-more {
+  position: relative;
+  min-width: 112px;
+}
+
+.handoff-more summary {
+  min-height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: rgba(255,255,255,.045);
+  cursor: pointer;
+  list-style: none;
+}
+
+.handoff-more summary::-webkit-details-marker { display: none; }
+
+.handoff-more[open] summary {
+  border-color: var(--line-strong);
+  background: rgba(255,255,255,.07);
+}
+
+.handoff-more a {
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  margin-top: 6px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  background: rgba(5,5,5,.68);
+  text-decoration: none;
 }
 
 .notice-button, .avatar, .points, .share-button {
@@ -2076,7 +2114,14 @@ select {
   .handoff-metrics b { font-size: 17px; }
   .handoff-actions { grid-template-columns: 1fr 1fr; }
   .handoff-actions .generate-button { grid-column: auto; }
-  .handoff-actions button, .handoff-actions a { min-height: 40px; }
+  .handoff-actions button,
+  .handoff-actions a,
+  .handoff-more,
+  .handoff-more summary {
+    min-width: 0;
+    min-height: 40px;
+    width: 100%;
+  }
   .workspace-title h1 { font-size: 32px; }
   .mode-rail { display: none; }
   .canvas-toolbar { flex-direction: column; }
