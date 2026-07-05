@@ -4266,6 +4266,11 @@ const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v2";
 const expectedCacheName = "short-drama-studio-v32";
 const liveApiEnabled = true;
+const sameOriginApiEnabled = typeof window !== "undefined" && (
+  window.location.hostname.endsWith("workers.dev") ||
+  window.location.hostname === "127.0.0.1" ||
+  window.location.hostname === "localhost"
+);
 const customerEntries = [
   ["商用体验入口", primaryCustomerEntry],
   ["智能启动页", launchPagesEntry],
@@ -5427,9 +5432,7 @@ function setServiceStatus(status, message) {
 }
 
 function getHealthUrl() {
-  return window.location.hostname.endsWith("workers.dev") || window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
-    ? new URL("api/health", window.location.href).toString()
-    : `${remoteApiBase}/api/health`;
+  return sameOriginApiEnabled ? new URL("api/health", window.location.href).toString() : "";
 }
 
 async function fetchHealth(timeoutMs = 6500) {
@@ -5452,10 +5455,10 @@ async function fetchHealth(timeoutMs = 6500) {
 }
 
 async function checkService() {
-  if (!liveApiEnabled) {
+  if (!liveApiEnabled || !sameOriginApiEnabled) {
     state.cloudReachable = false;
     state.cloudGenerationMode = "local";
-    setServiceStatus("fallback", "稳定演示模式");
+    setServiceStatus("fallback", "商用体验模式可用");
     return;
   }
 
@@ -5480,9 +5483,9 @@ async function runAccessDiagnostics(shouldToast = false) {
   cacheText.textContent = "检测中";
   cacheMeta.textContent = "正在检测离线缓存版本";
 
-  if (!liveApiEnabled) {
+  if (!liveApiEnabled || !sameOriginApiEnabled) {
     apiRouteText.textContent = "演示模式";
-    apiRouteMeta.textContent = "客户侧不依赖临时 Worker，正式云端部署后启用真实生成";
+    apiRouteMeta.textContent = "当前入口优先保证客户可打开；正式域名部署后启用真实生成";
   } else {
     try {
       const health = await fetchHealth(8000);
@@ -5519,7 +5522,7 @@ async function runAccessDiagnostics(shouldToast = false) {
 
 function getApiCandidates() {
   const sameOrigin = new URL("api/create", window.location.href).toString();
-  if (!liveApiEnabled) {
+  if (!liveApiEnabled || !sameOriginApiEnabled) {
     return [];
   }
   if (!state.cloudReachable && state.serviceStatus !== "online") {
