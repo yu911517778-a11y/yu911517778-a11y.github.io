@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="x-lite-build" content="v026-202607050930" />
+    <meta name="x-lite-build" content="v027-202607050945" />
     <title>AI短剧生产主控 极速体验</title>
     <style>
       :root {
@@ -235,7 +235,7 @@
           <span class="mark"></span>
           <span><strong>AI短剧生产主控</strong><span>Lite Client Entry</span></span>
         </a>
-        <div class="status"><i class="dot"></i><span>极速入口 V0.26 · 适合微信/手机先打开</span></div>
+            <div class="status"><i class="dot"></i><span>极速入口 V0.27 · 适合微信/手机先打开</span></div>
       </header>
 
       <section class="hero" id="top">
@@ -245,7 +245,7 @@
           <p class="lead">这是给客户先看的轻量入口：打开快、能复制入口、能看清主控和独立智能体节点怎么工作。完整体验仍保留在深度 Demo 里。</p>
           <div class="actions">
             <button class="btn primary" id="copySelf">复制这个极速入口</button>
-            <a class="btn" href="https://litter.catbox.moe/9dp2y7.html" target="_blank" rel="noreferrer">打开完整 Demo</a>
+            <a class="btn" href="https://yu911517778-a11y.github.io/" target="_blank" rel="noreferrer">打开完整 Demo</a>
             <a class="btn" href="https://yu911517778-a11y.github.io/client-entry-v027.html" target="_blank" rel="noreferrer">GitHub 备用</a>
           </div>
           <div class="facts">
@@ -286,12 +286,12 @@
 
         <article class="section">
           <h2>客户能看到什么</h2>
-          <p>客户不需要先理解技术架构，先看三个结果：题材能否拆成镜头、资产是否能复用、返工是否能定位。完整 Demo 里有素材提交包、试点评估器、独立节点矩阵和复制方案。</p>
+          <p>客户不需要先理解技术架构，先看三个结果：题材能否拆成镜头、资产是否能复用、返工是否能定位。完整 Demo 里有素材提交包、试点评估器、正式部署路线图、独立节点矩阵和复制方案。</p>
         </article>
 
         <article class="section">
           <h2>下一步上线</h2>
-          <p>临时测试先用免费入口，确认客户愿意试点后再换公司域名、海外云服务器、账号积分、素材库、任务队列、日志审计和真实 API key 托管。</p>
+          <p>临时测试先用免费入口，确认客户愿意试点后再换公司域名、海外云服务器、账号积分、素材库、任务队列、日志审计、独立节点智能体和真实 API key 托管。</p>
         </article>
       </section>
 
@@ -309,8 +309,9 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
-      const fullDemoUrl = "https://litter.catbox.moe/9dp2y7.html";
+      const fullDemoUrl = "https://yu911517778-a11y.github.io/";
       const githubDemoUrl = "https://yu911517778-a11y.github.io/client-entry-v027.html";
+      const fullBackupUrl = "https://litter.catbox.moe/ilpjnf.html";
       const workerDemoUrl = "https://short-video-agent-demo.lateral-owl.workers.dev/client-entry-v027.html";
       const toast = document.querySelector("#toast");
       const output = document.querySelector("#output");
@@ -350,6 +351,8 @@
           "",
           "完整 Demo：",
           fullDemoUrl,
+          "完整 Demo 备用：",
+          fullBackupUrl,
           "",
           "备用入口：",
           githubDemoUrl,
@@ -365,7 +368,7 @@
           "给你一个 AI短剧生产主控极速体验入口：",
           currentUrl(),
           "",
-          "先看主控怎么把剧本、角色、场景、视频和返工拆成独立智能体节点。想看完整功能，再点页面里的完整 Demo。"
+          "先看主控怎么把剧本、角色、场景、视频和返工拆成独立智能体节点。想看正式部署路线图，再点页面里的完整 Demo。"
         ].join("\n"), "转发文案已复制");
       });
       document.querySelector("#runDemo").addEventListener("click", () => {

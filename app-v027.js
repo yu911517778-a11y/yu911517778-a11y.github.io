@@ -7,29 +7,30 @@ const state = {
   history: [],
   busyTimer: null,
   busyIndex: 0,
-  lastRun: null
+  lastRun: null,
+  selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.wide-mockingbird.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.lateral-owl.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const githubPagesEntry = rootPagesEntry;
-const stableBuildId = "4c6902a239dbb8b5091ceac1cb87142556d92e8e";
-const rawGithackEntry = `https://raw.githack.com/yu911517778-a11y/ai-short-drama-agent-demo/${stableBuildId}/index.html`;
-const staticallyEntry = `https://cdn.statically.io/gh/yu911517778-a11y/ai-short-drama-agent-demo/${stableBuildId}/index.html`;
-const jsDelivrEntry = `https://cdn.jsdelivr.net/gh/yu911517778-a11y/ai-short-drama-agent-demo@${stableBuildId}/index.html`;
-const htmlPreviewEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/ai-short-drama-agent-demo/blob/gh-pages/index.html";
+const litePagesEntry = `${rootPagesEntry}client-lite-v027.html`;
+const liteTempEntry = "https://litter.catbox.moe/bxhso0.html";
+const fullTempEntry = "https://litter.catbox.moe/ilpjnf.html";
+const githubProxyEntry = litePagesEntry;
+const emergencyMirrorEntry = liteTempEntry;
+const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
-const expectedCacheName = "short-drama-studio-v20";
+const expectedCacheName = "short-drama-studio-v27";
 const liveApiEnabled = false;
 const customerEntries = [
-  ["客户主入口", githubPagesEntry],
-  ["备用入口 1（长链主站）", projectPagesEntry],
-  ["备用入口 2（临时 Worker）", primaryWorkerEntry],
-  ["备用入口 3（RawGithack）", rawGithackEntry],
-  ["备用入口 4（HTMLPreview）", htmlPreviewEntry]
+  ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
+  ["备用入口 1（72 小时极速临时页）", liteTempEntry],
+  ["备用入口 2（72 小时完整 Demo）", fullTempEntry],
+  ["备用入口 3（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
+  ["备用入口 4（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v027.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
@@ -86,6 +87,168 @@ const copyFollowupButton = document.querySelector("#copyFollowupButton");
 const copyPilotButton = document.querySelector("#copyPilotButton");
 const copyMobileEntryButton = document.querySelector("#copyMobileEntryButton");
 const openRootEntryButton = document.querySelector("#openRootEntryButton");
+const copyExperienceGuideButton = document.querySelector("#copyExperienceGuideButton");
+const copyMaterialPackButton = document.querySelector("#copyMaterialPackButton");
+const copyClientChecklistButton = document.querySelector("#copyClientChecklistButton");
+const maturitySelect = document.querySelector("#maturitySelect");
+const materialSelect = document.querySelector("#materialSelect");
+const goalSelect = document.querySelector("#goalSelect");
+const volumeSelect = document.querySelector("#volumeSelect");
+const needAccountCheckbox = document.querySelector("#needAccountCheckbox");
+const needPointsCheckbox = document.querySelector("#needPointsCheckbox");
+const needAssetsCheckbox = document.querySelector("#needAssetsCheckbox");
+const needBatchCheckbox = document.querySelector("#needBatchCheckbox");
+const needApiLogCheckbox = document.querySelector("#needApiLogCheckbox");
+const estimateScoreText = document.querySelector("#estimateScoreText");
+const estimateTierText = document.querySelector("#estimateTierText");
+const estimateTitleText = document.querySelector("#estimateTitleText");
+const estimateSummaryText = document.querySelector("#estimateSummaryText");
+const estimateRiskList = document.querySelector("#estimateRiskList");
+const resetEstimateButton = document.querySelector("#resetEstimateButton");
+const copyEstimateButton = document.querySelector("#copyEstimateButton");
+const copyProposalButton = document.querySelector("#copyProposalButton");
+const deployStageSelect = document.querySelector("#deployStageSelect");
+const domainModeSelect = document.querySelector("#domainModeSelect");
+const serverModeSelect = document.querySelector("#serverModeSelect");
+const usageScaleSelect = document.querySelector("#usageScaleSelect");
+const deployLoginCheckbox = document.querySelector("#deployLoginCheckbox");
+const deployPaymentCheckbox = document.querySelector("#deployPaymentCheckbox");
+const deployAssetCheckbox = document.querySelector("#deployAssetCheckbox");
+const deployBatchCheckbox = document.querySelector("#deployBatchCheckbox");
+const deployAuditCheckbox = document.querySelector("#deployAuditCheckbox");
+const deployAdminCheckbox = document.querySelector("#deployAdminCheckbox");
+const deployStageText = document.querySelector("#deployStageText");
+const deployReadinessText = document.querySelector("#deployReadinessText");
+const deployTitleText = document.querySelector("#deployTitleText");
+const deploySummaryText = document.querySelector("#deploySummaryText");
+const deployActionList = document.querySelector("#deployActionList");
+const resetDeployButton = document.querySelector("#resetDeployButton");
+const copyDeployPlanButton = document.querySelector("#copyDeployPlanButton");
+const copyInfraChecklistButton = document.querySelector("#copyInfraChecklistButton");
+const agentNodeGrid = document.querySelector("#agentNodeGrid");
+const agentDetailCode = document.querySelector("#agentDetailCode");
+const agentDetailTitle = document.querySelector("#agentDetailTitle");
+const agentDetailDesc = document.querySelector("#agentDetailDesc");
+const agentDetailInput = document.querySelector("#agentDetailInput");
+const agentDetailOutput = document.querySelector("#agentDetailOutput");
+const agentDetailUpgrade = document.querySelector("#agentDetailUpgrade");
+const copyArchitectureButton = document.querySelector("#copyArchitectureButton");
+const copyNodeSpecButton = document.querySelector("#copyNodeSpecButton");
+
+const agentNodes = [
+  {
+    code: "N01",
+    title: "剧本改编 Agent",
+    short: "故事变成可生产钩子",
+    desc: "把小说、口播、故事大纲拆成短剧钩子、冲突点和镜头节奏。",
+    input: "题材方向、故事大纲、参考视频、平台风格",
+    output: "开局钩子、冲突转折、镜头顺序、负面限制",
+    upgrade: "题材模板、爆款结构、平台节奏、审核词规避",
+    acceptance: "输出能直接进入角色、场景和视频提示词节点，不需要人工重写。"
+  },
+  {
+    code: "N02",
+    title: "角色资产 Agent",
+    short: "锁定人物不漂移",
+    desc: "沉淀主角、配角、反派的人设、外观、服装、表情和禁用项。",
+    input: "角色设定、参考图、年龄感、服装、不能变化的特征",
+    output: "角色资产卡、外观提示词、负面词、复用规则",
+    upgrade: "人脸一致性、服装系列、表情库、角色版本管理",
+    acceptance: "同一角色在多条短剧里保持脸型、气质和服装逻辑一致。"
+  },
+  {
+    code: "N03",
+    title: "场景资产 Agent",
+    short: "场景母图可复用",
+    desc: "把场景参考变成可复用的空间结构、光线、色彩和镜头角度。",
+    input: "场景参考图、时代背景、光线氛围、可复用地点",
+    output: "场景母图说明、空间结构、光线色彩、角度清单",
+    upgrade: "场景库、道具库、镜头角度库、统一美术风格",
+    acceptance: "同一场景可支撑多条镜头，不频繁跳变或丢失空间关系。"
+  },
+  {
+    code: "N04",
+    title: "分镜拆解 Agent",
+    short: "复杂剧情拆成短镜头",
+    desc: "把一条钩子拆成更短、更稳、更容易生成和返工的镜头任务。",
+    input: "钩子文案、角色资产、场景资产、目标时长",
+    output: "镜头编号、画面动作、声音节奏、转场关系",
+    upgrade: "平台节奏、镜头模板、批量拆条、镜头复用",
+    acceptance: "每个镜头都能独立生成、独立返工，不牵连整条视频。"
+  },
+  {
+    code: "N06",
+    title: "视频提示词 Agent",
+    short: "生成可执行视频 Prompt",
+    desc: "把分镜变成视频模型可执行的镜头语言、运动方式和负面限制。",
+    input: "分镜、角色卡、场景卡、画幅、时长、模型类型",
+    output: "视频提示词、镜头参数、运动方式、失败规避词",
+    upgrade: "不同视频模型适配、提示词 A/B、批量参数模板",
+    acceptance: "提示词能稳定表达主体、动作、镜头、光线和禁用项。"
+  },
+  {
+    code: "N10",
+    title: "返工诊断 Agent",
+    short: "失败知道回哪一层改",
+    desc: "判断失败属于角色、场景、动作、镜头、提示词还是模型限制。",
+    input: "生成结果、失败描述、原始节点输入、客户反馈",
+    output: "失败分类、返工节点、修改建议、是否重跑判断",
+    upgrade: "自动质检、失败样本库、返工优先级、成本控制",
+    acceptance: "问题能定位到具体节点，不再靠盲目重跑消耗积分。"
+  }
+];
+
+const estimateOptions = {
+  maturity: {
+    idea: { label: "只有想法", score: 8 },
+    script: { label: "已有剧情 / 小说", score: 18 },
+    visual: { label: "已有角色 / 场景图", score: 25 },
+    reference: { label: "已有成片参考", score: 30 }
+  },
+  material: {
+    missing: { label: "缺素材", score: 6 },
+    partial: { label: "有部分参考图", score: 16 },
+    core: { label: "角色场景都有", score: 24 },
+    library: { label: "已有资产库", score: 30 }
+  },
+  goal: {
+    demo: { label: "演示验证", score: 8 },
+    internal: { label: "内部试用", score: 14 },
+    delivery: { label: "客户交付", score: 20 },
+    commercial: { label: "商业化上线", score: 26 }
+  },
+  volume: {
+    small: { label: "1-3 条", score: 8 },
+    medium: { label: "5-10 条", score: 15 },
+    large: { label: "20 条以上", score: 22 }
+  }
+};
+
+const deployOptions = {
+  stage: {
+    temporary: { label: "临时体验", score: 8 },
+    pilot: { label: "真实题材试点", score: 18 },
+    mvp: { label: "MVP 账号积分", score: 28 },
+    commercial: { label: "商业化部署", score: 38 }
+  },
+  domain: {
+    temp: { label: "临时入口", score: 4 },
+    company: { label: "公司域名", score: 14 },
+    multi: { label: "主域名 + 备用入口", score: 18 }
+  },
+  server: {
+    static: { label: "静态页 + Worker", score: 8 },
+    light: { label: "海外轻量云", score: 16 },
+    vps: { label: "独立 VPS", score: 22 },
+    customer: { label: "客户自有云", score: 24 }
+  },
+  scale: {
+    solo: { label: "1 人演示", score: 4 },
+    team: { label: "3-5 人团队", score: 12 },
+    client: { label: "客户多人使用", score: 18 },
+    batch: { label: "批量生产团队", score: 26 }
+  }
+};
 
 const previewResult = [
   "【输入类型判断】",
@@ -168,6 +331,80 @@ function renderCases() {
       promptInput.focus({ preventScroll: true });
     });
   });
+}
+
+function renderAgentNodes() {
+  agentNodeGrid.innerHTML = agentNodes
+    .map((node, index) => `
+      <button class="agent-node-card${index === state.selectedAgentIndex ? " active" : ""}" type="button" data-agent-node="${index}">
+        <b>${escapeHtml(node.code)}</b>
+        <strong>${escapeHtml(node.title.replace(" Agent", ""))}</strong>
+        <span>${escapeHtml(node.short)}</span>
+      </button>
+    `)
+    .join("");
+
+  [...agentNodeGrid.querySelectorAll("[data-agent-node]")].forEach((button) => {
+    button.addEventListener("click", () => {
+      selectAgentNode(Number(button.dataset.agentNode));
+    });
+  });
+
+  renderAgentDetail();
+}
+
+function selectAgentNode(index) {
+  if (!agentNodes[index]) return;
+  state.selectedAgentIndex = index;
+  renderAgentNodes();
+}
+
+function getSelectedAgentNode() {
+  return agentNodes[state.selectedAgentIndex] || agentNodes[0];
+}
+
+function renderAgentDetail() {
+  const node = getSelectedAgentNode();
+  agentDetailCode.textContent = node.code;
+  agentDetailTitle.textContent = node.title;
+  agentDetailDesc.textContent = node.desc;
+  agentDetailInput.textContent = node.input;
+  agentDetailOutput.textContent = node.output;
+  agentDetailUpgrade.textContent = node.upgrade;
+}
+
+function buildArchitectureText() {
+  return [
+    "AI短剧生产主控正式架构说明",
+    "",
+    "核心原则：主控 Supervisor 只负责任务拆解、上下文路由、结果合并、成本控制和返工判断；生产能力拆成独立智能体节点。",
+    "",
+    "为什么要这样做：",
+    "1. 单个节点升级时，不需要重做整套系统。",
+    "2. 角色、场景、分镜、视频提示词和返工诊断可以分别验收。",
+    "3. 某个模型或节点失败时，只回退对应节点，不盲目重跑全部流程。",
+    "4. 后续接账号、积分、资产库和批量任务时，模块边界更清晰。",
+    "",
+    "建议第一阶段节点：",
+    ...agentNodes.map((node) => `${node.code} ${node.title}：${node.output}`),
+    "",
+    "试点验收：先用 1 个主角、1 个场景、3 条 10 秒竖屏钩子，验证角色稳定、场景复用、提示词可执行和返工定位。"
+  ].join("\n");
+}
+
+function buildNodeSpecText() {
+  const node = getSelectedAgentNode();
+  return [
+    `AI短剧生产主控节点升级方案：${node.code} ${node.title}`,
+    "",
+    `节点定位：${node.desc}`,
+    `输入：${node.input}`,
+    `输出：${node.output}`,
+    `可独立升级：${node.upgrade}`,
+    `验收标准：${node.acceptance}`,
+    "",
+    "落地方式：把该节点做成独立智能体，保留固定输入输出协议；主控只调用协议，不绑定具体实现。后续换模型、调提示词、加素材库或加质检规则时，只改这个节点。"
+  ].join("\n");
 }
 
 function loadHistory() {
@@ -404,10 +641,36 @@ function showToast(message) {
 
 async function copyText(text, successMessage = "已复制") {
   try {
+    if (!navigator.clipboard?.writeText) {
+      throw new Error("Clipboard API unavailable");
+    }
     await navigator.clipboard.writeText(text);
     showToast(successMessage);
   } catch {
+    if (copyTextFallback(text)) {
+      showToast(successMessage);
+      return;
+    }
     showToast(text.slice(0, 180));
+  }
+}
+
+function copyTextFallback(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  try {
+    return document.execCommand("copy");
+  } catch {
+    return false;
+  } finally {
+    document.body.removeChild(textarea);
   }
 }
 
@@ -443,18 +706,18 @@ function buildCustomerEntryText() {
     "打不开时备用入口：",
     ...customerEntries.slice(1).map(([label, url]) => `${label}：${url}`),
     "",
-    "建议：如果微信内打不开，请复制到手机 Chrome / Safari 打开。"
+    "建议：如果微信内打不开，请先复制到手机 Chrome / Safari 打开；还不行依次试备用入口 1、2。"
   ].join("\n");
 }
 
 function buildCustomerPitchText() {
   return [
-    "给你一个 AI短剧生产主控体验入口：",
+    "给你一个 AI短剧生产主控极速体验入口：",
     githubPagesEntry,
     "",
-    "你可以直接点“一键演示”看它怎么把参考图、角色、场景、镜头和返工诊断拆成独立节点。体验版默认走稳定演示，正式部署后再接真实云端生成。",
+    "先打开极速页，看它怎么把剧本、角色、场景、视频和返工拆成独立智能体节点；想看素材包、试点评估和完整界面，再点页面里的完整 Demo。",
     "",
-    "如果微信里打不开，复制到手机 Chrome / Safari；备用入口在页面顶部可以一键复制。"
+    `如果微信里打不开，复制到手机 Chrome / Safari；还不行用 72 小时极速备用：${liteTempEntry}`
   ].join("\n");
 }
 
@@ -532,6 +795,335 @@ function buildPilotOfferText() {
   ].join("\n");
 }
 
+function getEstimateInput() {
+  const needs = [
+    { key: "account", label: "账号体系", checked: needAccountCheckbox.checked },
+    { key: "points", label: "积分充值", checked: needPointsCheckbox.checked },
+    { key: "assets", label: "资产库", checked: needAssetsCheckbox.checked },
+    { key: "batch", label: "批量任务", checked: needBatchCheckbox.checked },
+    { key: "apiLog", label: "API 日志", checked: needApiLogCheckbox.checked }
+  ];
+
+  return {
+    maturity: estimateOptions.maturity[maturitySelect.value],
+    material: estimateOptions.material[materialSelect.value],
+    goal: estimateOptions.goal[goalSelect.value],
+    volume: estimateOptions.volume[volumeSelect.value],
+    maturityKey: maturitySelect.value,
+    materialKey: materialSelect.value,
+    goalKey: goalSelect.value,
+    volumeKey: volumeSelect.value,
+    needs,
+    selectedNeeds: needs.filter((item) => item.checked)
+  };
+}
+
+function calculateEstimate() {
+  const input = getEstimateInput();
+  const needCount = input.selectedNeeds.length;
+  let score = input.maturity.score + input.material.score + input.goal.score + input.volume.score;
+
+  if (input.selectedNeeds.some((item) => item.key === "assets")) score += 2;
+  if (input.materialKey === "library") score += 4;
+  if (input.goalKey === "commercial") score += 4;
+  if (input.volumeKey === "large" && input.materialKey !== "library") score -= 7;
+  if (needCount >= 4 && input.materialKey === "missing") score -= 8;
+  score = Math.max(35, Math.min(96, score));
+
+  let tier = "轻量试点";
+  let title = "先补素材再做小样";
+  let summary = "建议先收齐题材、主角、场景和参考视频，再做 1 条 10 秒竖屏钩子验证方向。";
+  let deliverables = [
+    "1 个主角设定",
+    "1 个基础场景",
+    "1 条 10 秒竖屏钩子",
+    "1 份返工判断记录"
+  ];
+
+  if (score >= 58) {
+    tier = "标准试点";
+    title = "适合进入真实题材试点";
+    summary = "建议用 1 个主角、1 个场景、3 条 10 秒竖屏钩子验证角色稳定、场景复用和返工效率。";
+    deliverables = [
+      "1 个主角资产卡",
+      "1 个场景母图方向",
+      "3 条 10 秒竖屏钩子",
+      "分镜、视频提示词和返工建议"
+    ];
+  }
+
+  if (score >= 78 || input.goalKey === "commercial" || input.volumeKey === "large" || needCount >= 4) {
+    tier = "正式部署前评估";
+    title = "先做试点，再拆正式系统范围";
+    summary = "生产目标已经接近正式系统，建议先用真实题材跑小样，再确认域名、服务器、账号、积分、资产库、批量任务和日志范围。";
+    deliverables = [
+      "试点小样和资产复用记录",
+      "正式部署模块边界",
+      "账号、积分、资产库、批量任务清单",
+      "API 兜底、日志和权限建议"
+    ];
+  }
+
+  const risks = [];
+  if (input.maturityKey === "idea") risks.push("题材还停留在想法层，先补一句话钩子、角色关系和冲突点。");
+  if (input.materialKey === "missing") risks.push("素材不足会导致角色和场景不稳定，试点前至少补主角图、场景参考和对标视频。");
+  if (input.materialKey === "partial") risks.push("已有素材还不完整，第一轮应限制在 1 个主角和 1 个场景内。");
+  if (input.volumeKey === "large") risks.push("日产 20 条以上需要批量队列、资产命名、失败重试和扣费日志，不能只靠单页 Demo。");
+  if (needCount >= 4) risks.push("正式能力需求较多，建议先锁试点验收标准，再拆系统报价和排期。");
+  if (!needAssetsCheckbox.checked) risks.push("不做资产库会影响角色复用，后续批量生产容易重复返工。");
+  if (risks.length === 0) risks.push("当前条件适合做标准试点，重点看角色是否稳定、场景是否可复用。");
+
+  return { input, score, tier, title, summary, risks: risks.slice(0, 4), deliverables };
+}
+
+function renderEstimate() {
+  const estimate = calculateEstimate();
+  estimateScoreText.textContent = String(estimate.score);
+  estimateTierText.textContent = estimate.tier;
+  estimateTitleText.textContent = estimate.title;
+  estimateSummaryText.textContent = estimate.summary;
+  estimateRiskList.innerHTML = estimate.risks.map((risk) => `<li>${escapeHtml(risk)}</li>`).join("");
+  return estimate;
+}
+
+function buildEstimateReportText() {
+  const estimate = calculateEstimate();
+  const input = estimate.input;
+  return [
+    "AI短剧生产主控试点评估报告",
+    "",
+    `评估分：${estimate.score} / 100`,
+    `建议档位：${estimate.tier}`,
+    `推荐动作：${estimate.title}`,
+    "",
+    "客户当前条件：",
+    `题材成熟度：${input.maturity.label}`,
+    `素材完整度：${input.material.label}`,
+    `试点目标：${input.goal.label}`,
+    `目标日产量：${input.volume.label}`,
+    `正式能力：${input.selectedNeeds.map((item) => item.label).join("、") || "暂不需要"}`,
+    "",
+    "建议交付：",
+    ...estimate.deliverables.map((item, index) => `${index + 1}. ${item}`),
+    "",
+    "风险提醒：",
+    ...estimate.risks.map((item, index) => `${index + 1}. ${item}`),
+    "",
+    `客户体验入口：${githubPagesEntry}`,
+    `备用短链：${rootPagesEntry}`
+  ].join("\n");
+}
+
+function buildEstimateProposalText() {
+  const estimate = calculateEstimate();
+  const input = estimate.input;
+  return [
+    "AI短剧生产主控试点跟进方案",
+    "",
+    `根据刚才的评估，当前更适合走「${estimate.tier}」。`,
+    estimate.summary,
+    "",
+    "建议下一步：",
+    "1. 先发题材方向、主角设定、场景参考和 3 条对标视频。",
+    `2. 第一轮按「${estimate.deliverables.join("、")}」验收。`,
+    "3. 试点跑通后，再确认是否进入正式域名、海外服务器、账号体系、积分充值、资产库、批量任务和 API 日志。",
+    "",
+    `当前目标：${input.goal.label}；目标日产量：${input.volume.label}。`,
+    `体验入口：${githubPagesEntry}`
+  ].join("\n");
+}
+
+function getDeployInput() {
+  const modules = [
+    { key: "login", label: "登录", checked: deployLoginCheckbox.checked },
+    { key: "payment", label: "支付积分", checked: deployPaymentCheckbox.checked },
+    { key: "asset", label: "资产库", checked: deployAssetCheckbox.checked },
+    { key: "batch", label: "任务队列", checked: deployBatchCheckbox.checked },
+    { key: "audit", label: "日志审计", checked: deployAuditCheckbox.checked },
+    { key: "admin", label: "管理后台", checked: deployAdminCheckbox.checked }
+  ];
+
+  return {
+    stage: deployOptions.stage[deployStageSelect.value],
+    domain: deployOptions.domain[domainModeSelect.value],
+    server: deployOptions.server[serverModeSelect.value],
+    scale: deployOptions.scale[usageScaleSelect.value],
+    stageKey: deployStageSelect.value,
+    domainKey: domainModeSelect.value,
+    serverKey: serverModeSelect.value,
+    scaleKey: usageScaleSelect.value,
+    modules,
+    selectedModules: modules.filter((item) => item.checked)
+  };
+}
+
+function calculateDeployPlan() {
+  const input = getDeployInput();
+  const moduleCount = input.selectedModules.length;
+  let score = input.stage.score + input.domain.score + input.server.score + input.scale.score + moduleCount * 4;
+
+  if (input.stageKey === "temporary") score = Math.min(score, 44);
+  if (input.stageKey === "commercial" && input.domainKey === "temp") score -= 10;
+  if (input.scaleKey === "batch" && input.serverKey === "static") score -= 8;
+  if (deployPaymentCheckbox.checked && !deployLoginCheckbox.checked) score -= 6;
+  score = Math.max(22, Math.min(96, score));
+
+  let readiness = "临时测试";
+  let title = "先用免费入口验证兴趣";
+  let summary = "当前适合继续用极速入口和完整 Demo 让客户体验，先不要买服务器，等真实题材试点有反馈后再升级。";
+  let actions = [
+    "发极速入口给客户，确认是否能打开和理解产品。",
+    "收 1 个真实题材、1 个主角、1 个场景和 3 条对标视频。",
+    "先跑 3 条 10 秒竖屏钩子，记录角色稳定和返工问题。"
+  ];
+
+  if (score >= 48) {
+    readiness = "试点准备";
+    title = "进入真实题材试点";
+    summary = "客户已经不只是看 Demo，建议用真实素材跑小样，同时整理资产命名、返工记录和第一批验收标准。";
+    actions = [
+      "锁定试点范围：1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
+      "建立角色资产卡、场景母图、提示词模板和返工记录。",
+      "试点结束后按角色稳定、场景复用、返工次数、客户反馈决定是否进 MVP。"
+    ];
+  }
+
+  if (score >= 66 || input.stageKey === "mvp") {
+    readiness = "MVP 可排期";
+    title = "拆 MVP 系统边界";
+    summary = "可以开始规划账号、积分、资产库、任务历史和服务端 API key 托管，但仍建议先用试点数据控制范围。";
+    actions = [
+      "购买或准备公司域名，并配置 HTTPS 和备用入口。",
+      "选择海外轻量云或独立 VPS，部署后端 API、任务队列和日志。",
+      "实现登录、客户空间、积分扣费、资产库、任务历史和管理员入口。"
+    ];
+  }
+
+  if (score >= 82 || input.stageKey === "commercial" || input.scaleKey === "batch") {
+    readiness = "商业部署";
+    title = "按商业系统验收";
+    summary = "目标已经接近客户正式使用，需要把域名、服务器、账号、计费、资产库、队列、日志、安全和备份作为一个整体交付。";
+    actions = [
+      "使用公司域名和海外云服务器，保留至少 1 个备用入口。",
+      "把模型 API key 放在服务端 Secret，不进入浏览器。",
+      "上线前做限流、日志、备份、错误告警、管理员权限和扣费对账。"
+    ];
+  }
+
+  const required = [
+    input.domainKey === "temp" ? "临时入口和备用链接" : "公司域名、DNS、HTTPS、备用入口",
+    input.serverKey === "static" ? "静态页、Worker 兜底、无服务端密钥暴露" : "海外云服务器、进程守护、反向代理、日志目录",
+    deployLoginCheckbox.checked ? "登录、客户空间、权限分组" : "演示模式访问控制",
+    deployPaymentCheckbox.checked ? "积分套餐、扣费流水、充值/退款规则" : "演示积分和人工结算",
+    deployAssetCheckbox.checked ? "角色/场景/道具资产库、命名规范、版本记录" : "最小素材提交包",
+    deployBatchCheckbox.checked ? "任务队列、失败重试、并发限制、成本上限" : "单任务生成流程",
+    deployAuditCheckbox.checked ? "API 日志、错误日志、操作审计、告警" : "基础诊断报告",
+    deployAdminCheckbox.checked ? "管理员后台、客户管理、任务管理" : "人工运营表"
+  ];
+
+  return { input, score, readiness, title, summary, actions, required };
+}
+
+function renderDeployPlan() {
+  const plan = calculateDeployPlan();
+  deployStageText.textContent = plan.readiness;
+  deployReadinessText.textContent = `${plan.score} / 100`;
+  deployTitleText.textContent = plan.title;
+  deploySummaryText.textContent = plan.summary;
+  deployActionList.innerHTML = plan.actions.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  return plan;
+}
+
+function buildDeployPlanText() {
+  const plan = calculateDeployPlan();
+  const input = plan.input;
+  return [
+    "AI短剧生产主控正式部署方案",
+    "",
+    `部署判断：${plan.readiness}（${plan.score}/100）`,
+    `建议动作：${plan.title}`,
+    "",
+    "当前配置：",
+    `部署阶段：${input.stage.label}`,
+    `域名策略：${input.domain.label}`,
+    `服务器策略：${input.server.label}`,
+    `使用规模：${input.scale.label}`,
+    `启用模块：${input.selectedModules.map((item) => item.label).join("、") || "仅演示模式"}`,
+    "",
+    "执行步骤：",
+    ...plan.actions.map((item, index) => `${index + 1}. ${item}`),
+    "",
+    "备注：临时测试阶段不把 API key 放到浏览器；正式部署后所有模型 key 进入服务端 Secret。"
+  ].join("\n");
+}
+
+function buildInfraChecklistText() {
+  const plan = calculateDeployPlan();
+  return [
+    "AI短剧生产主控基础设施清单",
+    "",
+    "必须准备：",
+    ...plan.required.map((item, index) => `${index + 1}. ${item}`),
+    "",
+    "上线前检查：",
+    "1. 域名 HTTPS 能打开，备用入口可复制。",
+    "2. 服务端 Secret 不出现在任何 HTML / JS / CSS 文件里。",
+    "3. 任务失败有日志、错误原因和返工节点。",
+    "4. 积分扣费有流水，失败任务有补偿规则。",
+    "5. 资产库能按角色、场景、道具、模板和返工记录检索。",
+    "",
+    `客户极速入口：${githubPagesEntry}`,
+    `完整 Demo：${fullTempEntry}`
+  ].join("\n");
+}
+
+function buildExperienceGuideText() {
+  return [
+    "AI短剧生产主控客户体验步骤",
+    "",
+    "1. 打开入口：优先打开 https://yu911517778-a11y.github.io/，微信里打不开就复制到手机 Chrome / Safari。",
+    "2. 看稳定演示：点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
+    "3. 换真实题材：点击页面作品案例，或直接改输入框里的题材，看同一套主控流程如何复用。",
+    "4. 看输出结构：确认结果里是否包含输入类型判断、处理范围、调用节点、资产需求、生成方案和返工方向。",
+    "5. 进入试点：把素材提交包发给我们，先做 1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
+    "",
+    "体验版默认走稳定演示，不依赖临时 Worker；正式部署后再接真实云端生成、账号、积分和资产库。"
+  ].join("\n");
+}
+
+function buildMaterialPackText() {
+  return [
+    "AI短剧生产主控素材提交包",
+    "",
+    "请按下面格式发资料，越完整越容易快速做出试点小样。",
+    "",
+    "1. 题材方向：古风 / 都市 / 玄幻 / 甜宠 / 悬疑 / 其他。",
+    "2. 目标平台：抖音 / 快手 / 视频号 / 小红书 / 海外平台。",
+    "3. 参考视频：发 3 条你想对标的视频链接，并说明喜欢它的开头、人物、节奏还是画面。",
+    "4. 主角资料：性别、年龄感、性格、服装、发型、不能变的特征；有图请发图。",
+    "5. 场景资料：主要场景、时代背景、光线氛围、可复用地点；有图请发图。",
+    "6. 剧情素材：小说片段、口播文案、故事大纲或一句话钩子都可以。",
+    "7. 输出要求：每条时长、画幅、是否需要配音、是否不要 BGM、是否需要字幕。",
+    "8. 试点目标：先验证角色稳定、场景复用、批量速度、客户展示，还是正式商业化。",
+    "",
+    "建议第一轮只做：1 个主角、1 个场景、3 条 10 秒竖屏钩子。"
+  ].join("\n");
+}
+
+function buildClientChecklistText() {
+  return [
+    "AI短剧生产主控客户验收清单",
+    "",
+    "打开体验：手机能打开主入口；微信打不开时能复制到 Chrome / Safari，仍不行可用临时单页镜像。",
+    "演示结果：点击“一键演示”后 1 秒左右出现主控结果，不出现空白页。",
+    "流程理解：能看懂主控把任务拆成剧本、角色、场景、视频提示词和返工诊断。",
+    "素材复用：能看懂角色图、场景图、镜头参考图分别负责什么。",
+    "返工闭环：能看懂失败时回到哪个节点改，而不是盲目重跑。",
+    "试点准备：客户能提供题材、角色、场景、参考视频和目标平台。",
+    "正式部署：确认是否需要正式域名、海外服务器、账号体系、积分充值、资产库和 API 日志。"
+  ].join("\n");
+}
+
 function buildDiagnosticReport() {
   return [
     "AI短剧生产主控访问诊断",
@@ -546,7 +1138,7 @@ function buildDiagnosticReport() {
     `最近请求：${state.lastRun?.requestId || "无"}`,
     `浏览器：${navigator.userAgent}`,
     "",
-    "建议：如果微信内打不开，请复制当前入口到手机 Chrome / Safari 打开；如果 API 显示备用演示，把这段诊断报告发给技术排查。"
+    "建议：如果微信内打不开，请复制当前入口到手机 Chrome / Safari 打开；仍不行先发临时单页镜像。如果 API 显示备用演示，把这段诊断报告发给技术排查。"
   ].join("\n");
 }
 
@@ -912,6 +1504,91 @@ copyPilotButton.addEventListener("click", async () => {
   copyText(buildPilotOfferText(), "试点方案已复制");
 });
 
+copyExperienceGuideButton.addEventListener("click", async () => {
+  copyText(buildExperienceGuideText(), "体验步骤已复制");
+});
+
+copyMaterialPackButton.addEventListener("click", async () => {
+  copyText(buildMaterialPackText(), "素材提交包已复制");
+});
+
+copyClientChecklistButton.addEventListener("click", async () => {
+  copyText(buildClientChecklistText(), "验收清单已复制");
+});
+
+copyArchitectureButton.addEventListener("click", async () => {
+  copyText(buildArchitectureText(), "架构说明已复制");
+});
+
+copyNodeSpecButton.addEventListener("click", async () => {
+  copyText(buildNodeSpecText(), "节点方案已复制");
+});
+
+[maturitySelect, materialSelect, goalSelect, volumeSelect].forEach((select) => {
+  select.addEventListener("change", renderEstimate);
+});
+
+[needAccountCheckbox, needPointsCheckbox, needAssetsCheckbox, needBatchCheckbox, needApiLogCheckbox].forEach((checkbox) => {
+  checkbox.addEventListener("change", renderEstimate);
+});
+
+resetEstimateButton.addEventListener("click", () => {
+  maturitySelect.value = "script";
+  materialSelect.value = "partial";
+  goalSelect.value = "internal";
+  volumeSelect.value = "small";
+  needAccountCheckbox.checked = false;
+  needPointsCheckbox.checked = false;
+  needAssetsCheckbox.checked = true;
+  needBatchCheckbox.checked = false;
+  needApiLogCheckbox.checked = false;
+  renderEstimate();
+  showToast("评估已重置");
+});
+
+copyEstimateButton.addEventListener("click", async () => {
+  renderEstimate();
+  copyText(buildEstimateReportText(), "评估报告已复制");
+});
+
+copyProposalButton.addEventListener("click", async () => {
+  renderEstimate();
+  copyText(buildEstimateProposalText(), "跟进方案已复制");
+});
+
+[deployStageSelect, domainModeSelect, serverModeSelect, usageScaleSelect].forEach((select) => {
+  select.addEventListener("change", renderDeployPlan);
+});
+
+[deployLoginCheckbox, deployPaymentCheckbox, deployAssetCheckbox, deployBatchCheckbox, deployAuditCheckbox, deployAdminCheckbox].forEach((checkbox) => {
+  checkbox.addEventListener("change", renderDeployPlan);
+});
+
+resetDeployButton.addEventListener("click", () => {
+  deployStageSelect.value = "temporary";
+  domainModeSelect.value = "temp";
+  serverModeSelect.value = "static";
+  usageScaleSelect.value = "solo";
+  deployLoginCheckbox.checked = false;
+  deployPaymentCheckbox.checked = false;
+  deployAssetCheckbox.checked = true;
+  deployBatchCheckbox.checked = false;
+  deployAuditCheckbox.checked = false;
+  deployAdminCheckbox.checked = false;
+  renderDeployPlan();
+  showToast("部署配置已重置");
+});
+
+copyDeployPlanButton.addEventListener("click", async () => {
+  renderDeployPlan();
+  copyText(buildDeployPlanText(), "部署方案已复制");
+});
+
+copyInfraChecklistButton.addEventListener("click", async () => {
+  renderDeployPlan();
+  copyText(buildInfraChecklistText(), "基础设施清单已复制");
+});
+
 copyMobileEntryButton.addEventListener("click", async () => {
   copyText(githubPagesEntry, "扫码链接已复制");
 });
@@ -922,7 +1599,7 @@ openRootEntryButton.addEventListener("click", () => {
 
 
 openMirrorButton.addEventListener("click", () => {
-  window.open(primaryWorkerEntry, "_blank", "noopener,noreferrer");
+  window.open(emergencyMirrorEntry, "_blank", "noopener,noreferrer");
 });
 
 handoffDemoButton.addEventListener("click", async () => {
@@ -966,9 +1643,12 @@ updateMode("agent", false);
 loadSettings();
 renderPoints();
 renderCases();
+renderAgentNodes();
 renderReferenceMenu();
 loadHistory();
 renderPreviewResult();
+renderEstimate();
+renderDeployPlan();
 checkService();
 runAccessDiagnostics();
 registerServiceWorker();

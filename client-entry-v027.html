@@ -14,7 +14,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/palace-night.webp" as="image" type="image/webp" />
     <link rel="preload" href="assets/hanfu-lantern.webp" as="image" type="image/webp" />
-    <link rel="stylesheet" href="styles-v025-202607050850.css" />
+    <link rel="stylesheet" href="styles-v027-202607050945.css" />
   </head>
   <body>
     <div class="studio-shell">
@@ -35,6 +35,7 @@
           <a href="#agent">Workflow</a>
           <a href="#agents">Agents</a>
           <a href="#estimate">Estimate</a>
+          <a href="#deploy">Deploy</a>
           <a href="#api">API</a>
           <a href="#access">Access</a>
         </nav>
@@ -50,11 +51,11 @@
       <section class="client-handoff" aria-label="客户访问交付">
         <div class="handoff-copy">
           <span>Client Entry</span>
-          <strong>客户主入口已切到 GitHub CDN 预览</strong>
-          <p>当前优先发更容易打开的 CDN 预览入口，GitHub Pages 和 Worker 作为备用。</p>
+          <strong>客户主入口已切到极速入口</strong>
+          <p>当前优先发小体积极速页，72 小时临时页和完整 Demo 作为备用。</p>
         </div>
         <div class="handoff-metrics" aria-label="访问状态">
-          <span><b>4</b> 公网页面入口</span>
+          <span><b>5</b> 公网页面入口</span>
           <span><b>16</b> 本地资产</span>
           <span><b>1s</b> 稳定演示</span>
         </div>
@@ -172,7 +173,7 @@
               </div>
               <div class="reference-menu" id="referenceMenu"></div>
             </div>
-          <div class="run-meta" id="runMeta">Demo V0.25 · 等待生成</div>
+          <div class="run-meta" id="runMeta">Demo V0.27 · 等待生成</div>
           </div>
         </section>
 
@@ -391,7 +392,7 @@
           <article>
             <span>Open</span>
             <strong>客户主入口</strong>
-            <p>CDN 预览入口优先发客户，页面顶部可复制所有备用入口。</p>
+            <p>极速入口优先发客户，页面顶部可复制所有备用入口。</p>
             <button class="ghost-button" type="button" id="copyMobileEntryButton">复制扫码链接</button>
           </article>
           <article>
@@ -474,6 +475,78 @@
         </div>
       </section>
 
+      <section class="deploy-kit" id="deploy">
+        <div class="deploy-heading">
+          <p>Deployment</p>
+          <h2>正式部署路线图</h2>
+          <span>按客户目标选择域名、服务器、账号积分、资产库和运维要求，直接生成上线方案和基础设施清单。</span>
+          <div class="deploy-stage-card">
+            <strong id="deployStageText">临时测试</strong>
+            <span id="deployReadinessText">等待配置</span>
+          </div>
+        </div>
+
+        <div class="deploy-form" aria-label="正式部署配置表单">
+          <label>
+            <span>部署阶段</span>
+            <select id="deployStageSelect">
+              <option value="temporary" selected>临时体验</option>
+              <option value="pilot">真实题材试点</option>
+              <option value="mvp">MVP 账号积分</option>
+              <option value="commercial">商业化部署</option>
+            </select>
+          </label>
+          <label>
+            <span>域名策略</span>
+            <select id="domainModeSelect">
+              <option value="temp" selected>临时入口</option>
+              <option value="company">公司域名</option>
+              <option value="multi">主域名 + 备用入口</option>
+            </select>
+          </label>
+          <label>
+            <span>服务器策略</span>
+            <select id="serverModeSelect">
+              <option value="static" selected>静态页 + Worker</option>
+              <option value="light">海外轻量云</option>
+              <option value="vps">独立 VPS</option>
+              <option value="customer">客户自有云</option>
+            </select>
+          </label>
+          <label>
+            <span>使用规模</span>
+            <select id="usageScaleSelect">
+              <option value="solo" selected>1 人演示</option>
+              <option value="team">3-5 人团队</option>
+              <option value="client">客户多人使用</option>
+              <option value="batch">批量生产团队</option>
+            </select>
+          </label>
+
+          <div class="deploy-toggles">
+            <label><input type="checkbox" id="deployLoginCheckbox" />登录</label>
+            <label><input type="checkbox" id="deployPaymentCheckbox" />支付积分</label>
+            <label><input type="checkbox" id="deployAssetCheckbox" checked />资产库</label>
+            <label><input type="checkbox" id="deployBatchCheckbox" />任务队列</label>
+            <label><input type="checkbox" id="deployAuditCheckbox" />日志审计</label>
+            <label><input type="checkbox" id="deployAdminCheckbox" />管理后台</label>
+          </div>
+
+          <div class="deploy-actions">
+            <button class="ghost-button" type="button" id="resetDeployButton">重置</button>
+            <button class="ghost-button" type="button" id="copyDeployPlanButton">复制部署方案</button>
+            <button class="generate-button" type="button" id="copyInfraChecklistButton">复制基础设施清单</button>
+          </div>
+        </div>
+
+        <div class="deploy-output" aria-live="polite">
+          <span>Launch Plan</span>
+          <strong id="deployTitleText">先跑临时体验</strong>
+          <p id="deploySummaryText">当前适合先用免费入口验证客户兴趣，再决定是否购买域名和云服务器。</p>
+          <ul id="deployActionList"></ul>
+        </div>
+      </section>
+
       <section class="system-strip" id="api">
         <article>
           <span>Points</span>
@@ -483,7 +556,7 @@
         <article>
           <span>API</span>
           <strong>Server-side key</strong>
-          <p>TommyAPI Key 只在 Worker Secret 内使用，浏览器不会看到。</p>
+            <p>模型密钥只在 Worker Secret 内使用，浏览器不会看到。</p>
         </article>
         <article>
           <span>Profile</span>
@@ -493,7 +566,7 @@
         <article>
           <span>Status</span>
           <strong id="footerStatus">检测中</strong>
-        <p>Demo V0.25：GitHub CDN 客户入口、GitHub Pages 备用、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
+        <p>Demo V0.27：极速客户入口、正式部署路线图、72 小时临时页、GitHub Pages 备用、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
         </article>
       </section>
 
@@ -529,6 +602,6 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="app-v025-202607050850.js" type="module"></script>
+    <script src="app-v027-202607050945.js" type="module"></script>
   </body>
 </html>

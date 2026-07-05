@@ -955,7 +955,7 @@ select {
     url("assets/slate-table.webp") center / cover;
 }
 
-.experience-strip, .dock, .agent-matrix, .sales-kit, .pilot-kit, .estimate-kit, .system-strip, .access-strip {
+.experience-strip, .dock, .agent-matrix, .sales-kit, .pilot-kit, .estimate-kit, .deploy-kit, .system-strip, .access-strip {
   margin-bottom: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1750,6 +1750,177 @@ select {
   background: var(--cyan);
 }
 
+.deploy-kit {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1.12fr) minmax(280px, .88fr);
+  gap: 12px;
+  padding: 14px;
+}
+
+.deploy-heading,
+.deploy-form,
+.deploy-output {
+  min-width: 0;
+}
+
+.deploy-heading {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.deploy-heading p,
+.deploy-output span {
+  margin: 0;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.deploy-heading h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.deploy-heading > span {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.deploy-stage-card {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255,139,69,.09), transparent 58%),
+    rgba(255,255,255,.035);
+}
+
+.deploy-stage-card strong {
+  font-size: 20px;
+}
+
+.deploy-stage-card span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.deploy-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.deploy-form label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.deploy-form label span {
+  color: var(--ink);
+}
+
+.deploy-form select {
+  width: 100%;
+  min-width: 0;
+}
+
+.deploy-toggles {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.deploy-toggles label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.035);
+  color: var(--ink);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.deploy-toggles input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--cyan);
+}
+
+.deploy-actions {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: .75fr 1fr 1.15fr;
+  gap: 8px;
+}
+
+.deploy-actions button {
+  width: 100%;
+  min-width: 0;
+}
+
+.deploy-output {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(183,255,90,.07), transparent 48%),
+    rgba(255,255,255,.03);
+}
+
+.deploy-output strong {
+  font-size: 20px;
+}
+
+.deploy-output p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.deploy-output ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deploy-output li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 7px;
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 13px;
+}
+
+.deploy-output li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: var(--lime);
+}
+
 .system-strip, .access-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1847,8 +2018,11 @@ select {
   .pilot-kit { grid-template-columns: 1fr; }
   .pilot-copy { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .estimate-kit { grid-template-columns: 1fr; }
+  .deploy-kit { grid-template-columns: 1fr; }
   .estimate-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .deploy-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .estimate-toggles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .deploy-toggles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 720px) {
@@ -1933,6 +2107,10 @@ select {
   .estimate-toggles { grid-template-columns: 1fr 1fr; }
   .estimate-toggles label { white-space: normal; }
   .estimate-actions { grid-template-columns: 1fr; }
+  .deploy-form { grid-template-columns: 1fr; }
+  .deploy-toggles { grid-template-columns: 1fr 1fr; }
+  .deploy-toggles label { white-space: normal; }
+  .deploy-actions { grid-template-columns: 1fr; }
   .system-strip, .access-strip { grid-template-columns: 1fr; }
   .system-strip article, .access-strip article { border-right: 0; border-bottom: 1px solid var(--line); }
   .system-strip article:last-child, .access-strip article:last-child { border-bottom: 0; }

@@ -14,23 +14,23 @@ const state = {
 const primaryWorkerEntry = "https://short-video-agent-demo.lateral-owl.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const litePagesEntry = `${rootPagesEntry}client-lite-v026.html`;
-const liteTempEntry = "https://litter.catbox.moe/123enp.html";
-const fullTempEntry = "https://litter.catbox.moe/9dp2y7.html";
+const litePagesEntry = `${rootPagesEntry}client-lite-v027.html`;
+const liteTempEntry = "https://litter.catbox.moe/bxhso0.html";
+const fullTempEntry = "https://litter.catbox.moe/ilpjnf.html";
 const githubProxyEntry = litePagesEntry;
 const emergencyMirrorEntry = liteTempEntry;
 const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
-const expectedCacheName = "short-drama-studio-v26";
+const expectedCacheName = "short-drama-studio-v27";
 const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
   ["备用入口 2（72 小时完整 Demo）", fullTempEntry],
-  ["备用入口 3（短根域名完整入口）", `${rootPagesEntry}client-entry-v025.html`],
-  ["备用入口 4（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v025.html`]
+  ["备用入口 3（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
+  ["备用入口 4（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v027.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
@@ -107,6 +107,24 @@ const estimateRiskList = document.querySelector("#estimateRiskList");
 const resetEstimateButton = document.querySelector("#resetEstimateButton");
 const copyEstimateButton = document.querySelector("#copyEstimateButton");
 const copyProposalButton = document.querySelector("#copyProposalButton");
+const deployStageSelect = document.querySelector("#deployStageSelect");
+const domainModeSelect = document.querySelector("#domainModeSelect");
+const serverModeSelect = document.querySelector("#serverModeSelect");
+const usageScaleSelect = document.querySelector("#usageScaleSelect");
+const deployLoginCheckbox = document.querySelector("#deployLoginCheckbox");
+const deployPaymentCheckbox = document.querySelector("#deployPaymentCheckbox");
+const deployAssetCheckbox = document.querySelector("#deployAssetCheckbox");
+const deployBatchCheckbox = document.querySelector("#deployBatchCheckbox");
+const deployAuditCheckbox = document.querySelector("#deployAuditCheckbox");
+const deployAdminCheckbox = document.querySelector("#deployAdminCheckbox");
+const deployStageText = document.querySelector("#deployStageText");
+const deployReadinessText = document.querySelector("#deployReadinessText");
+const deployTitleText = document.querySelector("#deployTitleText");
+const deploySummaryText = document.querySelector("#deploySummaryText");
+const deployActionList = document.querySelector("#deployActionList");
+const resetDeployButton = document.querySelector("#resetDeployButton");
+const copyDeployPlanButton = document.querySelector("#copyDeployPlanButton");
+const copyInfraChecklistButton = document.querySelector("#copyInfraChecklistButton");
 const agentNodeGrid = document.querySelector("#agentNodeGrid");
 const agentDetailCode = document.querySelector("#agentDetailCode");
 const agentDetailTitle = document.querySelector("#agentDetailTitle");
@@ -203,6 +221,32 @@ const estimateOptions = {
     small: { label: "1-3 条", score: 8 },
     medium: { label: "5-10 条", score: 15 },
     large: { label: "20 条以上", score: 22 }
+  }
+};
+
+const deployOptions = {
+  stage: {
+    temporary: { label: "临时体验", score: 8 },
+    pilot: { label: "真实题材试点", score: 18 },
+    mvp: { label: "MVP 账号积分", score: 28 },
+    commercial: { label: "商业化部署", score: 38 }
+  },
+  domain: {
+    temp: { label: "临时入口", score: 4 },
+    company: { label: "公司域名", score: 14 },
+    multi: { label: "主域名 + 备用入口", score: 18 }
+  },
+  server: {
+    static: { label: "静态页 + Worker", score: 8 },
+    light: { label: "海外轻量云", score: 16 },
+    vps: { label: "独立 VPS", score: 22 },
+    customer: { label: "客户自有云", score: 24 }
+  },
+  scale: {
+    solo: { label: "1 人演示", score: 4 },
+    team: { label: "3-5 人团队", score: 12 },
+    client: { label: "客户多人使用", score: 18 },
+    batch: { label: "批量生产团队", score: 26 }
   }
 };
 
@@ -889,6 +933,150 @@ function buildEstimateProposalText() {
   ].join("\n");
 }
 
+function getDeployInput() {
+  const modules = [
+    { key: "login", label: "登录", checked: deployLoginCheckbox.checked },
+    { key: "payment", label: "支付积分", checked: deployPaymentCheckbox.checked },
+    { key: "asset", label: "资产库", checked: deployAssetCheckbox.checked },
+    { key: "batch", label: "任务队列", checked: deployBatchCheckbox.checked },
+    { key: "audit", label: "日志审计", checked: deployAuditCheckbox.checked },
+    { key: "admin", label: "管理后台", checked: deployAdminCheckbox.checked }
+  ];
+
+  return {
+    stage: deployOptions.stage[deployStageSelect.value],
+    domain: deployOptions.domain[domainModeSelect.value],
+    server: deployOptions.server[serverModeSelect.value],
+    scale: deployOptions.scale[usageScaleSelect.value],
+    stageKey: deployStageSelect.value,
+    domainKey: domainModeSelect.value,
+    serverKey: serverModeSelect.value,
+    scaleKey: usageScaleSelect.value,
+    modules,
+    selectedModules: modules.filter((item) => item.checked)
+  };
+}
+
+function calculateDeployPlan() {
+  const input = getDeployInput();
+  const moduleCount = input.selectedModules.length;
+  let score = input.stage.score + input.domain.score + input.server.score + input.scale.score + moduleCount * 4;
+
+  if (input.stageKey === "temporary") score = Math.min(score, 44);
+  if (input.stageKey === "commercial" && input.domainKey === "temp") score -= 10;
+  if (input.scaleKey === "batch" && input.serverKey === "static") score -= 8;
+  if (deployPaymentCheckbox.checked && !deployLoginCheckbox.checked) score -= 6;
+  score = Math.max(22, Math.min(96, score));
+
+  let readiness = "临时测试";
+  let title = "先用免费入口验证兴趣";
+  let summary = "当前适合继续用极速入口和完整 Demo 让客户体验，先不要买服务器，等真实题材试点有反馈后再升级。";
+  let actions = [
+    "发极速入口给客户，确认是否能打开和理解产品。",
+    "收 1 个真实题材、1 个主角、1 个场景和 3 条对标视频。",
+    "先跑 3 条 10 秒竖屏钩子，记录角色稳定和返工问题。"
+  ];
+
+  if (score >= 48) {
+    readiness = "试点准备";
+    title = "进入真实题材试点";
+    summary = "客户已经不只是看 Demo，建议用真实素材跑小样，同时整理资产命名、返工记录和第一批验收标准。";
+    actions = [
+      "锁定试点范围：1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
+      "建立角色资产卡、场景母图、提示词模板和返工记录。",
+      "试点结束后按角色稳定、场景复用、返工次数、客户反馈决定是否进 MVP。"
+    ];
+  }
+
+  if (score >= 66 || input.stageKey === "mvp") {
+    readiness = "MVP 可排期";
+    title = "拆 MVP 系统边界";
+    summary = "可以开始规划账号、积分、资产库、任务历史和服务端 API key 托管，但仍建议先用试点数据控制范围。";
+    actions = [
+      "购买或准备公司域名，并配置 HTTPS 和备用入口。",
+      "选择海外轻量云或独立 VPS，部署后端 API、任务队列和日志。",
+      "实现登录、客户空间、积分扣费、资产库、任务历史和管理员入口。"
+    ];
+  }
+
+  if (score >= 82 || input.stageKey === "commercial" || input.scaleKey === "batch") {
+    readiness = "商业部署";
+    title = "按商业系统验收";
+    summary = "目标已经接近客户正式使用，需要把域名、服务器、账号、计费、资产库、队列、日志、安全和备份作为一个整体交付。";
+    actions = [
+      "使用公司域名和海外云服务器，保留至少 1 个备用入口。",
+      "把模型 API key 放在服务端 Secret，不进入浏览器。",
+      "上线前做限流、日志、备份、错误告警、管理员权限和扣费对账。"
+    ];
+  }
+
+  const required = [
+    input.domainKey === "temp" ? "临时入口和备用链接" : "公司域名、DNS、HTTPS、备用入口",
+    input.serverKey === "static" ? "静态页、Worker 兜底、无服务端密钥暴露" : "海外云服务器、进程守护、反向代理、日志目录",
+    deployLoginCheckbox.checked ? "登录、客户空间、权限分组" : "演示模式访问控制",
+    deployPaymentCheckbox.checked ? "积分套餐、扣费流水、充值/退款规则" : "演示积分和人工结算",
+    deployAssetCheckbox.checked ? "角色/场景/道具资产库、命名规范、版本记录" : "最小素材提交包",
+    deployBatchCheckbox.checked ? "任务队列、失败重试、并发限制、成本上限" : "单任务生成流程",
+    deployAuditCheckbox.checked ? "API 日志、错误日志、操作审计、告警" : "基础诊断报告",
+    deployAdminCheckbox.checked ? "管理员后台、客户管理、任务管理" : "人工运营表"
+  ];
+
+  return { input, score, readiness, title, summary, actions, required };
+}
+
+function renderDeployPlan() {
+  const plan = calculateDeployPlan();
+  deployStageText.textContent = plan.readiness;
+  deployReadinessText.textContent = `${plan.score} / 100`;
+  deployTitleText.textContent = plan.title;
+  deploySummaryText.textContent = plan.summary;
+  deployActionList.innerHTML = plan.actions.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  return plan;
+}
+
+function buildDeployPlanText() {
+  const plan = calculateDeployPlan();
+  const input = plan.input;
+  return [
+    "AI短剧生产主控正式部署方案",
+    "",
+    `部署判断：${plan.readiness}（${plan.score}/100）`,
+    `建议动作：${plan.title}`,
+    "",
+    "当前配置：",
+    `部署阶段：${input.stage.label}`,
+    `域名策略：${input.domain.label}`,
+    `服务器策略：${input.server.label}`,
+    `使用规模：${input.scale.label}`,
+    `启用模块：${input.selectedModules.map((item) => item.label).join("、") || "仅演示模式"}`,
+    "",
+    "执行步骤：",
+    ...plan.actions.map((item, index) => `${index + 1}. ${item}`),
+    "",
+    "备注：临时测试阶段不把 API key 放到浏览器；正式部署后所有模型 key 进入服务端 Secret。"
+  ].join("\n");
+}
+
+function buildInfraChecklistText() {
+  const plan = calculateDeployPlan();
+  return [
+    "AI短剧生产主控基础设施清单",
+    "",
+    "必须准备：",
+    ...plan.required.map((item, index) => `${index + 1}. ${item}`),
+    "",
+    "上线前检查：",
+    "1. 域名 HTTPS 能打开，备用入口可复制。",
+    "2. 服务端 Secret 不出现在任何 HTML / JS / CSS 文件里。",
+    "3. 任务失败有日志、错误原因和返工节点。",
+    "4. 积分扣费有流水，失败任务有补偿规则。",
+    "5. 资产库能按角色、场景、道具、模板和返工记录检索。",
+    "",
+    `客户极速入口：${githubPagesEntry}`,
+    `完整 Demo：${fullTempEntry}`
+  ].join("\n");
+}
+
 function buildExperienceGuideText() {
   return [
     "AI短剧生产主控客户体验步骤",
@@ -1368,6 +1556,39 @@ copyProposalButton.addEventListener("click", async () => {
   copyText(buildEstimateProposalText(), "跟进方案已复制");
 });
 
+[deployStageSelect, domainModeSelect, serverModeSelect, usageScaleSelect].forEach((select) => {
+  select.addEventListener("change", renderDeployPlan);
+});
+
+[deployLoginCheckbox, deployPaymentCheckbox, deployAssetCheckbox, deployBatchCheckbox, deployAuditCheckbox, deployAdminCheckbox].forEach((checkbox) => {
+  checkbox.addEventListener("change", renderDeployPlan);
+});
+
+resetDeployButton.addEventListener("click", () => {
+  deployStageSelect.value = "temporary";
+  domainModeSelect.value = "temp";
+  serverModeSelect.value = "static";
+  usageScaleSelect.value = "solo";
+  deployLoginCheckbox.checked = false;
+  deployPaymentCheckbox.checked = false;
+  deployAssetCheckbox.checked = true;
+  deployBatchCheckbox.checked = false;
+  deployAuditCheckbox.checked = false;
+  deployAdminCheckbox.checked = false;
+  renderDeployPlan();
+  showToast("部署配置已重置");
+});
+
+copyDeployPlanButton.addEventListener("click", async () => {
+  renderDeployPlan();
+  copyText(buildDeployPlanText(), "部署方案已复制");
+});
+
+copyInfraChecklistButton.addEventListener("click", async () => {
+  renderDeployPlan();
+  copyText(buildInfraChecklistText(), "基础设施清单已复制");
+});
+
 copyMobileEntryButton.addEventListener("click", async () => {
   copyText(githubPagesEntry, "扫码链接已复制");
 });
@@ -1427,6 +1648,7 @@ renderReferenceMenu();
 loadHistory();
 renderPreviewResult();
 renderEstimate();
+renderDeployPlan();
 checkService();
 runAccessDiagnostics();
 registerServiceWorker();
