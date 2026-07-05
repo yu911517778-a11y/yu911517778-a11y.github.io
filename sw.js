@@ -8,6 +8,8 @@ const STATIC_ASSETS = [
   "client-access-v029.html",
   "client-open-v029.html",
   "open.html",
+  "client-status-v029.html",
+  "status.html",
   "customer-entry-pack-v029.txt",
   "client-lite-v026.html",
   "client-lite-v027.html",

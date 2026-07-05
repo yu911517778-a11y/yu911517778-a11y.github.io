@@ -4,10 +4,14 @@ AI短剧生产主控客户体验入口包：
 https://yu911517778-a11y.github.io/client-access-v029.html
 极简入口页：
 https://yu911517778-a11y.github.io/client-open-v029.html
+客户自检页：
+https://yu911517778-a11y.github.io/client-status-v029.html
 入口分流备用：
 https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-access-v029.html
 极简入口备用：
 https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-open-v029.html
+客户自检备用：
+https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-status-v029.html
 
 主入口：
 https://yu911517778-a11y.github.io/client-lite-v029.html
