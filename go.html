@@ -130,12 +130,21 @@
             <strong>备用镜像 C</strong>
           </div>
           <p>海外 CDN 备用线路。</p>
+          <code>https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html</code>
+          <a href="https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html" target="_blank" rel="noreferrer">手动打开</a>
+        </article>
+        <article class="route" data-route="workerLegacy">
+          <div>
+            <span>04</span>
+            <strong>旧备用镜像 D</strong>
+          </div>
+          <p>上一条临时 Worker 线路，作为遗留兜底。</p>
           <code>https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html</code>
           <a href="https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html" target="_blank" rel="noreferrer">手动打开</a>
         </article>
         <article class="route" data-route="access">
           <div>
-            <span>04</span>
+            <span>05</span>
             <strong>访问保障页</strong>
           </div>
           <p>手动切换所有入口。</p>
@@ -144,7 +153,7 @@
         </article>
         <article class="route" data-route="open">
           <div>
-            <span>05</span>
+            <span>06</span>
             <strong>极简打开页</strong>
           </div>
           <p>文字链接兜底。</p>
@@ -153,7 +162,7 @@
         </article>
         <article class="route" data-route="status">
           <div>
-            <span>06</span>
+            <span>07</span>
             <strong>网络自检页</strong>
           </div>
           <p>客户自己检查当前网络。</p>
@@ -162,7 +171,7 @@
         </article>
         <article class="route" data-route="refresh">
           <div>
-            <span>07</span>
+            <span>08</span>
             <strong>刷新缓存页</strong>
           </div>
           <p>清理旧页面和旧缓存。</p>
@@ -171,12 +180,12 @@
         </article>
         <article class="route" data-route="workerAccess">
           <div>
-            <span>08</span>
+            <span>09</span>
             <strong>访问保障备用</strong>
           </div>
           <p>海外 CDN 保障页。</p>
-          <code>https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html</code>
-          <a href="https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html" target="_blank" rel="noreferrer">手动打开</a>
+          <code>https://short-video-agent-demo.daffodil-structure.workers.dev/client-access-v031.html</code>
+          <a href="https://short-video-agent-demo.daffodil-structure.workers.dev/client-access-v031.html" target="_blank" rel="noreferrer">手动打开</a>
         </article>
       </section>
       <section class="manual" id="manual">
@@ -189,11 +198,12 @@
       </noscript>
     </main>
     <script>
-      const routes = [{"id":"edgeone","label":"客户体验入口","url":"https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe","probe":"https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe","mode":"fetch","note":"优先线路，适合直接发客户。"},{"id":"github","label":"极速预览","url":"https://yu911517778-a11y.github.io/client-lite-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"静态资源线路，适合完整轻量体验。"},{"id":"worker","label":"备用镜像 C","url":"https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html","probe":"https://short-video-agent-demo.spot-makemake.workers.dev/assets/app-icon-192.png","mode":"image","note":"海外 CDN 备用线路。"},{"id":"access","label":"访问保障页","url":"https://yu911517778-a11y.github.io/client-access-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"手动切换所有入口。"},{"id":"open","label":"极简打开页","url":"https://yu911517778-a11y.github.io/client-open-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"文字链接兜底。"},{"id":"status","label":"网络自检页","url":"https://yu911517778-a11y.github.io/client-status-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"客户自己检查当前网络。"},{"id":"refresh","label":"刷新缓存页","url":"https://yu911517778-a11y.github.io/client-refresh-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"清理旧页面和旧缓存。"},{"id":"workerAccess","label":"访问保障备用","url":"https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html","probe":"https://short-video-agent-demo.spot-makemake.workers.dev/assets/app-icon-192.png","mode":"image","note":"海外 CDN 保障页。"}];
+      const routes = [{"id":"edgeone","label":"客户体验入口","url":"https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe","probe":"https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe","mode":"fetch","note":"优先线路，适合直接发客户。"},{"id":"github","label":"极速预览","url":"https://yu911517778-a11y.github.io/client-lite-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"静态资源线路，适合完整轻量体验。"},{"id":"worker","label":"备用镜像 C","url":"https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html","probe":"https://short-video-agent-demo.daffodil-structure.workers.dev/assets/app-icon-192.png","mode":"image","note":"海外 CDN 备用线路。"},{"id":"workerLegacy","label":"旧备用镜像 D","url":"https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html","probe":"https://short-video-agent-demo.spot-makemake.workers.dev/assets/app-icon-192.png","mode":"image","note":"上一条临时 Worker 线路，作为遗留兜底。"},{"id":"access","label":"访问保障页","url":"https://yu911517778-a11y.github.io/client-access-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"手动切换所有入口。"},{"id":"open","label":"极简打开页","url":"https://yu911517778-a11y.github.io/client-open-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"文字链接兜底。"},{"id":"status","label":"网络自检页","url":"https://yu911517778-a11y.github.io/client-status-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"客户自己检查当前网络。"},{"id":"refresh","label":"刷新缓存页","url":"https://yu911517778-a11y.github.io/client-refresh-v031.html","probe":"https://yu911517778-a11y.github.io/assets/app-icon-192.png","mode":"image","note":"清理旧页面和旧缓存。"},{"id":"workerAccess","label":"访问保障备用","url":"https://short-video-agent-demo.daffodil-structure.workers.dev/client-access-v031.html","probe":"https://short-video-agent-demo.daffodil-structure.workers.dev/assets/app-icon-192.png","mode":"image","note":"海外 CDN 保障页。"}];
       const launchUrl = "https://yu911517778-a11y.github.io/go.html";
-      const workerLaunchUrl = "https://short-video-agent-demo.spot-makemake.workers.dev/go.html";
+      const workerLaunchUrl = "https://short-video-agent-demo.daffodil-structure.workers.dev/go.html";
+      const legacyWorkerLaunchUrl = "https://short-video-agent-demo.spot-makemake.workers.dev/go.html";
       const accessUrl = "https://yu911517778-a11y.github.io/client-access-v031.html";
-      const workerAccessUrl = "https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html";
+      const workerAccessUrl = "https://short-video-agent-demo.daffodil-structure.workers.dev/client-access-v031.html";
       const bar = document.querySelector("#bar");
       const statusTitle = document.querySelector("#statusTitle");
       const statusText = document.querySelector("#statusText");
@@ -202,7 +212,7 @@
       const manual = document.querySelector("#manual");
       const currentLaunchUrl = location.href.split("#")[0].split("?")[0];
       const runningOnWorker = location.hostname.includes("workers.dev");
-      const preferredAccessUrl = runningOnWorker ? workerAccessUrl : accessUrl;
+      const preferredAccessUrl = runningOnWorker ? location.origin + "/client-access-v031.html" : accessUrl;
       accessButton.href = preferredAccessUrl;
       accessButton.textContent = runningOnWorker ? "访问保障备用" : "访问保障";
 
@@ -271,6 +281,8 @@
           launchUrl,
           "智能启动备用：",
           workerLaunchUrl,
+          "旧智能启动备用：",
+          legacyWorkerLaunchUrl,
           "",
           ...routes.map((route) => route.label + "：" + "\n" + route.url),
           "",

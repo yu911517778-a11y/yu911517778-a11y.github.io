@@ -5,10 +5,14 @@ https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe
 智能启动页：
 https://yu911517778-a11y.github.io/go.html
 智能启动备用：
+https://short-video-agent-demo.daffodil-structure.workers.dev/go.html
+旧智能启动备用：
 https://short-video-agent-demo.spot-makemake.workers.dev/go.html
 极速预览：
 https://yu911517778-a11y.github.io/client-lite-v031.html
 备用镜像 C：
+https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html
+旧备用镜像 D：
 https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html
 备用镜像 B：
 https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430
@@ -28,11 +32,11 @@ https://yu911517778-a11y.github.io/client-status-v031.html
 刷新缓存页：
 https://yu911517778-a11y.github.io/client-refresh-v031.html
 访问保障备用：
-https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v031.html
+https://short-video-agent-demo.daffodil-structure.workers.dev/client-access-v031.html
 极简打开备用：
-https://short-video-agent-demo.spot-makemake.workers.dev/client-open-v031.html
+https://short-video-agent-demo.daffodil-structure.workers.dev/client-open-v031.html
 网络自检备用：
-https://short-video-agent-demo.spot-makemake.workers.dev/client-status-v031.html
+https://short-video-agent-demo.daffodil-structure.workers.dev/client-status-v031.html
 刷新缓存备用：
-https://short-video-agent-demo.spot-makemake.workers.dev/client-refresh-v031.html
+https://short-video-agent-demo.daffodil-structure.workers.dev/client-refresh-v031.html
 建议：先发客户体验入口；客户说打不开时，发智能启动页或访问保障页。微信内打不开就复制到手机 Chrome / Safari。
