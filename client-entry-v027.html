@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI短剧生产主控 Studio</title>
     <meta name="description" content="AI短剧生产主控 Studio：从参考图、角色资产、场景母图到短剧分镜和视频提示词的一站式体验 Demo。" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#f5f7fa" />
     <link rel="canonical" href="https://yu911517778-a11y.github.io/" />
     <meta property="og:title" content="AI短剧生产主控 Studio" />
     <meta property="og:description" content="客户先看极速入口：主控自动调度剧本、角色、场景、视频提示词和返工诊断节点，适合手机直接体验。" />
@@ -33,21 +33,16 @@
           <span class="brand-mark"></span>
           <span>
             <strong>AI短剧生产主控</strong>
-            <small>Production Studio</small>
+            <small>Creative Studio</small>
           </span>
         </a>
 
         <nav class="studio-tabs" aria-label="创作模式">
-          <button class="active" type="button" data-mode="agent">Agent Studio</button>
-          <button type="button" data-mode="image">Image</button>
-          <button type="button" data-mode="video">Video</button>
-          <a href="#experience">Guide</a>
-          <a href="#agents">Workflow</a>
-          <a href="#agents">Agents</a>
-          <a href="#estimate">Estimate</a>
-          <a href="#deploy">Deploy</a>
-          <a href="#api">API</a>
-          <a href="#access">Access</a>
+          <button class="active" type="button" data-mode="agent">短剧生成</button>
+          <button type="button" data-mode="image">图片生成</button>
+          <button type="button" data-mode="video">视频生成</button>
+          <a href="#agents">Agent 模式</a>
+          <a href="#salesKit">交付方案</a>
         </nav>
 
         <div class="top-actions">
@@ -133,17 +128,17 @@
         <section class="canvas-pane">
           <div class="canvas-toolbar">
             <div class="workspace-title">
-              <p>AI Short Drama Studio</p>
-              <h1>从参考图到短剧分镜</h1>
+              <p>AI Short Drama Creator</p>
+              <h1>开启你的 <span>短剧生成</span> 即刻成片！</h1>
               <div class="service-line">
                 <span class="service-dot checking" id="serviceDot"></span>
                 <span id="serviceText">正在检测生成服务</span>
               </div>
               <div class="mode-rail" aria-label="生产链路">
-                <span>Text to Video</span>
-                <span>Image to Video</span>
-                <span>Multi Reference</span>
-                <span>Storyboard</span>
+                <span>故事改编</span>
+                <span>角色资产</span>
+                <span>场景母图</span>
+                <span>视频提示词</span>
               </div>
             </div>
             <div class="run-state" id="runState"><span></span>待创作</div>
@@ -152,22 +147,34 @@
           <div class="stage">
             <div class="stage-grid">
               <article class="shot-card hero-shot">
-                <span class="shot-badge">V01</span>
-                <img class="shot-image" src="assets/palace-night.webp" alt="古风夜景分镜预览" loading="eager" />
-                <strong>开局钩子</strong>
-                <small>玉佩特写推至女主面部</small>
+                <span class="shot-badge">Hot</span>
+                <img class="shot-image" src="assets/palace-night.webp" alt="短剧钩子预览" loading="eager" />
+                <strong>短剧钩子</strong>
+                <small>输入故事，一键拆开局反转</small>
               </article>
               <article class="shot-card">
-                <span class="shot-badge">R01</span>
+                <span class="shot-badge">Asset</span>
                 <img class="shot-image" src="assets/hanfu-lantern.webp" alt="角色资产参考图" loading="eager" />
-                <strong>角色身份板</strong>
-                <small>脸型、发型、服装锁定</small>
+                <strong>角色资产</strong>
+                <small>锁脸、服装、身份道具</small>
               </article>
               <article class="shot-card">
-                <span class="shot-badge">S01</span>
-                <img class="shot-image" src="assets/pavilion-day.webp" alt="场景资产参考图" loading="lazy" />
-                <strong>冷宫场景</strong>
-                <small>空间结构与光线方向</small>
+                <span class="shot-badge">Agent</span>
+                <img class="shot-image" src="assets/film-studio.webp" alt="Agent 模式预览" loading="lazy" />
+                <strong>Agent 模式</strong>
+                <small>主控自动拆节点</small>
+              </article>
+              <article class="shot-card">
+                <span class="shot-badge">Image</span>
+                <img class="shot-image" src="assets/pavilion-day.webp" alt="图片生成预览" loading="lazy" />
+                <strong>图片生成</strong>
+                <small>场景母图和参考图</small>
+              </article>
+              <article class="shot-card">
+                <span class="shot-badge">Video</span>
+                <img class="shot-image" src="assets/city-motion.webp" alt="视频生成预览" loading="lazy" />
+                <strong>视频生成</strong>
+                <small>分镜、提示词、返工建议</small>
               </article>
             </div>
           </div>
@@ -175,7 +182,7 @@
           <div class="composer">
             <div class="upload-zone" id="dropZone">
               <input id="fileInput" type="file" accept="image/*" multiple />
-              <button class="upload-chip" type="button" id="uploadButton"><span></span>参考图</button>
+              <button class="upload-chip" type="button" id="uploadButton"><span></span><b>上传参考图</b></button>
               <div class="thumb-row" id="thumbRow" aria-live="polite">
                 <div class="sample-thumb"><img src="assets/lantern-face.webp" alt="角色参考示例" /><span>角色</span></div>
                 <div class="sample-thumb"><img src="assets/palace-night.webp" alt="场景参考示例" /><span>场景</span></div>
@@ -184,12 +191,12 @@
             </div>
 
             <div class="prompt-box">
-              <textarea id="promptInput" rows="3">古风复仇女主在冷宫发现身份玉佩，镜头从玉佩特写推到她压住情绪的脸，结尾给一个反击悬念。</textarea>
+              <textarea id="promptInput" rows="3" placeholder="上传参考图，输入故事、角色或场景；也可以用 @ 引用主体。">古风复仇女主在冷宫发现身份玉佩，镜头从玉佩特写推到她压住情绪的脸，结尾给一个反击悬念。</textarea>
               <div class="prompt-actions">
                 <button class="ghost-button" type="button" id="referenceButton">@ 引用</button>
-                <button class="ghost-button" type="button" id="regenerateButton">重试</button>
+                <button class="ghost-button" type="button" id="regenerateButton">换一版</button>
                 <button class="ghost-button" type="button" id="demoRunButton">一键演示</button>
-                <button class="generate-button" type="button" id="createButton">Generate</button>
+                <button class="generate-button" type="button" id="createButton">生成</button>
               </div>
               <div class="reference-menu" id="referenceMenu"></div>
             </div>
