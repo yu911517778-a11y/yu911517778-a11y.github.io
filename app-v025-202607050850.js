@@ -11,7 +11,7 @@ const state = {
   selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.wary-bar.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.lateral-owl.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const githubProxyEntry = "https://litter.catbox.moe/12m020.html";
