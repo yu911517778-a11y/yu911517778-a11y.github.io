@@ -14,7 +14,7 @@ const state = {
 const primaryWorkerEntry = "https://short-video-agent-demo.wary-bar.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const githubProxyEntry = "https://raw.githack.com/yu911517778-a11y/yu911517778-a11y.github.io/master/index.html";
+const githubProxyEntry = "https://raw.githack.com/yu911517778-a11y/yu911517778-a11y.github.io/master/index.html?v=202607050850";
 const emergencyMirrorEntry = githubProxyEntry;
 const githubPagesEntry = githubProxyEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
