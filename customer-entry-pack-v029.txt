@@ -6,14 +6,10 @@ https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe
 https://yu911517778-a11y.github.io/go.html
 智能启动备用：
 https://short-video-agent-demo.daffodil-structure.workers.dev/go.html
-旧智能启动备用：
-https://short-video-agent-demo.spot-makemake.workers.dev/go.html
 极速预览：
 https://yu911517778-a11y.github.io/client-lite-v031.html
 备用镜像 C：
 https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html
-旧备用镜像 D：
-https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v031.html
 备用镜像 B：
 https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430
 备用镜像 A：
