@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="x-access-build" content="v031-202607051430" />
+    <meta name="description" content="AI短剧生产主控访问保障页：客户体验入口、极速预览、极简打开、网络自检和备用镜像。" />
+    <meta property="og:title" content="AI短剧生产主控访问保障" />
+    <meta property="og:description" content="客户网络受限时，按页面顺序切换可用入口。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yu911517778-a11y.github.io/client-access-v031.html" />
+    <meta property="og:image" content="https://yu911517778-a11y.github.io/assets/social-preview-1200x630.jpg" />
+    <title>AI短剧生产主控 访问保障</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #101111;
+        --panel: #181917;
+        --panel-2: #20211f;
+        --ink: #f4f1e8;
+        --muted: #b9b5aa;
+        --line: rgba(244, 241, 232, 0.14);
+        --accent: #d97757;
+        --green: #8ea36b;
+        --blue: #7fa7c7;
+        --bad: #d67c7c;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      }
+
+      a, button {
+        font: inherit;
+      }
+
+      .wrap {
+        width: min(100% - 32px, 1120px);
+        margin: 0 auto;
+        padding: 28px 0 42px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        gap: 18px;
+        align-items: stretch;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: var(--green);
+      }
+
+      h1 {
+        margin: 12px 0 12px;
+        font-size: clamp(32px, 7vw, 64px);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 62ch;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hero-actions, .entry-actions, .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .hero-actions {
+        margin-top: 18px;
+      }
+
+      .hero-actions a, .hero-actions button, .entry-actions a, .entry-actions button, .toolbar button {
+        min-height: 42px;
+        display: inline-grid;
+        place-items: center;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ink);
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .hero-actions a.primary, .hero-actions button.primary {
+        border-color: transparent;
+        background: var(--accent);
+        color: #160c08;
+        font-weight: 800;
+      }
+
+      .qr {
+        display: grid;
+        gap: 10px;
+        align-content: center;
+        justify-items: center;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel-2);
+        text-align: center;
+      }
+
+      .qr img {
+        width: min(100%, 156px);
+        aspect-ratio: 1;
+        background: #fff;
+        border-radius: 6px;
+      }
+
+      .qr span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .toolbar {
+        justify-content: space-between;
+        align-items: center;
+        margin: 18px 0 12px;
+      }
+
+      .toolbar p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .entry {
+        min-width: 0;
+        display: grid;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .entry-top {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .entry-top span {
+        color: var(--accent);
+        font-weight: 900;
+      }
+
+      .entry-top i {
+        min-width: 64px;
+        padding: 5px 8px;
+        border-radius: 999px;
+        background: rgba(185, 181, 170, 0.1);
+        color: var(--muted);
+        font-size: 12px;
+        font-style: normal;
+        text-align: center;
+      }
+
+      .entry[data-state="ok"] .entry-top i {
+        background: rgba(142, 163, 107, 0.18);
+        color: var(--green);
+      }
+
+      .entry[data-state="fail"] .entry-top i {
+        background: rgba(214, 124, 124, 0.16);
+        color: var(--bad);
+      }
+
+      .entry[data-state="manual"] .entry-top i {
+        background: rgba(127, 167, 199, 0.16);
+        color: var(--blue);
+      }
+
+      .entry p {
+        margin: 0;
+        min-height: 50px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      code {
+        min-width: 0;
+        display: block;
+        overflow-wrap: anywhere;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: #d9d5c8;
+        background: #111210;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .note {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-left: 3px solid var(--blue);
+        color: var(--muted);
+        background: rgba(127, 167, 199, 0.08);
+        line-height: 1.7;
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        z-index: 5;
+        min-width: 190px;
+        transform: translateX(-50%) translateY(20px);
+        padding: 11px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #f4f1e8;
+        color: #101111;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+
+      @media (max-width: 760px) {
+        .wrap { width: min(100% - 24px, 1120px); padding-top: 16px; }
+        .hero { grid-template-columns: 1fr; padding: 14px; }
+        .grid { grid-template-columns: 1fr; }
+        .hero-actions a, .hero-actions button, .entry-actions a, .entry-actions button, .toolbar button {
+          flex: 1 1 150px;
+        }
+        .entry p { min-height: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div>
+          <span class="eyebrow"><i class="dot"></i>Access Assurance · V0.31</span>
+          <h1>访问受限时，从这里切换</h1>
+          <p class="lead">这是客户用的访问保障页。先试客户体验入口；如果微信、公司网络或地区节点受限，再按极速预览、备用镜像、极简打开和网络自检的顺序切换。</p>
+          <div class="hero-actions">
+            <a class="primary" href="https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N" target="_blank" rel="noreferrer">打开客户入口</a>
+            <button class="primary" type="button" id="copyAllTop">复制全部入口</button>
+            <a href="client-open-v031.html" target="_blank" rel="noreferrer">极简打开</a>
+            <a href="client-status-v031.html" target="_blank" rel="noreferrer">网络自检</a>
+            <a href="client-refresh-v031.html" target="_blank" rel="noreferrer">刷新缓存</a>
+            <a href="customer-entry-pack-v031.txt" target="_blank" rel="noreferrer">转发文本</a>
+            <button type="button" id="checkAllTop">检测入口</button>
+          </div>
+        </div>
+        <aside class="qr">
+          <img src="assets/customer-access-qr.svg" alt="访问保障页二维码" />
+          <span>扫码打开访问保障页；客户网络受限时直接扫这个。</span>
+        </aside>
+      </section>
+
+      <section class="toolbar">
+        <p>浏览器检测受跨域和本地网络影响，仅用于快速判断；最终以客户手动打开结果为准。</p>
+        <button type="button" id="copyAll">复制全部入口</button>
+      </section>
+
+      <section class="grid" aria-label="入口列表">
+
+        <article class="entry" data-url="https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N">
+          <div class="entry-top">
+            <span>01</span>
+            <strong>客户体验入口</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>当前优先发客户，轻量稳定，适合手机和微信外浏览器。</p>
+          <code>https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N</code>
+          <div class="entry-actions">
+            <a href="https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://yu911517778-a11y.github.io/go.html">
+          <div class="entry-top">
+            <span>02</span>
+            <strong>智能启动页</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>自动检测客户当前网络，选择客户体验入口、极速预览或备用镜像。</p>
+          <code>https://yu911517778-a11y.github.io/go.html</code>
+          <div class="entry-actions">
+            <a href="https://yu911517778-a11y.github.io/go.html" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://yu911517778-a11y.github.io/go.html">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://short-video-agent-demo.daffodil-structure.workers.dev/go.html">
+          <div class="entry-top">
+            <span>03</span>
+            <strong>智能启动备用</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>同样自动选线路，走另一条海外 CDN，适合 GitHub Pages 受限时使用。</p>
+          <code>https://short-video-agent-demo.daffodil-structure.workers.dev/go.html</code>
+          <div class="entry-actions">
+            <a href="https://short-video-agent-demo.daffodil-structure.workers.dev/go.html" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://short-video-agent-demo.daffodil-structure.workers.dev/go.html">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://yu911517778-a11y.github.io/client-lite-v031.html">
+          <div class="entry-top">
+            <span>04</span>
+            <strong>极速预览</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>适合看更完整的轻量体验和交互流程。</p>
+          <code>https://yu911517778-a11y.github.io/client-lite-v031.html</code>
+          <div class="entry-actions">
+            <a href="https://yu911517778-a11y.github.io/client-lite-v031.html" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://yu911517778-a11y.github.io/client-lite-v031.html">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html">
+          <div class="entry-top">
+            <span>05</span>
+            <strong>备用镜像 C</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>另一条海外 CDN 线路，适合主线路受限时切换。</p>
+          <code>https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html</code>
+          <div class="entry-actions">
+            <a href="https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430">
+          <div class="entry-top">
+            <span>06</span>
+            <strong>备用镜像 B</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>文件渲染页，不依赖 Pages 构建结果。</p>
+          <code>https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430</code>
+          <div class="entry-actions">
+            <a href="https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://litter.catbox.moe/vxxjas.html">
+          <div class="entry-top">
+            <span>07</span>
+            <strong>备用镜像 A</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>短期单文件镜像，适合微信或地区网络异常时使用。</p>
+          <code>https://litter.catbox.moe/vxxjas.html</code>
+          <div class="entry-actions">
+            <a href="https://litter.catbox.moe/vxxjas.html" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://litter.catbox.moe/vxxjas.html">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://yu911517778-a11y.github.io/">
+          <div class="entry-top">
+            <span>08</span>
+            <strong>完整 Demo</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>功能最完整，包含资产库、试点方案、部署路线和节点说明。</p>
+          <code>https://yu911517778-a11y.github.io/</code>
+          <div class="entry-actions">
+            <a href="https://yu911517778-a11y.github.io/" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://yu911517778-a11y.github.io/">复制</button>
+          </div>
+        </article>
+        <article class="entry" data-url="https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/">
+          <div class="entry-top">
+            <span>09</span>
+            <strong>项目页完整入口</strong>
+            <i data-status>待检测</i>
+          </div>
+          <p>第二个发布仓库，作为完整 Demo 备用。</p>
+          <code>https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/</code>
+          <div class="entry-actions">
+            <a href="https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/" target="_blank" rel="noreferrer">打开</a>
+            <button type="button" data-copy="https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/">复制</button>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">建议发客户时先发客户体验入口和一句说明：想看完整交互再打开极速预览。正式上线后把这个页面迁到公司域名，并保留至少一条海外 CDN 备用入口。</p>
+    </main>
+    <div class="toast" id="toast">已复制</div>
+    <script>
+      const entryText = "AI短剧生产主控客户体验入口包：\n\n客户体验入口：\nhttps://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N\n智能启动页：\nhttps://yu911517778-a11y.github.io/go.html\n智能启动备用：\nhttps://short-video-agent-demo.daffodil-structure.workers.dev/go.html\n极速预览：\nhttps://yu911517778-a11y.github.io/client-lite-v031.html\n备用镜像 C：\nhttps://short-video-agent-demo.daffodil-structure.workers.dev/client-lite-v031.html\n备用镜像 B：\nhttps://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430\n备用镜像 A：\nhttps://litter.catbox.moe/vxxjas.html\n完整 Demo：\nhttps://yu911517778-a11y.github.io/\n项目页完整入口：\nhttps://yu911517778-a11y.github.io/ai-short-drama-agent-demo/\n\n访问保障页：\nhttps://yu911517778-a11y.github.io/client-access-v031.html\n极简打开页：\nhttps://yu911517778-a11y.github.io/client-open-v031.html\n网络自检页：\nhttps://yu911517778-a11y.github.io/client-status-v031.html\n刷新缓存页：\nhttps://yu911517778-a11y.github.io/client-refresh-v031.html\n访问保障备用：\nhttps://short-video-agent-demo.daffodil-structure.workers.dev/client-access-v031.html\n极简打开备用：\nhttps://short-video-agent-demo.daffodil-structure.workers.dev/client-open-v031.html\n网络自检备用：\nhttps://short-video-agent-demo.daffodil-structure.workers.dev/client-status-v031.html\n刷新缓存备用：\nhttps://short-video-agent-demo.daffodil-structure.workers.dev/client-refresh-v031.html\n建议：先发客户体验入口；客户说打不开时，发智能启动页或访问保障页。微信内打不开就复制到手机 Chrome / Safari。";
+      const toast = document.querySelector("#toast");
+
+      function showToast(text) {
+        toast.textContent = text;
+        toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove("show"), 1400);
+      }
+
+      function fallbackCopy(text) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.left = "-999px";
+        document.body.appendChild(area);
+        area.select();
+        let ok = false;
+        try { ok = document.execCommand("copy"); } catch {}
+        area.remove();
+        return ok;
+      }
+
+      async function copyText(text, message) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(message);
+        } catch {
+          showToast(fallbackCopy(text) ? message : "复制失败，请长按链接复制");
+        }
+      }
+
+      async function probe(card) {
+        const url = card.dataset.url;
+        const status = card.querySelector("[data-status]");
+        card.dataset.state = "";
+        status.textContent = "检测中";
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 6500);
+        try {
+          await fetch(url, {
+            method: "GET",
+            mode: "no-cors",
+            cache: "no-store",
+            signal: controller.signal
+          });
+          card.dataset.state = "ok";
+          status.textContent = "可尝试";
+        } catch {
+          card.dataset.state = "manual";
+          status.textContent = "手动试";
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      function checkAll() {
+        document.querySelectorAll(".entry").forEach((card) => probe(card));
+      }
+
+      document.querySelectorAll("[data-copy]").forEach((button) => {
+        button.addEventListener("click", () => copyText(button.dataset.copy, "入口已复制"));
+      });
+      document.querySelector("#copyAll").addEventListener("click", () => copyText(entryText, "全部入口已复制"));
+      document.querySelector("#copyAllTop").addEventListener("click", () => copyText(entryText, "全部入口已复制"));
+      document.querySelector("#checkAllTop").addEventListener("click", checkAll);
+      window.addEventListener("load", () => setTimeout(checkAll, 600));
+    </script>
+  </body>
+</html>

@@ -1,9 +1,37 @@
-const CACHE_NAME = "short-drama-studio-v24";
+const CACHE_NAME = "short-drama-studio-v32";
 const STATIC_ASSETS = [
   "./",
   "index.html",
-  "styles-v024.css",
-  "app-v024.js",
+  "styles-v031-202607051430.css",
+  "styles-v030-202607051245.css",
+  "app-v031-202607051430.js",
+  "app-v030-202607051430.js",
+  "client-entry-v027.html",
+  "go.html",
+  "client-launch-v031.html",
+  "client-access-v031.html",
+  "client-access-v030.html",
+  "client-open-v031.html",
+  "client-open-v030.html",
+  "open.html",
+  "client-status-v031.html",
+  "client-status-v030.html",
+  "status.html",
+  "client-refresh-v031.html",
+  "client-refresh-v030.html",
+  "refresh.html",
+  "customer-entry-pack-v031.txt",
+  "customer-entry-pack-v030.txt",
+  "client-lite-v031.html",
+  "client-lite-v030.html",
+  "client-lite-v027.html",
+  "client-access-v029.html",
+  "client-open-v029.html",
+  "client-status-v029.html",
+  "client-refresh-v029.html",
+  "customer-entry-pack-v029.txt",
+  "client-lite-v026.html",
+  "client-lite-v029.html",
   "favicon.svg",
   "manifest.webmanifest",
   "assets/palace-night.webp",
@@ -16,7 +44,11 @@ const STATIC_ASSETS = [
   "assets/film-set.webp",
   "assets/film-studio.webp",
   "assets/customer-entry-qr.svg",
-  "assets/palace-night.jpg"
+  "assets/customer-access-qr.svg",
+  "assets/palace-night.jpg",
+  "assets/social-preview-1200x630.jpg",
+  "assets/app-icon-192.png",
+  "assets/app-icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {

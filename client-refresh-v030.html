@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="x-refresh-build" content="v031-202607051430" />
+    <title>AI短剧生产主控 刷新入口缓存</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: #101111;
+        color: #f4f1e8;
+        font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      }
+      main {
+        width: min(100% - 24px, 760px);
+        margin: 0 auto;
+        padding: 22px 0 34px;
+      }
+      section {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+        border: 1px solid rgba(244, 241, 232, .14);
+        border-radius: 8px;
+        background: #181917;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(30px, 9vw, 56px);
+        line-height: 1.04;
+      }
+      p, li {
+        color: #b9b5aa;
+        line-height: 1.7;
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      a, button {
+        min-height: 42px;
+        display: inline-grid;
+        place-items: center;
+        padding: 0 13px;
+        border: 1px solid rgba(244, 241, 232, .14);
+        border-radius: 8px;
+        background: transparent;
+        color: #f4f1e8;
+        font: inherit;
+        text-decoration: none;
+      }
+      button {
+        border-color: transparent;
+        background: #d97757;
+        color: #160c08;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        padding: 12px;
+        border: 1px solid rgba(244, 241, 232, .14);
+        border-radius: 8px;
+        background: #111210;
+        color: #d9d5c8;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <p>Cache Repair · V0.30</p>
+        <h1>刷新客户入口缓存</h1>
+        <p>如果客户手机一直打开旧链接、旧备用域名、空图或旧页面，先打开这里清掉浏览器缓存，再进入最新入口。</p>
+        <div class="actions">
+          <button type="button" id="repair">清理缓存并打开最新入口</button>
+          <a href="https://yu911517778-a11y.github.io/client-open-v031.html" target="_blank" rel="noreferrer">极简打开</a>
+          <a href="https://yu911517778-a11y.github.io/client-status-v031.html" target="_blank" rel="noreferrer">网络自检</a>
+          <a href="https://yu911517778-a11y.github.io/client-access-v031.html" target="_blank" rel="noreferrer">访问保障</a>
+        </div>
+        <ul>
+          <li>会注销当前站点的 Service Worker。</li>
+          <li>会删除当前站点的 Cache Storage。</li>
+          <li>不会读取客户文件，不会清理其它网站。</li>
+        </ul>
+        <pre id="log">等待操作...</pre>
+      </section>
+    </main>
+    <script>
+      const latestUrl = "https://yu911517778-a11y.github.io/client-access-v031.html";
+      const log = document.querySelector("#log");
+      function write(line) {
+        log.textContent = log.textContent === "等待操作..." ? line : log.textContent + "\n" + line;
+      }
+      async function repair() {
+        log.textContent = "";
+        try {
+          if ("serviceWorker" in navigator) {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            for (const registration of registrations) {
+              await registration.unregister();
+            }
+            write("Service Worker 已注销：" + registrations.length);
+          } else {
+            write("当前浏览器不支持 Service Worker。");
+          }
+          if ("caches" in window) {
+            const keys = await caches.keys();
+            await Promise.all(keys.map((key) => caches.delete(key)));
+            write("缓存已清理：" + keys.length);
+          } else {
+            write("当前浏览器不支持 Cache Storage。");
+          }
+          write("3 秒后打开最新入口：" + latestUrl);
+          setTimeout(() => { window.location.href = latestUrl + "?fresh=" + Date.now(); }, 3000);
+        } catch (error) {
+          write("清理失败：" + (error && error.message ? error.message : String(error)));
+          write("请手动打开极简打开页：" + "https://yu911517778-a11y.github.io/client-open-v031.html");
+        }
+      }
+      document.querySelector("#repair").addEventListener("click", repair);
+      window.addEventListener("load", () => setTimeout(repair, 500));
+    </script>
+  </body>
+</html>
