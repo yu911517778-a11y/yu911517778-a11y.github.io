@@ -16,14 +16,14 @@
 const primaryWorkerEntry = "https://short-video-agent-demo.spot-makemake.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const litePagesEntry = `${rootPagesEntry}client-lite-v030.html`;
-const accessPagesEntry = `${rootPagesEntry}client-access-v030.html`;
-const openPagesEntry = `${rootPagesEntry}client-open-v030.html`;
-const statusPagesEntry = `${rootPagesEntry}client-status-v030.html`;
-const refreshPagesEntry = `${rootPagesEntry}client-refresh-v030.html`;
+const litePagesEntry = `${rootPagesEntry}client-lite-v031.html`;
+const accessPagesEntry = `${rootPagesEntry}client-access-v031.html`;
+const openPagesEntry = `${rootPagesEntry}client-open-v031.html`;
+const statusPagesEntry = `${rootPagesEntry}client-status-v031.html`;
+const refreshPagesEntry = `${rootPagesEntry}client-refresh-v031.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
-const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245";
-const edgeOneEntry = "https://mcp.edgeone.site/share/V3Q7sL9xUczABuSaPgoOv";
+const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430";
+const edgeOneEntry = "https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe";
 const primaryCustomerEntry = edgeOneEntry;
 const githubProxyEntry = primaryCustomerEntry;
 const emergencyMirrorEntry = primaryCustomerEntry;
@@ -31,7 +31,7 @@ const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
-const expectedCacheName = "short-drama-studio-v31";
+const expectedCacheName = "short-drama-studio-v32";
 const liveApiEnabled = true;
 const customerEntries = [
   ["客户体验入口", primaryCustomerEntry],
@@ -40,10 +40,10 @@ const customerEntries = [
   ["极简打开页", openPagesEntry],
   ["网络自检页", statusPagesEntry],
   ["刷新缓存页", refreshPagesEntry],
-  ["访问保障备用", `${primaryWorkerEntry}client-access-v030.html`],
+  ["访问保障备用", `${primaryWorkerEntry}client-access-v031.html`],
   ["备用镜像 A", liteTempEntry],
   ["备用镜像 B", previewLiteEntry],
-  ["备用镜像 C", `${primaryWorkerEntry}client-lite-v030.html`],
+  ["备用镜像 C", `${primaryWorkerEntry}client-lite-v031.html`],
   ["完整 Studio 备用", projectPagesEntry],
   ["短根域名入口", `${rootPagesEntry}client-entry-v027.html`],
   ["完整 Studio 镜像", `${primaryWorkerEntry}client-entry-v027.html`]

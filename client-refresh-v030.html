@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <meta name="x-refresh-build" content="v030-202607051245" />
+    <meta name="x-refresh-build" content="v031-202607051430" />
     <title>AI短剧生产主控 刷新入口缓存</title>
     <style>
       * { box-sizing: border-box; }
@@ -90,9 +90,9 @@
         <p>如果客户手机一直打开旧链接、旧备用域名、空图或旧页面，先打开这里清掉浏览器缓存，再进入最新入口。</p>
         <div class="actions">
           <button type="button" id="repair">清理缓存并打开最新入口</button>
-          <a href="https://yu911517778-a11y.github.io/client-open-v030.html" target="_blank" rel="noreferrer">极简打开</a>
-          <a href="https://yu911517778-a11y.github.io/client-status-v030.html" target="_blank" rel="noreferrer">网络自检</a>
-          <a href="https://yu911517778-a11y.github.io/client-access-v030.html" target="_blank" rel="noreferrer">访问保障</a>
+          <a href="https://yu911517778-a11y.github.io/client-open-v031.html" target="_blank" rel="noreferrer">极简打开</a>
+          <a href="https://yu911517778-a11y.github.io/client-status-v031.html" target="_blank" rel="noreferrer">网络自检</a>
+          <a href="https://yu911517778-a11y.github.io/client-access-v031.html" target="_blank" rel="noreferrer">访问保障</a>
         </div>
         <ul>
           <li>会注销当前站点的 Service Worker。</li>
@@ -103,7 +103,7 @@
       </section>
     </main>
     <script>
-      const latestUrl = "https://yu911517778-a11y.github.io/client-access-v030.html";
+      const latestUrl = "https://yu911517778-a11y.github.io/client-access-v031.html";
       const log = document.querySelector("#log");
       function write(line) {
         log.textContent = log.textContent === "等待操作..." ? line : log.textContent + "\n" + line;
@@ -131,7 +131,7 @@
           setTimeout(() => { window.location.href = latestUrl + "?fresh=" + Date.now(); }, 3000);
         } catch (error) {
           write("清理失败：" + (error && error.message ? error.message : String(error)));
-          write("请手动打开极简打开页：" + "https://yu911517778-a11y.github.io/client-open-v030.html");
+          write("请手动打开极简打开页：" + "https://yu911517778-a11y.github.io/client-open-v031.html");
         }
       }
       document.querySelector("#repair").addEventListener("click", repair);
