@@ -2156,7 +2156,7 @@ select {
 }
 
 </style>
-  <meta name="x-standalone-build" content="v030-202607051245-dynamic" />
+  <meta name="x-standalone-build" content="v030-202607051330-dynamic" />
   </head>
   <body>
     <div class="studio-shell">
@@ -2760,6 +2760,8 @@ select {
   refs: [],
   lastResult: "",
   serviceStatus: "fallback",
+  cloudReachable: false,
+  cloudGenerationMode: "local",
   history: [],
   busyTimer: null,
   busyIndex: 0,
@@ -2784,7 +2786,7 @@ const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
 const expectedCacheName = "short-drama-studio-v31";
-const liveApiEnabled = false;
+const liveApiEnabled = true;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
   ["入口分流页（打不开时先发这个）", accessPagesEntry],
@@ -3899,6 +3901,7 @@ function buildDiagnosticReport() {
     ...customerEntries.map(([label, url]) => `${label}：${url}`),
     `云端 API 入口：${primaryWorkerEntry}`,
     `服务状态：${serviceText.textContent || ""}`,
+    `云端模式：${state.cloudGenerationMode || "unknown"}`,
     `API：${apiRouteText.textContent || ""} / ${apiRouteMeta.textContent || ""}`,
     `缓存：${cacheText.textContent || ""} / ${cacheMeta.textContent || ""}`,
     `最近生成：${runMeta.textContent || ""}`,
@@ -3944,14 +3947,20 @@ async function fetchHealth(timeoutMs = 6500) {
 
 async function checkService() {
   if (!liveApiEnabled) {
+    state.cloudReachable = false;
+    state.cloudGenerationMode = "local";
     setServiceStatus("fallback", "稳定演示模式");
     return;
   }
 
   try {
-    await fetchHealth();
-    setServiceStatus("online", "生成服务在线");
+    const health = await fetchHealth();
+    state.cloudReachable = true;
+    state.cloudGenerationMode = health.data?.generationMode || "live";
+    setServiceStatus("online", state.cloudGenerationMode === "live" ? "真实生成服务在线" : "云端演示引擎在线");
   } catch {
+    state.cloudReachable = false;
+    state.cloudGenerationMode = "local";
     setServiceStatus("fallback", "备用演示可用");
   }
 }
@@ -3972,9 +3981,13 @@ async function runAccessDiagnostics(shouldToast = false) {
     try {
       const health = await fetchHealth(8000);
       const apiHost = new URL(health.url).hostname;
-      apiRouteText.textContent = "在线";
-      apiRouteMeta.textContent = `${apiHost} · ${health.latencyMs}ms · V${health.data?.version || "0.8"}`;
+      state.cloudReachable = true;
+      state.cloudGenerationMode = health.data?.generationMode || "live";
+      apiRouteText.textContent = state.cloudGenerationMode === "live" ? "真实生成" : "云端演示";
+      apiRouteMeta.textContent = `${apiHost} · ${health.latencyMs}ms · V${health.data?.version || "0.30"}`;
     } catch {
+      state.cloudReachable = false;
+      state.cloudGenerationMode = "local";
       apiRouteText.textContent = "备用演示";
       apiRouteMeta.textContent = "当前网络访问云端受限，页面会自动返回体验结果";
     }
@@ -4003,7 +4016,7 @@ function getApiCandidates() {
   if (!liveApiEnabled) {
     return [];
   }
-  if (state.serviceStatus !== "online") {
+  if (!state.cloudReachable && state.serviceStatus !== "online") {
     return [];
   }
   if (window.location.hostname.endsWith("workers.dev") || window.location.hostname === "127.0.0.1") {
@@ -4041,7 +4054,7 @@ async function requestCreate(payload) {
       errors.push(error.message);
     }
   }
-  const fallbackWarning = errors[0] || (candidates.length ? "云端生成失败" : "体验版默认稳定演示模式");
+  const fallbackWarning = errors[0] || (candidates.length ? "云端生成失败，已切换本页稳定演示结果" : "当前网络无法访问云端演示引擎，已在本页生成稳定演示结果");
   return {
     ok: true,
     degraded: true,
@@ -4049,6 +4062,7 @@ async function requestCreate(payload) {
     usage: { estimatedPoints: payload.mode === "video" ? 260 : payload.mode === "image" ? 80 : 160 },
     meta: {
       requestId: "local-fallback",
+      source: "local-fallback",
       latencyMs: Math.round(performance.now() - startedAt),
       promptLength: payload.prompt.length,
       references: payload.references.length
@@ -4128,7 +4142,16 @@ async function createWork() {
     state.lastResult = data.result;
     resultBody.classList.remove("loading");
     resultBody.textContent = data.result;
-    setServiceStatus(data.degraded ? "fallback" : "online", data.degraded ? "备用演示已启用" : "生成服务在线");
+    const source = data.meta?.source || (data.degraded ? "local-fallback" : "live");
+    if (source === "cloud-fallback") {
+      state.cloudReachable = true;
+      state.cloudGenerationMode = "stable-demo";
+      setServiceStatus("online", "云端演示引擎已返回");
+      apiRouteText.textContent = "云端演示";
+      apiRouteMeta.textContent = "云端通道可用，当前使用稳定演示引擎";
+    } else {
+      setServiceStatus(data.degraded ? "fallback" : "online", data.degraded ? "备用演示已启用" : "真实生成服务在线");
+    }
     const latency = data.meta?.latencyMs ?? Math.round(performance.now() - startedAt);
     const requestId = data.meta?.requestId || "local";
     state.lastRun = {
@@ -4137,7 +4160,7 @@ async function createWork() {
       degraded: Boolean(data.degraded),
       createdAt: new Date().toLocaleString("zh-CN", { hour12: false })
     };
-    runMeta.textContent = `${data.degraded ? "备用演示" : "真实生成"} · ${Math.max(1, Math.round(latency / 1000))} 秒 · ${requestId}`;
+    runMeta.textContent = `${data.degraded ? (source === "cloud-fallback" ? "云端演示" : "备用演示") : "真实生成"} · ${Math.max(1, Math.round(latency / 1000))} 秒 · ${requestId}`;
     addHistory({
       mode: state.mode,
       prompt,
