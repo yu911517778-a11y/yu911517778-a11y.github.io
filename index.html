@@ -14,7 +14,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/palace-night.webp" as="image" type="image/webp" />
     <link rel="preload" href="assets/hanfu-lantern.webp" as="image" type="image/webp" />
-    <link rel="stylesheet" href="styles-v024.css" />
+    <link rel="stylesheet" href="styles-v025.css" />
   </head>
   <body>
     <div class="studio-shell">
@@ -50,11 +50,11 @@
       <section class="client-handoff" aria-label="客户访问交付">
         <div class="handoff-copy">
           <span>Client Entry</span>
-          <strong>客户主入口已切到 GitHub Pages</strong>
-          <p>入口只发可打开页面，默认稳定演示，正式云端部署后启用真实生成。</p>
+          <strong>客户主入口已切到 GitHub CDN 预览</strong>
+          <p>当前优先发更容易打开的 CDN 预览入口，GitHub Pages 和 Worker 作为备用。</p>
         </div>
         <div class="handoff-metrics" aria-label="访问状态">
-          <span><b>5</b> 公网页面入口</span>
+          <span><b>4</b> 公网页面入口</span>
           <span><b>16</b> 本地资产</span>
           <span><b>1s</b> 稳定演示</span>
         </div>
@@ -68,7 +68,7 @@
         <div class="handoff-actions">
           <button class="generate-button" type="button" id="copyHandoffButton">复制客户入口</button>
           <button class="ghost-button" type="button" id="copyPitchButton">复制转发文案</button>
-          <button class="ghost-button" type="button" id="openMirrorButton">打开临时镜像</button>
+          <button class="ghost-button" type="button" id="openMirrorButton">打开主入口</button>
           <button class="ghost-button" type="button" id="handoffDemoButton">一键演示</button>
         </div>
       </section>
@@ -83,7 +83,7 @@
           <article>
             <span>01</span>
             <strong>先打开</strong>
-            <p>扫二维码或点短根域名，微信打不开就复制到 Chrome / Safari。</p>
+            <p>扫二维码或点主入口，微信打不开就复制到 Chrome / Safari。</p>
           </article>
           <article>
             <span>02</span>
@@ -172,7 +172,7 @@
               </div>
               <div class="reference-menu" id="referenceMenu"></div>
             </div>
-          <div class="run-meta" id="runMeta">Demo V0.24 · 等待生成</div>
+          <div class="run-meta" id="runMeta">Demo V0.25 · 等待生成</div>
           </div>
         </section>
 
@@ -378,7 +378,7 @@
           <div>
             <p>Mobile Entry</p>
             <h2>手机扫码体验</h2>
-            <span>适合现场演示、微信群转发和客户快速试用。打不开时复制备用入口到 Chrome / Safari。</span>
+            <span>适合现场演示、微信群转发和客户快速试用。打不开时优先复制主入口到 Chrome / Safari。</span>
           </div>
         </div>
         <div class="pilot-copy">
@@ -391,7 +391,7 @@
           <article>
             <span>Open</span>
             <strong>客户主入口</strong>
-            <p>短根域名更适合发客户，页面顶部可复制所有备用入口。</p>
+            <p>CDN 预览入口优先发客户，页面顶部可复制所有备用入口。</p>
             <button class="ghost-button" type="button" id="copyMobileEntryButton">复制扫码链接</button>
           </article>
           <article>
@@ -493,7 +493,7 @@
         <article>
           <span>Status</span>
           <strong id="footerStatus">检测中</strong>
-        <p>Demo V0.24：短根域名客户入口、临时单页镜像、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
+        <p>Demo V0.25：GitHub CDN 客户入口、GitHub Pages 备用、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
         </article>
       </section>
 
@@ -529,6 +529,6 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="app-v024.js" type="module"></script>
+    <script src="app-v025.js" type="module"></script>
   </body>
 </html>
