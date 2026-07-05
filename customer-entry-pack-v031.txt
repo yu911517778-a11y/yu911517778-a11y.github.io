@@ -1,7 +1,7 @@
 AI短剧生产主控客户体验入口包：
 
 客户体验入口：
-https://mcp.edgeone.site/share/e2blnuTK3Nt3grXzL6iwe
+https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N
 智能启动页：
 https://yu911517778-a11y.github.io/go.html
 智能启动备用：
