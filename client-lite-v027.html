@@ -260,6 +260,7 @@
           <p class="lead">这是给客户先看的轻量入口：打开快、能复制入口、能看清主控和独立智能体节点怎么工作。完整体验仍保留在深度 Demo 里。</p>
           <div class="actions">
             <button class="btn primary" id="copySelf">复制这个极速入口</button>
+            <a class="btn" href="https://litter.catbox.moe/ap80do.html" target="_blank" rel="noreferrer">72h 极速备用</a>
             <a class="btn" href="https://yu911517778-a11y.github.io/" target="_blank" rel="noreferrer">打开完整 Demo</a>
             <a class="btn" href="https://litter.catbox.moe/05o7n4.html" target="_blank" rel="noreferrer">72h 完整备用</a>
             <a class="btn" href="https://short-video-agent-demo.tartan-printer.workers.dev/client-lite-v027.html" target="_blank" rel="noreferrer">Cloudflare 备用</a>
@@ -325,6 +326,8 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
+      const liteMainUrl = "https://yu911517778-a11y.github.io/client-lite-v027.html";
+      const liteBackupUrl = "https://litter.catbox.moe/ap80do.html";
       const fullDemoUrl = "https://yu911517778-a11y.github.io/";
       const githubDemoUrl = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/client-entry-v027.html";
       const fullBackupUrl = "https://litter.catbox.moe/05o7n4.html";
@@ -362,19 +365,26 @@
 
       function customerText() {
         return [
-          "AI短剧生产主控极速体验入口：",
+          "AI短剧生产主控客户体验入口包：",
+          "",
+          "当前打开的入口：",
           currentUrl(),
           "",
-          "完整 Demo：",
+          "主入口（GitHub Pages）：",
+          liteMainUrl,
+          "极速备用（72h 镜像）：",
+          liteBackupUrl,
+          "",
+          "完整 Demo（功能更多）：",
           fullDemoUrl,
-          "完整 Demo 备用：",
+          "完整 Demo 备用（72h 单文件）：",
           fullBackupUrl,
           "",
-          "备用入口：",
+          "其它备用：",
           githubDemoUrl,
           workerDemoUrl,
           "",
-          "建议：微信内打不开时，复制到手机 Chrome / Safari。"
+          "建议：微信内打不开时，先复制到手机 Chrome / Safari；还不行就换 72h 极速备用。"
         ].join("\n");
       }
 
@@ -383,6 +393,9 @@
         copyText([
           "给你一个 AI短剧生产主控极速体验入口：",
           currentUrl(),
+          "",
+          "打不开时用备用：",
+          liteBackupUrl,
           "",
           "先看主控怎么把剧本、角色、场景、视频和返工拆成独立智能体节点。想看正式部署路线图，再点页面里的完整 Demo。"
         ].join("\n"), "转发文案已复制");
