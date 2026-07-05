@@ -42,7 +42,7 @@
           <button type="button" data-mode="image">Image</button>
           <button type="button" data-mode="video">Video</button>
           <a href="#experience">Guide</a>
-          <a href="#agent">Workflow</a>
+          <a href="#agents">Workflow</a>
           <a href="#agents">Agents</a>
           <a href="#estimate">Estimate</a>
           <a href="#deploy">Deploy</a>
@@ -198,77 +198,40 @@
         </section>
 
         <aside class="control-pane">
-          <section class="panel">
-            <div class="panel-heading">
-              <p>Model Setup</p>
-              <strong>生成参数</strong>
-            </div>
-            <div class="control-grid">
-              <label>
-                <span>画幅</span>
-                <select id="ratioSelect">
-                  <option>智能适应</option>
-                  <option>21:9</option>
-                  <option>16:9</option>
-                  <option>3:2</option>
-                  <option>4:3</option>
-                  <option>1:1</option>
-                  <option>3:4</option>
-                  <option>2:3</option>
-                  <option>9:16</option>
-                </select>
-              </label>
-
-              <label>
-                <span>分辨率</span>
-                <select id="resolutionSelect">
-                  <option>720P</option>
-                  <option>480P</option>
-                  <option>1080P</option>
-                  <option>2K</option>
-                  <option>4K</option>
-                </select>
-              </label>
-
-              <label class="model-field" id="modelField">
-                <span>模型</span>
-                <select id="modelSelect">
-                  <option>系统自动配置</option>
-                  <option>图片模型</option>
-                  <option>视频模型</option>
-                </select>
-              </label>
-
-              <label class="duration-field" id="durationField">
-                <span>时长</span>
-                <select id="durationSelect">
-                  <option>5秒</option>
-                  <option selected>10秒</option>
-                  <option>15秒</option>
-                </select>
-              </label>
-            </div>
-            <div class="camera-strip" aria-label="镜头配置">
-              <span>35mm</span>
-              <span>Anamorphic</span>
-              <span>Low Angle</span>
-              <span>No BGM</span>
-            </div>
-          </section>
-
-          <section class="panel">
-            <div class="panel-heading">
-              <p>Workflow</p>
-              <strong>节点队列</strong>
-            </div>
-            <div class="node-flow" id="agent">
-              <button class="done" type="button"><b>N01</b><span>剧本改编</span></button>
-              <button class="active" type="button"><b>N02</b><span>角色资产</span></button>
-              <button type="button"><b>N03</b><span>场景资产</span></button>
-              <button type="button"><b>N06</b><span>视频提示词</span></button>
-              <button type="button"><b>N10</b><span>返工诊断</span></button>
-            </div>
-          </section>
+          <div class="runtime-config" hidden aria-hidden="true">
+            <select id="ratioSelect">
+              <option>智能适应</option>
+              <option>21:9</option>
+              <option>16:9</option>
+              <option>3:2</option>
+              <option>4:3</option>
+              <option>1:1</option>
+              <option>3:4</option>
+              <option>2:3</option>
+              <option>9:16</option>
+            </select>
+            <select id="resolutionSelect">
+              <option>720P</option>
+              <option>480P</option>
+              <option>1080P</option>
+              <option>2K</option>
+              <option>4K</option>
+            </select>
+            <label class="model-field" id="modelField">
+              <select id="modelSelect">
+                <option>系统自动配置</option>
+                <option>图片模型</option>
+                <option>视频模型</option>
+              </select>
+            </label>
+            <label class="duration-field" id="durationField">
+              <select id="durationSelect">
+                <option>5秒</option>
+                <option selected>10秒</option>
+                <option>15秒</option>
+              </select>
+            </label>
+          </div>
 
           <section class="panel output-panel">
             <div class="panel-heading output-heading">

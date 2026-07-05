@@ -799,21 +799,6 @@ textarea {
 .panel-heading p { margin: 0 0 4px; }
 .panel-heading strong { font-size: 16px; }
 
-.control-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 14px;
-}
-
-.control-grid label {
-  display: grid;
-  gap: 7px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 900;
-}
-
 select {
   width: 100%;
   min-height: 42px;
@@ -823,66 +808,6 @@ select {
   color: var(--ink);
   background: #080808;
 }
-
-.camera-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0 14px 14px;
-}
-
-.camera-strip span {
-  min-height: 30px;
-  display: inline-grid;
-  place-items: center;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--muted);
-  background: rgba(255,255,255,.035);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.node-flow {
-  display: grid;
-  gap: 8px;
-  padding: 14px;
-}
-
-.node-flow button {
-  display: grid;
-  grid-template-columns: 46px 1fr;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  color: var(--muted);
-  background: rgba(255,255,255,.03);
-  text-align: left;
-}
-
-.node-flow b {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 28px;
-  margin-left: 7px;
-  border-radius: 6px;
-  color: var(--dim);
-  background: rgba(255,255,255,.06);
-}
-
-.node-flow span { font-weight: 900; }
-.node-flow .done b { color: #050505; background: var(--lime); }
-.node-flow .done { color: var(--ink); }
-.node-flow .active {
-  color: var(--ink);
-  border-color: rgba(73,214,197,.42);
-  background: rgba(73,214,197,.1);
-}
-.node-flow .active b { color: var(--cyan); }
 
 .output-panel { min-height: 0; display: flex; flex-direction: column; }
 .output-heading { flex: 0 0 auto; }
@@ -2157,7 +2082,6 @@ select {
   .prompt-actions { grid-template-columns: 1fr 1fr; }
   .prompt-actions button { width: 100%; min-width: 0; padding-left: 8px; padding-right: 8px; }
   textarea { min-height: 62px; }
-  .control-grid { grid-template-columns: 1fr; }
   .dock { grid-template-columns: 1fr; }
   .case-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .agent-board { grid-template-columns: 1fr; }
@@ -2219,7 +2143,7 @@ select {
           <button type="button" data-mode="image">Image</button>
           <button type="button" data-mode="video">Video</button>
           <a href="#experience">Guide</a>
-          <a href="#agent">Workflow</a>
+          <a href="#agents">Workflow</a>
           <a href="#agents">Agents</a>
           <a href="#estimate">Estimate</a>
           <a href="#deploy">Deploy</a>
@@ -2375,77 +2299,40 @@ select {
         </section>
 
         <aside class="control-pane">
-          <section class="panel">
-            <div class="panel-heading">
-              <p>Model Setup</p>
-              <strong>生成参数</strong>
-            </div>
-            <div class="control-grid">
-              <label>
-                <span>画幅</span>
-                <select id="ratioSelect">
-                  <option>智能适应</option>
-                  <option>21:9</option>
-                  <option>16:9</option>
-                  <option>3:2</option>
-                  <option>4:3</option>
-                  <option>1:1</option>
-                  <option>3:4</option>
-                  <option>2:3</option>
-                  <option>9:16</option>
-                </select>
-              </label>
-
-              <label>
-                <span>分辨率</span>
-                <select id="resolutionSelect">
-                  <option>720P</option>
-                  <option>480P</option>
-                  <option>1080P</option>
-                  <option>2K</option>
-                  <option>4K</option>
-                </select>
-              </label>
-
-              <label class="model-field" id="modelField">
-                <span>模型</span>
-                <select id="modelSelect">
-                  <option>系统自动配置</option>
-                  <option>图片模型</option>
-                  <option>视频模型</option>
-                </select>
-              </label>
-
-              <label class="duration-field" id="durationField">
-                <span>时长</span>
-                <select id="durationSelect">
-                  <option>5秒</option>
-                  <option selected>10秒</option>
-                  <option>15秒</option>
-                </select>
-              </label>
-            </div>
-            <div class="camera-strip" aria-label="镜头配置">
-              <span>35mm</span>
-              <span>Anamorphic</span>
-              <span>Low Angle</span>
-              <span>No BGM</span>
-            </div>
-          </section>
-
-          <section class="panel">
-            <div class="panel-heading">
-              <p>Workflow</p>
-              <strong>节点队列</strong>
-            </div>
-            <div class="node-flow" id="agent">
-              <button class="done" type="button"><b>N01</b><span>剧本改编</span></button>
-              <button class="active" type="button"><b>N02</b><span>角色资产</span></button>
-              <button type="button"><b>N03</b><span>场景资产</span></button>
-              <button type="button"><b>N06</b><span>视频提示词</span></button>
-              <button type="button"><b>N10</b><span>返工诊断</span></button>
-            </div>
-          </section>
+          <div class="runtime-config" hidden aria-hidden="true">
+            <select id="ratioSelect">
+              <option>智能适应</option>
+              <option>21:9</option>
+              <option>16:9</option>
+              <option>3:2</option>
+              <option>4:3</option>
+              <option>1:1</option>
+              <option>3:4</option>
+              <option>2:3</option>
+              <option>9:16</option>
+            </select>
+            <select id="resolutionSelect">
+              <option>720P</option>
+              <option>480P</option>
+              <option>1080P</option>
+              <option>2K</option>
+              <option>4K</option>
+            </select>
+            <label class="model-field" id="modelField">
+              <select id="modelSelect">
+                <option>系统自动配置</option>
+                <option>图片模型</option>
+                <option>视频模型</option>
+              </select>
+            </label>
+            <label class="duration-field" id="durationField">
+              <select id="durationSelect">
+                <option>5秒</option>
+                <option selected>10秒</option>
+                <option>15秒</option>
+              </select>
+            </label>
+          </div>
 
           <section class="panel output-panel">
             <div class="panel-heading output-heading">
