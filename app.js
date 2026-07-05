@@ -13,7 +13,7 @@
   selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.classy-parcel.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.spot-makemake.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v030.html`;
@@ -23,7 +23,7 @@ const statusPagesEntry = `${rootPagesEntry}client-status-v030.html`;
 const refreshPagesEntry = `${rootPagesEntry}client-refresh-v030.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245";
-const edgeOneEntry = "https://mcp.edgeone.site/share/SgrVG9s_EDbEx4LdNdaHl";
+const edgeOneEntry = "https://mcp.edgeone.site/share/gcwKrD3X_9J2U_uR664d8";
 const primaryCustomerEntry = edgeOneEntry;
 const githubProxyEntry = primaryCustomerEntry;
 const emergencyMirrorEntry = primaryCustomerEntry;

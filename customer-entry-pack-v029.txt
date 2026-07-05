@@ -1,11 +1,11 @@
 AI短剧生产主控客户体验入口包：
 
 主入口 · EdgeOne：
-https://mcp.edgeone.site/share/SgrVG9s_EDbEx4LdNdaHl
+https://mcp.edgeone.site/share/gcwKrD3X_9J2U_uR664d8
 完整极速入口：
 https://yu911517778-a11y.github.io/client-lite-v030.html
 Cloudflare 备用：
-https://short-video-agent-demo.classy-parcel.workers.dev/client-lite-v030.html
+https://short-video-agent-demo.spot-makemake.workers.dev/client-lite-v030.html
 预览备用：
 https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245
 72h 极速备用：
@@ -24,11 +24,11 @@ https://yu911517778-a11y.github.io/client-status-v030.html
 刷新缓存页：
 https://yu911517778-a11y.github.io/client-refresh-v030.html
 入口分流备用：
-https://short-video-agent-demo.classy-parcel.workers.dev/client-access-v030.html
+https://short-video-agent-demo.spot-makemake.workers.dev/client-access-v030.html
 极简入口备用：
-https://short-video-agent-demo.classy-parcel.workers.dev/client-open-v030.html
+https://short-video-agent-demo.spot-makemake.workers.dev/client-open-v030.html
 客户自检备用：
-https://short-video-agent-demo.classy-parcel.workers.dev/client-status-v030.html
+https://short-video-agent-demo.spot-makemake.workers.dev/client-status-v030.html
 刷新缓存备用：
-https://short-video-agent-demo.classy-parcel.workers.dev/client-refresh-v030.html
+https://short-video-agent-demo.spot-makemake.workers.dev/client-refresh-v030.html
 建议：先发 EdgeOne 主入口；想看完整交互再发完整极速入口。微信内打不开就复制到手机 Chrome / Safari。
