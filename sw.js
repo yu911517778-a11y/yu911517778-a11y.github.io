@@ -7,6 +7,7 @@ const STATIC_ASSETS = [
   "client-entry-v027.html",
   "client-lite-v026.html",
   "client-lite-v027.html",
+  "client-lite-v029.html",
   "favicon.svg",
   "manifest.webmanifest",
   "assets/palace-night.webp",
