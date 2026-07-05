@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI短剧生产主控 Studio</title>
+    <meta name="description" content="AI短剧生产主控 Studio：从参考图、角色资产、场景母图到短剧分镜和视频提示词的一站式体验 Demo。" />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:title" content="AI短剧生产主控 Studio" />
+    <meta property="og:description" content="从参考图到短剧分镜，自动调度剧本、角色、场景、视频提示词和返工诊断节点。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/palace-night.jpg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/palace-night.webp" as="image" type="image/webp" />
+    <link rel="preload" href="assets/hanfu-lantern.webp" as="image" type="image/webp" />
+    <link rel="stylesheet" href="styles-v024.css" />
+  </head>
+  <body>
+    <div class="studio-shell">
+      <header class="studio-topbar">
+        <a class="brand" href="#create" aria-label="AI短剧生产主控 Studio">
+          <span class="brand-mark"></span>
+          <span>
+            <strong>AI短剧生产主控</strong>
+            <small>Production Studio</small>
+          </span>
+        </a>
+
+        <nav class="studio-tabs" aria-label="创作模式">
+          <button class="active" type="button" data-mode="agent">Agent Studio</button>
+          <button type="button" data-mode="image">Image</button>
+          <button type="button" data-mode="video">Video</button>
+          <a href="#experience">Guide</a>
+          <a href="#agent">Workflow</a>
+          <a href="#agents">Agents</a>
+          <a href="#estimate">Estimate</a>
+          <a href="#api">API</a>
+          <a href="#access">Access</a>
+        </nav>
+
+        <div class="top-actions">
+          <button class="notice-button" id="noticeButton" type="button" aria-label="通知"><span></span></button>
+          <button class="share-button" id="shareButton" type="button">复制客户入口</button>
+          <div class="points"><span>积分</span><strong id="pointsValue">12,800</strong></div>
+          <button class="avatar" type="button">Demo</button>
+        </div>
+      </header>
+
+      <section class="client-handoff" aria-label="客户访问交付">
+        <div class="handoff-copy">
+          <span>Client Entry</span>
+          <strong>客户主入口已切到 GitHub Pages</strong>
+          <p>入口只发可打开页面，默认稳定演示，正式云端部署后启用真实生成。</p>
+        </div>
+        <div class="handoff-metrics" aria-label="访问状态">
+          <span><b>5</b> 公网页面入口</span>
+          <span><b>16</b> 本地资产</span>
+          <span><b>1s</b> 稳定演示</span>
+        </div>
+        <div class="handoff-qr" aria-label="手机扫码体验">
+          <img src="assets/customer-entry-qr.svg" alt="客户主入口二维码" width="74" height="74" />
+          <span>
+            <b>手机扫码</b>
+            <small>打开客户主入口</small>
+          </span>
+        </div>
+        <div class="handoff-actions">
+          <button class="generate-button" type="button" id="copyHandoffButton">复制客户入口</button>
+          <button class="ghost-button" type="button" id="copyPitchButton">复制转发文案</button>
+          <button class="ghost-button" type="button" id="openMirrorButton">打开临时镜像</button>
+          <button class="ghost-button" type="button" id="handoffDemoButton">一键演示</button>
+        </div>
+      </section>
+
+      <section class="experience-strip" id="experience" aria-label="客户自助体验路径">
+        <div class="experience-heading">
+          <p>Client Guide</p>
+          <h2>客户自助体验路径</h2>
+          <span>客户打开后按 4 步走，不需要你现场讲太多，也能进入真实试点沟通。</span>
+        </div>
+        <div class="experience-steps">
+          <article>
+            <span>01</span>
+            <strong>先打开</strong>
+            <p>扫二维码或点短根域名，微信打不开就复制到 Chrome / Safari。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>点演示</strong>
+            <p>点“一键演示”，看主控如何拆剧本、角色、场景、提示词和返工。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>换题材</strong>
+            <p>点作品案例或改输入，验证不同题材是否能进入同一套节点流程。</p>
+          </article>
+          <article>
+            <span>04</span>
+            <strong>给素材</strong>
+            <p>复制素材提交包，发角色、场景、参考视频和目标平台，进入试点。</p>
+          </article>
+        </div>
+        <div class="experience-actions">
+          <button class="ghost-button" type="button" id="copyExperienceGuideButton">复制体验步骤</button>
+          <button class="ghost-button" type="button" id="copyMaterialPackButton">复制素材提交包</button>
+          <button class="generate-button" type="button" id="copyClientChecklistButton">复制验收清单</button>
+        </div>
+      </section>
+
+      <main class="studio-layout" id="create">
+        <section class="canvas-pane">
+          <div class="canvas-toolbar">
+            <div class="workspace-title">
+              <p>AI Short Drama Studio</p>
+              <h1>从参考图到短剧分镜</h1>
+              <div class="service-line">
+                <span class="service-dot checking" id="serviceDot"></span>
+                <span id="serviceText">正在检测生成服务</span>
+              </div>
+              <div class="mode-rail" aria-label="生产链路">
+                <span>Text to Video</span>
+                <span>Image to Video</span>
+                <span>Multi Reference</span>
+                <span>Storyboard</span>
+              </div>
+            </div>
+            <div class="run-state" id="runState"><span></span>待创作</div>
+          </div>
+
+          <div class="stage">
+            <div class="stage-grid">
+              <article class="shot-card hero-shot">
+                <span class="shot-badge">V01</span>
+                <img class="shot-image" src="assets/palace-night.webp" alt="古风夜景分镜预览" loading="eager" />
+                <strong>开局钩子</strong>
+                <small>玉佩特写推至女主面部</small>
+              </article>
+              <article class="shot-card">
+                <span class="shot-badge">R01</span>
+                <img class="shot-image" src="assets/hanfu-lantern.webp" alt="角色资产参考图" loading="eager" />
+                <strong>角色身份板</strong>
+                <small>脸型、发型、服装锁定</small>
+              </article>
+              <article class="shot-card">
+                <span class="shot-badge">S01</span>
+                <img class="shot-image" src="assets/pavilion-day.webp" alt="场景资产参考图" loading="lazy" />
+                <strong>冷宫场景</strong>
+                <small>空间结构与光线方向</small>
+              </article>
+            </div>
+          </div>
+
+          <div class="composer">
+            <div class="upload-zone" id="dropZone">
+              <input id="fileInput" type="file" accept="image/*" multiple />
+              <button class="upload-chip" type="button" id="uploadButton"><span></span>参考图</button>
+              <div class="thumb-row" id="thumbRow" aria-live="polite">
+                <div class="sample-thumb"><img src="assets/lantern-face.webp" alt="角色参考示例" /><span>角色</span></div>
+                <div class="sample-thumb"><img src="assets/palace-night.webp" alt="场景参考示例" /><span>场景</span></div>
+                <div class="sample-thumb"><img src="assets/clapper-close.webp" alt="镜头参考示例" /><span>镜头</span></div>
+              </div>
+            </div>
+
+            <div class="prompt-box">
+              <textarea id="promptInput" rows="3">古风复仇女主在冷宫发现身份玉佩，镜头从玉佩特写推到她压住情绪的脸，结尾给一个反击悬念。</textarea>
+              <div class="prompt-actions">
+                <button class="ghost-button" type="button" id="referenceButton">@ 引用</button>
+                <button class="ghost-button" type="button" id="regenerateButton">重试</button>
+                <button class="ghost-button" type="button" id="demoRunButton">一键演示</button>
+                <button class="generate-button" type="button" id="createButton">Generate</button>
+              </div>
+              <div class="reference-menu" id="referenceMenu"></div>
+            </div>
+          <div class="run-meta" id="runMeta">Demo V0.24 · 等待生成</div>
+          </div>
+        </section>
+
+        <aside class="control-pane">
+          <section class="panel">
+            <div class="panel-heading">
+              <p>Model Setup</p>
+              <strong>生成参数</strong>
+            </div>
+            <div class="control-grid">
+              <label>
+                <span>画幅</span>
+                <select id="ratioSelect">
+                  <option>智能适应</option>
+                  <option>21:9</option>
+                  <option>16:9</option>
+                  <option>3:2</option>
+                  <option>4:3</option>
+                  <option>1:1</option>
+                  <option>3:4</option>
+                  <option>2:3</option>
+                  <option>9:16</option>
+                </select>
+              </label>
+
+              <label>
+                <span>分辨率</span>
+                <select id="resolutionSelect">
+                  <option>720P</option>
+                  <option>480P</option>
+                  <option>1080P</option>
+                  <option>2K</option>
+                  <option>4K</option>
+                </select>
+              </label>
+
+              <label class="model-field" id="modelField">
+                <span>模型</span>
+                <select id="modelSelect">
+                  <option>系统自动配置</option>
+                  <option>图片模型</option>
+                  <option>视频模型</option>
+                </select>
+              </label>
+
+              <label class="duration-field" id="durationField">
+                <span>时长</span>
+                <select id="durationSelect">
+                  <option>5秒</option>
+                  <option selected>10秒</option>
+                  <option>15秒</option>
+                </select>
+              </label>
+            </div>
+            <div class="camera-strip" aria-label="镜头配置">
+              <span>35mm</span>
+              <span>Anamorphic</span>
+              <span>Low Angle</span>
+              <span>No BGM</span>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <p>Workflow</p>
+              <strong>节点队列</strong>
+            </div>
+            <div class="node-flow" id="agent">
+              <button class="done" type="button"><b>N01</b><span>剧本改编</span></button>
+              <button class="active" type="button"><b>N02</b><span>角色资产</span></button>
+              <button type="button"><b>N03</b><span>场景资产</span></button>
+              <button type="button"><b>N06</b><span>视频提示词</span></button>
+              <button type="button"><b>N10</b><span>返工诊断</span></button>
+            </div>
+          </section>
+
+          <section class="panel output-panel">
+            <div class="panel-heading output-heading">
+              <div>
+                <p>Supervisor Output</p>
+                <strong>主控结果</strong>
+              </div>
+              <div class="output-actions">
+                <button class="ghost-button small" type="button" id="summaryButton">摘要</button>
+                <button class="ghost-button small" type="button" id="downloadButton">下载</button>
+                <button class="ghost-button small" type="button" id="copyButton">复制</button>
+              </div>
+            </div>
+            <div class="result-body" id="resultBody">
+              <div class="empty-state">
+                <span></span><span></span><span></span>
+                <div></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel history-panel">
+            <div class="panel-heading output-heading">
+              <div>
+                <p>Recent Runs</p>
+                <strong>最近生成</strong>
+              </div>
+              <button class="ghost-button small" type="button" id="clearHistoryButton">清空</button>
+            </div>
+            <div class="history-list" id="historyList">
+              <div class="history-empty">暂无生成记录</div>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <section class="dock">
+        <div>
+          <p>Trending References</p>
+          <h2>作品案例</h2>
+        </div>
+        <div class="case-grid" id="caseGrid"></div>
+      </section>
+
+      <section class="agent-matrix" id="agents">
+        <div class="agent-matrix-heading">
+          <p>Agent Topology</p>
+          <h2>主控主管 + 独立智能体节点</h2>
+          <span>正式系统里，主控只负责任务拆解、上下文路由、结果合并和返工判断。每个生产节点都是可单独升级、单独替换、单独验收的智能体。</span>
+          <div class="agent-principles">
+            <span><b>01</b>节点可替换</span>
+            <span><b>02</b>上下文隔离</span>
+            <span><b>03</b>失败可回退</span>
+          </div>
+        </div>
+
+        <div class="agent-board">
+          <article class="supervisor-card">
+            <span>N00</span>
+            <strong>主控 Supervisor</strong>
+            <p>接收客户任务，判断输入类型，拆给独立节点，汇总输出并决定返工路径。</p>
+          </article>
+          <div class="agent-node-grid" id="agentNodeGrid" aria-label="独立智能体节点列表"></div>
+        </div>
+
+        <aside class="agent-detail" aria-live="polite">
+          <span id="agentDetailCode">N01</span>
+          <strong id="agentDetailTitle">剧本改编 Agent</strong>
+          <p id="agentDetailDesc">把故事、小说或口播素材拆成可生产的短剧钩子和镜头节奏。</p>
+          <dl>
+            <div>
+              <dt>输入</dt>
+              <dd id="agentDetailInput">题材、故事大纲、参考视频</dd>
+            </div>
+            <div>
+              <dt>输出</dt>
+              <dd id="agentDetailOutput">钩子、冲突点、镜头顺序</dd>
+            </div>
+            <div>
+              <dt>升级</dt>
+              <dd id="agentDetailUpgrade">题材模板、爆款结构、平台风格</dd>
+            </div>
+          </dl>
+          <div class="agent-detail-actions">
+            <button class="ghost-button" type="button" id="copyArchitectureButton">复制架构说明</button>
+            <button class="generate-button" type="button" id="copyNodeSpecButton">复制节点方案</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="sales-kit" id="salesKit">
+        <div class="sales-kit-heading">
+          <p>Delivery Kit</p>
+          <h2>成交演示包</h2>
+          <span>给客户讲解、采集需求、推进正式部署时直接复制。</span>
+        </div>
+        <div class="sales-kit-grid">
+          <article>
+            <span>Demo Script</span>
+            <strong>演示话术</strong>
+            <p>30 秒讲清主控、独立节点、参考图和返工闭环。</p>
+            <button class="ghost-button" type="button" id="copyDemoScriptButton">复制话术</button>
+          </article>
+          <article>
+            <span>Brief</span>
+            <strong>需求采集表</strong>
+            <p>收集题材、角色、资产、平台、时长、预算和上线节奏。</p>
+            <button class="ghost-button" type="button" id="copyBriefButton">复制表单</button>
+          </article>
+          <article>
+            <span>Launch</span>
+            <strong>正式上线清单</strong>
+            <p>域名、服务器、账号体系、积分、资产库、API 和安全项。</p>
+            <button class="ghost-button" type="button" id="copyLaunchButton">复制清单</button>
+          </article>
+          <article>
+            <span>Follow-up</span>
+            <strong>客户跟进话术</strong>
+            <p>体验后引导客户给素材、确认流程、进入付费试点。</p>
+            <button class="generate-button" type="button" id="copyFollowupButton">复制跟进</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="pilot-kit" id="pilotKit">
+        <div class="pilot-qr">
+          <img src="assets/customer-entry-qr.svg" alt="客户主入口二维码" width="132" height="132" />
+          <div>
+            <p>Mobile Entry</p>
+            <h2>手机扫码体验</h2>
+            <span>适合现场演示、微信群转发和客户快速试用。打不开时复制备用入口到 Chrome / Safari。</span>
+          </div>
+        </div>
+        <div class="pilot-copy">
+          <article>
+            <span>Pilot Scope</span>
+            <strong>真实题材试点</strong>
+            <p>先拿 1 个主角、1 个场景、3 条 10 秒竖屏钩子验证角色稳定、场景复用和返工效率。</p>
+            <button class="ghost-button" type="button" id="copyPilotButton">复制试点方案</button>
+          </article>
+          <article>
+            <span>Open</span>
+            <strong>客户主入口</strong>
+            <p>短根域名更适合发客户，页面顶部可复制所有备用入口。</p>
+            <button class="ghost-button" type="button" id="copyMobileEntryButton">复制扫码链接</button>
+          </article>
+          <article>
+            <span>Next</span>
+            <strong>正式部署</strong>
+            <p>试点跑通后再接正式域名、服务器、账号体系、积分、资产库、API 日志和安全策略。</p>
+            <button class="generate-button" type="button" id="openRootEntryButton">打开主入口</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="estimate-kit" id="estimate">
+        <div class="estimate-heading">
+          <p>Pilot Fit</p>
+          <h2>试点评估器</h2>
+          <span>客户不用注册，也不用接 API。按当前素材和上线目标点几项，马上生成试点建议、风险提醒和跟进报告。</span>
+          <div class="estimate-score">
+            <strong id="estimateScoreText">--</strong>
+            <span id="estimateTierText">等待评估</span>
+          </div>
+        </div>
+
+        <div class="estimate-form" aria-label="试点评估表单">
+          <label>
+            <span>题材成熟度</span>
+            <select id="maturitySelect">
+              <option value="idea">只有想法</option>
+              <option value="script" selected>已有剧情 / 小说</option>
+              <option value="visual">已有角色 / 场景图</option>
+              <option value="reference">已有成片参考</option>
+            </select>
+          </label>
+          <label>
+            <span>素材完整度</span>
+            <select id="materialSelect">
+              <option value="missing">缺素材</option>
+              <option value="partial" selected>有部分参考图</option>
+              <option value="core">角色场景都有</option>
+              <option value="library">已有资产库</option>
+            </select>
+          </label>
+          <label>
+            <span>试点目标</span>
+            <select id="goalSelect">
+              <option value="demo">演示验证</option>
+              <option value="internal" selected>内部试用</option>
+              <option value="delivery">客户交付</option>
+              <option value="commercial">商业化上线</option>
+            </select>
+          </label>
+          <label>
+            <span>目标日产量</span>
+            <select id="volumeSelect">
+              <option value="small" selected>1-3 条</option>
+              <option value="medium">5-10 条</option>
+              <option value="large">20 条以上</option>
+            </select>
+          </label>
+
+          <div class="estimate-toggles">
+            <label><input type="checkbox" id="needAccountCheckbox" />账号体系</label>
+            <label><input type="checkbox" id="needPointsCheckbox" />积分充值</label>
+            <label><input type="checkbox" id="needAssetsCheckbox" checked />资产库</label>
+            <label><input type="checkbox" id="needBatchCheckbox" />批量任务</label>
+            <label><input type="checkbox" id="needApiLogCheckbox" />API 日志</label>
+          </div>
+
+          <div class="estimate-actions">
+            <button class="ghost-button" type="button" id="resetEstimateButton">重置</button>
+            <button class="ghost-button" type="button" id="copyEstimateButton">复制评估报告</button>
+            <button class="generate-button" type="button" id="copyProposalButton">复制跟进方案</button>
+          </div>
+        </div>
+
+        <div class="estimate-output" aria-live="polite">
+          <span>Recommendation</span>
+          <strong id="estimateTitleText">标准试点</strong>
+          <p id="estimateSummaryText">建议先用 1 个主角、1 个场景、3 条 10 秒竖屏钩子验证流程。</p>
+          <ul id="estimateRiskList"></ul>
+        </div>
+      </section>
+
+      <section class="system-strip" id="api">
+        <article>
+          <span>Points</span>
+          <strong>1 元 = 500 积分</strong>
+          <p>测试版先走演示积分，正式版接充值流水、签到和邀请奖励。</p>
+        </article>
+        <article>
+          <span>API</span>
+          <strong>Server-side key</strong>
+          <p>TommyAPI Key 只在 Worker Secret 内使用，浏览器不会看到。</p>
+        </article>
+        <article>
+          <span>Profile</span>
+          <strong>7 天临时保存</strong>
+          <p>历史任务、下载、积分记录和存储空间都进入个人中心。</p>
+        </article>
+        <article>
+          <span>Status</span>
+          <strong id="footerStatus">检测中</strong>
+        <p>Demo V0.24：短根域名客户入口、临时单页镜像、手机扫码、自助体验路径、独立智能体矩阵、素材提交包、试点评估器、试点方案、访问故障兜底、稳定演示模式、转发文案、成交演示包、WebP、离线缓存、历史记录、一键演示、结果摘要、诊断报告。</p>
+        </article>
+      </section>
+
+      <section class="access-strip" id="access">
+        <article>
+          <span>Current Entry</span>
+          <strong id="currentEntryText">检测中</strong>
+          <p id="currentEntryMeta">正在读取当前访问入口</p>
+        </article>
+        <article>
+          <span>API Route</span>
+          <strong id="apiRouteText">检测中</strong>
+          <p id="apiRouteMeta">正在检测云端生成通道</p>
+        </article>
+        <article>
+          <span>Cache</span>
+          <strong id="cacheText">检测中</strong>
+          <p id="cacheMeta">正在检测离线缓存版本</p>
+        </article>
+        <article class="access-actions">
+          <button class="ghost-button" type="button" id="copyCurrentButton">复制当前入口</button>
+          <button class="ghost-button" type="button" id="copyBackupButton">复制全部入口</button>
+          <button class="ghost-button" type="button" id="copyDiagnosticButton">复制诊断报告</button>
+          <button class="generate-button" type="button" id="diagnosticButton">重新检测</button>
+        </article>
+      </section>
+    </div>
+
+    <div class="notice-popover" id="noticePopover">
+      <strong>每日签到积分</strong>
+      <span>测试账号今日可领取 100 积分，正式版支持后台配置。</span>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app-v024.js" type="module"></script>
+  </body>
+</html>
