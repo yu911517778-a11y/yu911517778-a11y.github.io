@@ -259,7 +259,8 @@
           <h1>AI短剧生产主控</h1>
           <p class="lead">这是给客户先看的轻量入口：打开快、能复制入口、能看清主控和独立智能体节点怎么工作。完整体验仍保留在深度 Demo 里。</p>
           <div class="actions">
-            <button class="btn primary" id="copySelf">复制这个极速入口</button>
+            <button class="btn primary" id="copySelf">复制客户入口包</button>
+            <a class="btn primary" href="https://mcp.edgeone.site/share/SgrVG9s_EDbEx4LdNdaHl" target="_blank" rel="noreferrer">EdgeOne 主入口</a>
             <a class="btn" href="https://yu911517778-a11y.github.io/client-access-v030.html" target="_blank" rel="noreferrer">入口分流</a>
             <a class="btn" href="https://yu911517778-a11y.github.io/client-open-v030.html" target="_blank" rel="noreferrer">极简入口</a>
             <a class="btn" href="https://yu911517778-a11y.github.io/client-status-v030.html" target="_blank" rel="noreferrer">客户自检</a>
@@ -378,7 +379,9 @@
           "当前打开的入口：",
           currentUrl(),
           "",
-          "主入口（GitHub Pages）：",
+          "主入口（EdgeOne 临时公网镜像）：",
+          edgeOneUrl,
+          "完整极速入口（GitHub Pages）：",
           liteMainUrl,
           "入口分流页：",
           accessUrl,
@@ -400,15 +403,18 @@
           githubDemoUrl,
           workerDemoUrl,
           "",
-          "建议：微信内打不开时，先复制到手机 Chrome / Safari；还不行就打开入口分流页，按 Cloudflare 备用、预览备用、72h 极速备用的顺序试。"
+          "建议：先发 EdgeOne 主入口；想看完整交互再发完整极速入口。微信内打不开时，复制到手机 Chrome / Safari；还不行就打开入口分流页。"
         ].join("\n");
       }
 
       document.querySelector("#copySelf").addEventListener("click", () => copyText(customerText(), "极速入口已复制"));
       document.querySelector("#copyPitch").addEventListener("click", () => {
         copyText([
-          "给你一个 AI短剧生产主控极速体验入口：",
-          currentUrl(),
+          "给你一个 AI短剧生产主控临时体验入口：",
+          edgeOneUrl,
+          "",
+          "想看完整交互再打开：",
+          liteMainUrl,
           "",
           "打不开时用备用：",
           accessUrl,

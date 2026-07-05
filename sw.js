@@ -3,7 +3,7 @@ const STATIC_ASSETS = [
   "./",
   "index.html",
   "styles-v030-202607051245.css",
-  "app-v030-202607051330.js",
+  "app-v030-202607051430.js",
   "client-entry-v027.html",
   "client-access-v030.html",
   "client-access-v029.html",

@@ -23,8 +23,10 @@ const statusPagesEntry = `${rootPagesEntry}client-status-v030.html`;
 const refreshPagesEntry = `${rootPagesEntry}client-refresh-v030.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245";
-const githubProxyEntry = litePagesEntry;
-const emergencyMirrorEntry = liteTempEntry;
+const edgeOneEntry = "https://mcp.edgeone.site/share/SgrVG9s_EDbEx4LdNdaHl";
+const primaryCustomerEntry = edgeOneEntry;
+const githubProxyEntry = primaryCustomerEntry;
+const emergencyMirrorEntry = primaryCustomerEntry;
 const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
@@ -32,7 +34,8 @@ const settingsKey = "shortDramaAgentSettings:v1";
 const expectedCacheName = "short-drama-studio-v31";
 const liveApiEnabled = true;
 const customerEntries = [
-  ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
+  ["客户主入口（EdgeOne 临时公网镜像）", primaryCustomerEntry],
+  ["完整极速入口（GitHub Pages）", githubPagesEntry],
   ["入口分流页（打不开时先发这个）", accessPagesEntry],
   ["极简入口页（无图片无脚本兜底）", openPagesEntry],
   ["客户自检页（检测当前网络）", statusPagesEntry],
@@ -697,7 +700,8 @@ function buildResultSummary() {
     .join("\n");
   return [
     "AI短剧生产主控体验摘要",
-    `客户入口：${githubPagesEntry}`,
+    `客户入口：${primaryCustomerEntry}`,
+    `完整极速入口：${githubPagesEntry}`,
     `任务：${prompt}`,
     `状态：${runMeta.textContent || "等待生成"}`,
     "",
@@ -714,7 +718,7 @@ function buildResultSummary() {
 function buildCustomerEntryText() {
   return [
     "AI短剧生产主控客户体验入口：",
-    githubPagesEntry,
+    primaryCustomerEntry,
     "",
     "打不开时备用入口：",
     ...customerEntries.slice(1).map(([label, url]) => `${label}：${url}`),
@@ -725,11 +729,12 @@ function buildCustomerEntryText() {
 
 function buildCustomerPitchText() {
   return [
-    "给你一个 AI短剧生产主控极速体验入口：",
-    githubPagesEntry,
+    "给你一个 AI短剧生产主控临时体验入口：",
+    primaryCustomerEntry,
     "",
-    "先打开极速页，看它怎么把剧本、角色、场景、视频和返工拆成独立智能体节点；想看素材包、试点评估和完整界面，再点页面里的完整 Demo。",
+    "先打开临时公网镜像，看它怎么把剧本、角色、场景、视频和返工拆成独立智能体节点；想看可点击生成、素材包、试点评估和完整界面，再打开完整极速入口。",
     "",
+    `完整极速入口：${githubPagesEntry}`,
     `如果微信里打不开，复制到手机 Chrome / Safari；还不行打开入口分流页：${accessPagesEntry}`
   ].join("\n");
 }
@@ -922,7 +927,8 @@ function buildEstimateReportText() {
     "风险提醒：",
     ...estimate.risks.map((item, index) => `${index + 1}. ${item}`),
     "",
-    `客户体验入口：${githubPagesEntry}`,
+    `客户体验入口：${primaryCustomerEntry}`,
+      `完整极速入口：${githubPagesEntry}`,
       `完整 Demo：${projectPagesEntry}`
   ].join("\n");
 }
@@ -942,7 +948,8 @@ function buildEstimateProposalText() {
     "3. 试点跑通后，再确认是否进入正式域名、海外服务器、账号体系、积分充值、资产库、批量任务和 API 日志。",
     "",
     `当前目标：${input.goal.label}；目标日产量：${input.volume.label}。`,
-    `体验入口：${githubPagesEntry}`
+    `体验入口：${primaryCustomerEntry}`,
+    `完整极速入口：${githubPagesEntry}`
   ].join("\n");
 }
 
@@ -1085,8 +1092,9 @@ function buildInfraChecklistText() {
     "4. 积分扣费有流水，失败任务有补偿规则。",
     "5. 资产库能按角色、场景、道具、模板和返工记录检索。",
     "",
-    `客户极速入口：${githubPagesEntry}`,
-    `完整 Demo：${fullTempEntry}`
+    `客户主入口：${primaryCustomerEntry}`,
+    `完整极速入口：${githubPagesEntry}`,
+    `完整 Demo：${rootPagesEntry}`
   ].join("\n");
 }
 
@@ -1094,13 +1102,13 @@ function buildExperienceGuideText() {
   return [
     "AI短剧生产主控客户体验步骤",
     "",
-    `1. 打开入口：优先打开 ${githubPagesEntry}，微信里打不开就复制到手机 Chrome / Safari；还不行就打开入口分流页 ${accessPagesEntry}。`,
-    "2. 看稳定演示：点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
+    `1. 打开入口：优先打开 ${primaryCustomerEntry}；想看可点击生成和完整界面，再打开 ${githubPagesEntry}。如果微信里打不开，就复制到手机 Chrome / Safari；还不行就打开入口分流页 ${accessPagesEntry}。`,
+    "2. 看稳定演示：在完整界面点击“一键演示”，先看系统如何拆成剧本、角色、场景、视频提示词和返工诊断节点。",
     "3. 换真实题材：点击页面作品案例，或直接改输入框里的题材，看同一套主控流程如何复用。",
     "4. 看输出结构：确认结果里是否包含输入类型判断、处理范围、调用节点、资产需求、生成方案和返工方向。",
     "5. 进入试点：把素材提交包发给我们，先做 1 个主角、1 个场景、3 条 10 秒竖屏钩子。",
     "",
-    "体验版默认走稳定演示，不依赖临时 Worker；正式部署后再接真实云端生成、账号、积分和资产库。"
+    "体验版优先保障客户能打开；完整界面当前走云端演示引擎，正式部署后再接真实云端生成、账号、积分和资产库。"
   ].join("\n");
 }
 
@@ -1624,11 +1632,11 @@ copyInfraChecklistButton.addEventListener("click", async () => {
 });
 
 copyMobileEntryButton.addEventListener("click", async () => {
-  copyText(githubPagesEntry, "扫码链接已复制");
+  copyText(primaryCustomerEntry, "客户主入口已复制");
 });
 
 openRootEntryButton.addEventListener("click", () => {
-  window.open(githubPagesEntry, "_blank", "noopener,noreferrer");
+  window.open(primaryCustomerEntry, "_blank", "noopener,noreferrer");
 });
 
 

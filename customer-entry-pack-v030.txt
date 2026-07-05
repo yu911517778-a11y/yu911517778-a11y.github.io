@@ -1,5 +1,20 @@
 AI短剧生产主控客户体验入口包：
 
+主入口 · EdgeOne：
+https://mcp.edgeone.site/share/SgrVG9s_EDbEx4LdNdaHl
+完整极速入口：
+https://yu911517778-a11y.github.io/client-lite-v030.html
+Cloudflare 备用：
+https://short-video-agent-demo.classy-parcel.workers.dev/client-lite-v030.html
+预览备用：
+https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245
+72h 极速备用：
+https://litter.catbox.moe/vxxjas.html
+完整 Demo：
+https://yu911517778-a11y.github.io/
+项目页完整入口：
+https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/
+
 入口分流页：
 https://yu911517778-a11y.github.io/client-access-v030.html
 极简入口页：
@@ -16,18 +31,4 @@ https://short-video-agent-demo.classy-parcel.workers.dev/client-open-v030.html
 https://short-video-agent-demo.classy-parcel.workers.dev/client-status-v030.html
 刷新缓存备用：
 https://short-video-agent-demo.classy-parcel.workers.dev/client-refresh-v030.html
-
-主入口：
-https://yu911517778-a11y.github.io/client-lite-v030.html
-Cloudflare 备用：
-https://short-video-agent-demo.classy-parcel.workers.dev/client-lite-v030.html
-预览备用：
-https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245
-72h 极速备用：
-https://litter.catbox.moe/vxxjas.html
-完整 Demo：
-https://yu911517778-a11y.github.io/
-项目页完整入口：
-https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/
-
-建议：先发主入口；打不开时发入口分流页。微信内打不开就复制到手机 Chrome / Safari。
+建议：先发 EdgeOne 主入口；想看完整交互再发完整极速入口。微信内打不开就复制到手机 Chrome / Safari。
