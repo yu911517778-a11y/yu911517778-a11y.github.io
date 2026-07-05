@@ -25,7 +25,7 @@ const refreshPagesEntry = `${rootPagesEntry}client-refresh-v031.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
 const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v031.html?b=v031-202607051430";
 const edgeOneEntry = "https://mcp.edgeone.site/share/YHAP_QFwctWHj9wjNoz3N";
-const primaryCustomerEntry = edgeOneEntry;
+const primaryCustomerEntry = primaryWorkerEntry;
 const githubProxyEntry = primaryCustomerEntry;
 const emergencyMirrorEntry = primaryCustomerEntry;
 const githubPagesEntry = litePagesEntry;
