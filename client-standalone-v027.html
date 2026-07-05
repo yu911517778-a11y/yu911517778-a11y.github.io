@@ -2745,7 +2745,7 @@ const state = {
 const primaryWorkerEntry = "https://short-video-agent-demo.lateral-owl.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const litePagesEntry = `${projectPagesEntry}client-lite-v027.html`;
+const litePagesEntry = `${rootPagesEntry}client-lite-v027.html`;
 const liteTempEntry = "https://litter.catbox.moe/xkh2g7.html";
 const fullTempEntry = "https://litter.catbox.moe/cxstc3.html";
 const githubProxyEntry = window.location.href.split('#')[0];
@@ -2758,10 +2758,12 @@ const expectedCacheName = "short-drama-studio-v27";
 const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
-  ["备用入口 1（72 小时极速临时页）", liteTempEntry],
-  ["备用入口 2（项目页完整入口）", `${projectPagesEntry}client-entry-v027.html`],
-  ["备用入口 3（72 小时完整 Demo）", fullTempEntry],
-  ["备用入口 4（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v027.html`]
+  ["备用入口 1（项目页极速入口）", `${projectPagesEntry}client-lite-v027.html`],
+  ["备用入口 2（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
+  ["备用入口 3（项目页完整入口）", `${projectPagesEntry}client-entry-v027.html`],
+  ["备用入口 4（72 小时极速临时页）", liteTempEntry],
+  ["备用入口 5（72 小时完整 Demo）", fullTempEntry],
+  ["备用入口 6（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v027.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
@@ -3437,7 +3439,7 @@ function buildCustomerEntryText() {
     "打不开时备用入口：",
     ...customerEntries.slice(1).map(([label, url]) => `${label}：${url}`),
     "",
-    "建议：如果微信内打不开，请先复制到手机 Chrome / Safari 打开；还不行依次试备用入口 1、2。"
+    "建议：如果微信内打不开，请先复制到手机 Chrome / Safari 打开；还不行就按顺序试备用入口。"
   ].join("\n");
 }
 
