@@ -14,20 +14,20 @@
 const primaryWorkerEntry = "https://short-video-agent-demo.classy-parcel.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
-const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
-const openPagesEntry = `${rootPagesEntry}client-open-v029.html`;
-const statusPagesEntry = `${rootPagesEntry}client-status-v029.html`;
-const refreshPagesEntry = `${rootPagesEntry}client-refresh-v029.html`;
+const litePagesEntry = `${rootPagesEntry}client-lite-v030.html`;
+const accessPagesEntry = `${rootPagesEntry}client-access-v030.html`;
+const openPagesEntry = `${rootPagesEntry}client-open-v030.html`;
+const statusPagesEntry = `${rootPagesEntry}client-status-v030.html`;
+const refreshPagesEntry = `${rootPagesEntry}client-refresh-v030.html`;
 const liteTempEntry = "https://litter.catbox.moe/vxxjas.html";
-const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130";
+const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v030.html?b=v030-202607051245";
 const githubProxyEntry = litePagesEntry;
 const emergencyMirrorEntry = liteTempEntry;
 const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
-const expectedCacheName = "short-drama-studio-v30";
+const expectedCacheName = "short-drama-studio-v31";
 const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
@@ -35,10 +35,10 @@ const customerEntries = [
   ["极简入口页（无图片无脚本兜底）", openPagesEntry],
   ["客户自检页（检测当前网络）", statusPagesEntry],
   ["刷新缓存页（清理旧入口缓存）", refreshPagesEntry],
-  ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v029.html`],
+  ["入口分流备用（Cloudflare）", `${primaryWorkerEntry}client-access-v030.html`],
   ["备用入口 1（72 小时极速临时页）", liteTempEntry],
   ["备用入口 2（GitHub 文件预览）", previewLiteEntry],
-  ["备用入口 3（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v029.html`],
+  ["备用入口 3（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v030.html`],
   ["备用入口 4（项目页完整入口）", projectPagesEntry],
   ["备用入口 5（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
   ["备用入口 6（Cloudflare 临时完整入口）", `${primaryWorkerEntry}client-entry-v027.html`]

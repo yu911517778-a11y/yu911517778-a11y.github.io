@@ -2,7 +2,7 @@
   "name": "AI短剧生产主控 Studio",
   "short_name": "短剧主控",
   "description": "从参考图到短剧分镜的 AI 生产主控体验 Demo。",
-  "start_url": "client-lite-v029.html",
+  "start_url": "client-lite-v030.html",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#050505",
