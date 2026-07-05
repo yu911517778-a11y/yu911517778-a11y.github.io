@@ -7,6 +7,8 @@ const STATIC_ASSETS = [
   "app-v031-202607051430.js",
   "app-v030-202607051430.js",
   "client-entry-v027.html",
+  "go.html",
+  "client-launch-v031.html",
   "client-access-v031.html",
   "client-access-v030.html",
   "client-open-v031.html",
