@@ -1,4 +1,4 @@
-const state = {
+﻿const state = {
   mode: "agent",
   points: 12800,
   refs: [],
@@ -11,7 +11,7 @@ const state = {
   selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.ludicrous-quotation.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.classy-parcel.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
@@ -1661,3 +1661,4 @@ renderDeployPlan();
 checkService();
 runAccessDiagnostics();
 registerServiceWorker();
+

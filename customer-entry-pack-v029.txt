@@ -7,16 +7,16 @@ https://yu911517778-a11y.github.io/client-open-v029.html
 客户自检页：
 https://yu911517778-a11y.github.io/client-status-v029.html
 入口分流备用：
-https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-access-v029.html
+https://short-video-agent-demo.classy-parcel.workers.dev/client-access-v029.html
 极简入口备用：
-https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-open-v029.html
+https://short-video-agent-demo.classy-parcel.workers.dev/client-open-v029.html
 客户自检备用：
-https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-status-v029.html
+https://short-video-agent-demo.classy-parcel.workers.dev/client-status-v029.html
 
 主入口：
 https://yu911517778-a11y.github.io/client-lite-v029.html
 Cloudflare 备用：
-https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-lite-v029.html
+https://short-video-agent-demo.classy-parcel.workers.dev/client-lite-v029.html
 预览备用：
 https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130
 72h 极速备用：
