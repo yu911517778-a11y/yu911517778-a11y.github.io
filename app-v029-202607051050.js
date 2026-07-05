@@ -17,7 +17,7 @@ const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-age
 const litePagesEntry = `${rootPagesEntry}client-lite-v029.html`;
 const accessPagesEntry = `${rootPagesEntry}client-access-v029.html`;
 const liteTempEntry = "https://litter.catbox.moe/ap80do.html";
-const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=8685f6d";
+const previewLiteEntry = "https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130";
 const fullTempEntry = "https://litter.catbox.moe/05o7n4.html";
 const githubProxyEntry = litePagesEntry;
 const emergencyMirrorEntry = liteTempEntry;
