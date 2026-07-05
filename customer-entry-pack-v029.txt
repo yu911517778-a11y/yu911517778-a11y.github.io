@@ -12,14 +12,14 @@ https://short-video-agent-demo.ludicrous-quotation.workers.dev/client-lite-v029.
 预览备用：
 https://htmlpreview.github.io/?https://github.com/yu911517778-a11y/yu911517778-a11y.github.io/blob/master/client-lite-v029.html?b=v029-202607051130
 单文件永久备用：
-https://files.catbox.moe/6p6hjv.html
+https://files.catbox.moe/eg376m.html
 72h 极速备用：
-https://litter.catbox.moe/zbwde5.html
+https://litter.catbox.moe/g8qssw.html
 完整 Demo：
 https://yu911517778-a11y.github.io/
 项目页完整入口：
 https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/
 72h 完整备用：
-https://litter.catbox.moe/5x1wm1.html
+https://litter.catbox.moe/axb1pl.html
 
 建议：先发主入口；打不开时发入口分流页。微信内打不开就复制到手机 Chrome / Safari。
