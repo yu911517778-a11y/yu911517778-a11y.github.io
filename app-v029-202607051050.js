@@ -11,7 +11,7 @@ const state = {
   selectedAgentIndex: 0
 };
 
-const primaryWorkerEntry = "https://short-video-agent-demo.lateral-owl.workers.dev/";
+const primaryWorkerEntry = "https://short-video-agent-demo.tartan-printer.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
 const litePagesEntry = `${rootPagesEntry}client-lite-v027.html`;
@@ -23,16 +23,16 @@ const githubPagesEntry = litePagesEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
 const historyKey = "shortDramaAgentHistory:v1";
 const settingsKey = "shortDramaAgentSettings:v1";
-const expectedCacheName = "short-drama-studio-v28";
+const expectedCacheName = "short-drama-studio-v29";
 const liveApiEnabled = false;
 const customerEntries = [
   ["客户主入口（极速 GitHub Pages）", githubPagesEntry],
-  ["备用入口 1（项目页极速入口）", `${projectPagesEntry}client-lite-v027.html`],
-  ["备用入口 2（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
-  ["备用入口 3（项目页完整入口）", `${projectPagesEntry}client-entry-v027.html`],
-  ["备用入口 4（72 小时极速临时页）", liteTempEntry],
+  ["备用入口 1（72 小时极速临时页）", liteTempEntry],
+  ["备用入口 2（Cloudflare 临时极速入口）", `${primaryWorkerEntry}client-lite-v027.html`],
+  ["备用入口 3（项目页极速入口）", `${projectPagesEntry}client-lite-v027.html`],
+  ["备用入口 4（短根域名完整入口）", `${rootPagesEntry}client-entry-v027.html`],
   ["备用入口 5（72 小时完整 Demo）", fullTempEntry],
-  ["备用入口 6（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v027.html`]
+  ["备用入口 6（Cloudflare 临时完整入口）", `${primaryWorkerEntry}client-entry-v027.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];

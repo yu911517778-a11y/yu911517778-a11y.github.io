@@ -1,9 +1,9 @@
-const CACHE_NAME = "short-drama-studio-v28";
+const CACHE_NAME = "short-drama-studio-v29";
 const STATIC_ASSETS = [
   "./",
   "index.html",
-  "styles-v028-202607051020.css",
-  "app-v028-202607051020.js",
+  "styles-v029-202607051050.css",
+  "app-v029-202607051050.js",
   "client-entry-v027.html",
   "client-lite-v026.html",
   "client-lite-v027.html",
@@ -19,7 +19,10 @@ const STATIC_ASSETS = [
   "assets/film-set.webp",
   "assets/film-studio.webp",
   "assets/customer-entry-qr.svg",
-  "assets/palace-night.jpg"
+  "assets/palace-night.jpg",
+  "assets/social-preview-1200x630.jpg",
+  "assets/app-icon-192.png",
+  "assets/app-icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
