@@ -14,7 +14,7 @@ const state = {
 const primaryWorkerEntry = "https://short-video-agent-demo.wary-bar.workers.dev/";
 const rootPagesEntry = "https://yu911517778-a11y.github.io/";
 const projectPagesEntry = "https://yu911517778-a11y.github.io/ai-short-drama-agent-demo/";
-const githubProxyEntry = "https://raw.githack.com/yu911517778-a11y/yu911517778-a11y.github.io/master/client-entry-v025.html?v=202607050850";
+const githubProxyEntry = "https://litter.catbox.moe/12m020.html";
 const emergencyMirrorEntry = githubProxyEntry;
 const githubPagesEntry = githubProxyEntry;
 const remoteApiBase = primaryWorkerEntry.replace(/\/$/, "");
@@ -23,10 +23,10 @@ const settingsKey = "shortDramaAgentSettings:v1";
 const expectedCacheName = "short-drama-studio-v25";
 const liveApiEnabled = false;
 const customerEntries = [
-  ["客户主入口（GitHub CDN 预览）", githubPagesEntry],
+  ["客户主入口（72 小时临时单文件）", githubPagesEntry],
   ["备用入口 1（短根域名 GitHub Pages）", rootPagesEntry],
-  ["备用入口 2（长链 GitHub Pages）", projectPagesEntry],
-  ["备用入口 3（Cloudflare Worker，部分网络可能拦截）", primaryWorkerEntry]
+  ["备用入口 2（短根域名新入口）", `${rootPagesEntry}client-entry-v025.html`],
+  ["备用入口 3（Cloudflare Worker，部分网络可能拦截）", `${primaryWorkerEntry}client-entry-v025.html`]
 ];
 
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
